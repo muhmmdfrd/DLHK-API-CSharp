@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Core\\Manager",
+    "\\Core\\Manager\\SweeperManager",
+    "\\Core\\Manager\\UserManager",
+    "\\DLHK-API",
+    "\\DLHK-API\\Security",
+    "\\Repository"
+  ],
+  "PreviewInSolutionExplorer": false
+}

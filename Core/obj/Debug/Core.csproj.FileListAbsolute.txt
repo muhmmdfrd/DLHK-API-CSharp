@@ -1,0 +1,17 @@
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Core.dll.config
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Core.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Core.pdb
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\EntityFramework.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Newtonsoft.Json.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Repository.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Repository.pdb
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Repository.dll.config
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\EntityFramework.xml
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\muhmm\source\repos\DLHK-API\Core\bin\Debug\Newtonsoft.Json.xml
+C:\Users\muhmm\source\repos\DLHK-API\Core\obj\Debug\Core.csprojAssemblyReference.cache
+C:\Users\muhmm\source\repos\DLHK-API\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+C:\Users\muhmm\source\repos\DLHK-API\Core\obj\Debug\Core.csproj.CopyComplete
+C:\Users\muhmm\source\repos\DLHK-API\Core\obj\Debug\Core.dll
+C:\Users\muhmm\source\repos\DLHK-API\Core\obj\Debug\Core.pdb

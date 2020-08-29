@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a2009744a6c493bbbc134939fd73bee" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="DLHKModel.Presence" Width="1.5" PointX="6" PointY="4.125" />
+        <EntityTypeShape EntityType="DLHKModel.Leave" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="DLHKModel.Region" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DLHKModel.Role" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="DLHKModel.Zone" Width="1.5" PointX="3" PointY="4.375" />
+        <AssociationConnector Association="DLHKModel.FK__Zone__RegionId__3A4CA8FD" />
+        <EntityTypeShape EntityType="DLHKModel.User" Width="1.5" PointX="10.5" PointY="4.5" />
+        <EntityTypeShape EntityType="DLHKModel.Person" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DLHKModel.Employee" Width="1.5" PointX="8.25" PointY="3.125" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__Person__4E88ABD4" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__Region__1BC821DD" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__RoleId__160F4887" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__ZoneId__1AD3FDA4" />
+        <AssociationConnector Association="DLHKModel.FK__Leave__EmployeeI__02FC7413" />
+        <AssociationConnector Association="DLHKModel.FK__Presence__Employ__5165187F" />
+        <AssociationConnector Association="DLHKModel.FK__User__EmployeeId__4F47C5E3" />
+        <EntityTypeShape EntityType="DLHKModel.Applicant" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DLHKModel.Drainage" Width="1.5" PointX="8.25" PointY="11.25" />
+        <EntityTypeShape EntityType="DLHKModel.Garbage" Width="1.5" PointX="8.25" PointY="25.5" />
+        <EntityTypeShape EntityType="DLHKModel.Sweeper" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="DLHKModel.FK__Drainage__Presen__2EDAF651" />
+        <AssociationConnector Association="DLHKModel.FK__Garbage__Presenc__2BFE89A6" />
+        <AssociationConnector Association="DLHKModel.FK__Sweeper__Presenc__29221CFB" />
+        <EntityTypeShape EntityType="DLHKModel.HeadOfZone" Width="1.5" PointX="8.25" PointY="20.25" />
+        <AssociationConnector Association="DLHKModel.FK__HeadOfZon__Prese__31B762FC" />
+        <EntityTypeShape EntityType="DLHKModel.AssessmentZone" Width="1.5" PointX="10.5" PointY="12" />
+        <AssociationConnector Association="DLHKModel.FK__Assessmen__Emplo__0B5CAFEA" />
+        <EntityTypeShape EntityType="DLHKModel.Category" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DLHKModel.Suplier" Width="1.5" PointX="11.25" PointY="0.875" />
+        <EntityTypeShape EntityType="DLHKModel.Submission" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DLHKModel.Interview" Width="1.5" PointX="12.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DLHKModel.Item" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DLHKModel.Transac" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DLHKModel.Coordinator" Width="1.5" PointX="13.375" PointY="4.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,12 @@
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\Repository.dll.config
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\Repository.dll
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\Repository.pdb
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\EntityFramework.dll
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\EntityFramework.xml
+C:\Users\muhmm\source\repos\DLHK-API\Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.csproj.CopyComplete
+C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.dll
+C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.pdb
+C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.csprojAssemblyReference.cache

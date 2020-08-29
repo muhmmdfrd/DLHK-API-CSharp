@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DLHKModelStoreContainer" CdmEntityContainer="DLHKEntities">
+    <EntitySetMapping Name="Presences">
+      <EntityTypeMapping TypeName="DLHKModel.Presence">
+        <MappingFragment StoreEntitySet="Presence">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="PresenceStatus" ColumnName="PresenceStatus" />
+          <ScalarProperty Name="DateOfPresence" ColumnName="DateOfPresence" />
+          <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
+          <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
+          <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leaves">
+      <EntityTypeMapping TypeName="DLHKModel.Leave">
+        <MappingFragment StoreEntitySet="Leave">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="LeaveStatus" ColumnName="LeaveStatus" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
+          <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="DLHKModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DLHKModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zones">
+      <EntityTypeMapping TypeName="DLHKModel.Zone">
+        <MappingFragment StoreEntitySet="Zone">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+          <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DLHKModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="DLHKModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TotalChild" ColumnName="TotalChild" />
+          <ScalarProperty Name="Jobdesk" ColumnName="Jobdesk" />
+          <ScalarProperty Name="AppLetter" ColumnName="AppLetter" />
+          <ScalarProperty Name="Sertificate" ColumnName="Sertificate" />
+          <ScalarProperty Name="KTP" ColumnName="KTP" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="JobOfCouple" ColumnName="JobOfCouple" />
+          <ScalarProperty Name="NameOfCouple" ColumnName="NameOfCouple" />
+          <ScalarProperty Name="PreviousJob" ColumnName="PreviousJob" />
+          <ScalarProperty Name="LastDegree" ColumnName="LastDegree" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+          <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="DLHKModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="LocationContract" ColumnName="LocationContract" />
+          <ScalarProperty Name="LastContract" ColumnName="LastContract" />
+          <ScalarProperty Name="FirstContract" ColumnName="FirstContract" />
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Applicants">
+      <EntityTypeMapping TypeName="DLHKModel.Applicant">
+        <MappingFragment StoreEntitySet="Applicant">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
+          <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drainages">
+      <EntityTypeMapping TypeName="DLHKModel.Drainage">
+        <MappingFragment StoreEntitySet="Drainage">
+          <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+          <ScalarProperty Name="Weed" ColumnName="Weed" />
+          <ScalarProperty Name="Sediment" ColumnName="Sediment" />
+          <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+          <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+          <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+          <ScalarProperty Name="DrainageId" ColumnName="DrainageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Garbages">
+      <EntityTypeMapping TypeName="DLHKModel.Garbage">
+        <MappingFragment StoreEntitySet="Garbage">
+          <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+          <ScalarProperty Name="VolumeOfAnorganic" ColumnName="VolumeOfAnorganic" />
+          <ScalarProperty Name="VolumeOfOrganic" ColumnName="VolumeOfOrganic" />
+          <ScalarProperty Name="Calculation" ColumnName="Calculation" />
+          <ScalarProperty Name="Separation" ColumnName="Separation" />
+          <ScalarProperty Name="TPS" ColumnName="TPS" />
+          <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+          <ScalarProperty Name="GerbageId" ColumnName="GerbageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sweepers">
+      <EntityTypeMapping TypeName="DLHKModel.Sweeper">
+        <MappingFragment StoreEntitySet="Sweeper">
+          <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+          <ScalarProperty Name="RoadMedian" ColumnName="RoadMedian" />
+          <ScalarProperty Name="WaterRope" ColumnName="WaterRope" />
+          <ScalarProperty Name="Sidewalk" ColumnName="Sidewalk" />
+          <ScalarProperty Name="Road" ColumnName="Road" />
+          <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+          <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+          <ScalarProperty Name="SweeperId" ColumnName="SweeperId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeadOfZones">
+      <EntityTypeMapping TypeName="DLHKModel.HeadOfZone">
+        <MappingFragment StoreEntitySet="HeadOfZone">
+          <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
+          <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+          <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+          <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
+          <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
+          <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
+          <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
+          <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
+          <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
+          <ScalarProperty Name="HeadOfZoneId" ColumnName="HeadOfZoneId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssessmentZones">
+      <EntityTypeMapping TypeName="DLHKModel.AssessmentZone">
+        <MappingFragment StoreEntitySet="AssessmentZone">
+          <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+          <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
+          <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
+          <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
+          <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
+          <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
+          <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
+          <ScalarProperty Name="AssessmentZoneId" ColumnName="AssessmentZoneId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DLHKModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supliers">
+      <EntityTypeMapping TypeName="DLHKModel.Suplier">
+        <MappingFragment StoreEntitySet="Suplier">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
+          <ScalarProperty Name="SuplierId" ColumnName="SuplierId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Submissions">
+      <EntityTypeMapping TypeName="DLHKModel.Submission">
+        <MappingFragment StoreEntitySet="Submission">
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="SubmissionUser" ColumnName="SubmissionUser" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="DateOfSubmission" ColumnName="DateOfSubmission" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interviews">
+      <EntityTypeMapping TypeName="DLHKModel.Interview">
+        <MappingFragment StoreEntitySet="Interview">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfInterview" ColumnName="DateOfInterview" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Interviewer" ColumnName="Interviewer" />
+          <ScalarProperty Name="InterviewId" ColumnName="InterviewId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="DLHKModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+          <ScalarProperty Name="ItemPhoto" ColumnName="ItemPhoto" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transacs">
+      <EntityTypeMapping TypeName="DLHKModel.Transac">
+        <MappingFragment StoreEntitySet="Transac">
+          <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
+          <ScalarProperty Name="UserRequest" ColumnName="UserRequest" />
+          <ScalarProperty Name="UserRecorder" ColumnName="UserRecorder" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="TypeOfTransac" ColumnName="TypeOfTransac" />
+          <ScalarProperty Name="DateTransac" ColumnName="DateTransac" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="TransacId" ColumnName="TransacId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coordinators">
+      <EntityTypeMapping TypeName="DLHKModel.Coordinator">
+        <MappingFragment StoreEntitySet="Coordinator">
+          <ScalarProperty Name="DateOfAssessment" ColumnName="DateOfAssessment" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+          <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+          <ScalarProperty Name="PercentOfSatisfaction" ColumnName="PercentOfSatisfaction" />
+          <ScalarProperty Name="PercentOfCompletion" ColumnName="PercentOfCompletion" />
+          <ScalarProperty Name="PercentOfReport" ColumnName="PercentOfReport" />
+          <ScalarProperty Name="PercentOfPresence" ColumnName="PercentOfPresence" />
+          <ScalarProperty Name="CoordinatorId" ColumnName="CoordinatorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

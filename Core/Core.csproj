@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E884316-74A8-44DF-8488-2707677B4FC5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsistanceBase.cs" />
+    <Compile Include="IAsistanceBase.cs" />
+    <Compile Include="IContextBase.cs" />
+    <Compile Include="IManager.cs" />
+    <Compile Include="ManagerBase.cs" />
+    <Compile Include="Manager\ApplicantManager\ApplicantAdapter.cs" />
+    <Compile Include="Manager\ApplicantManager\ApplicantCreator.cs" />
+    <Compile Include="Manager\ApplicantManager\ApplicantDTO.cs" />
+    <Compile Include="Manager\ApplicantManager\ApplicantQuery.cs" />
+    <Compile Include="Manager\AssessmentZoneManager\AssessmentZoneAdapter.cs" />
+    <Compile Include="Manager\AssessmentZoneManager\AssessmentZoneCreator.cs" />
+    <Compile Include="Manager\AssessmentZoneManager\AssessmentZoneDTO.cs" />
+    <Compile Include="Manager\AssessmentZoneManager\AssessmentZoneQuery.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryAdapter.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryCreator.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryDeleter.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryDTO.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryQuery.cs" />
+    <Compile Include="Manager\CategoryManager\CategoryUpdater.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorAdapter.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorCreator.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorDeleter.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorDTO.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorQuery.cs" />
+    <Compile Include="Manager\CoordinatorManager\CoordinatorUpdater.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageAdapter.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageCreator.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageDeleter.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageDTO.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageQuery.cs" />
+    <Compile Include="Manager\DrainageManager\DrainageUpdater.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeAdapter.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeCreator.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeDeleter.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeDTO.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeQuery.cs" />
+    <Compile Include="Manager\EmployeeManager\EmployeeUpdater.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageAdapter.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageCreator.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageDeleter.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageDTO.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageQuery.cs" />
+    <Compile Include="Manager\GarbageManager\GarbageUpdater.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneAdapter.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneCreator.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneDeleter.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneDTO.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneQuery.cs" />
+    <Compile Include="Manager\HeadZoneManager\HeadZoneUpdater.cs" />
+    <Compile Include="Manager\InterviewManager\InterviewAdapter.cs" />
+    <Compile Include="Manager\InterviewManager\InterviewCreator.cs" />
+    <Compile Include="Manager\InterviewManager\InterviewDTO.cs" />
+    <Compile Include="Manager\InterviewManager\InterviewQuery.cs" />
+    <Compile Include="Manager\ItemManager\ItemAdapter.cs" />
+    <Compile Include="Manager\ItemManager\ItemCreator.cs" />
+    <Compile Include="Manager\ItemManager\ItemDeleter.cs" />
+    <Compile Include="Manager\ItemManager\ItemDTO.cs" />
+    <Compile Include="Manager\ItemManager\ItemQuery.cs" />
+    <Compile Include="Manager\ItemManager\ItemUpdater.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveAdapter.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveCreator.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveDeleter.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveDTO.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveQuery.cs" />
+    <Compile Include="Manager\LeaveManager\LeaveUpdater.cs" />
+    <Compile Include="Manager\PersonManager\PersonAdapter.cs" />
+    <Compile Include="Manager\PersonManager\PersonCreator.cs" />
+    <Compile Include="Manager\PersonManager\PersonDeleter.cs" />
+    <Compile Include="Manager\PersonManager\PersonDTO.cs" />
+    <Compile Include="Manager\PersonManager\PersonQuery.cs" />
+    <Compile Include="Manager\PersonManager\PersonUpdater.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceAdapter.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceCreator.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceDeleter.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceDTO.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceQuery.cs" />
+    <Compile Include="Manager\PresenceManager\PresenceUpdater.cs" />
+    <Compile Include="Manager\RegionManager\RegionAdapter.cs" />
+    <Compile Include="Manager\RegionManager\RegionCreator.cs" />
+    <Compile Include="Manager\RegionManager\RegionDeleter.cs" />
+    <Compile Include="Manager\RegionManager\RegionDTO.cs" />
+    <Compile Include="Manager\RegionManager\RegionQuery.cs" />
+    <Compile Include="Manager\RegionManager\RegionUpdater.cs" />
+    <Compile Include="Manager\RoleManager\RoleAdapter.cs" />
+    <Compile Include="Manager\RoleManager\RoleCreator.cs" />
+    <Compile Include="Manager\RoleManager\RoleDeleter.cs" />
+    <Compile Include="Manager\RoleManager\RoleDTO.cs" />
+    <Compile Include="Manager\RoleManager\RoleQuery.cs" />
+    <Compile Include="Manager\RoleManager\RoleUpdater.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierAdapter.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierCreator.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierDeleter.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierDTO.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierQuery.cs" />
+    <Compile Include="Manager\SuplierManager\SuplierUpdater.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperAdapter.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperCreator.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperDeleter.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperDTO.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperQuery.cs" />
+    <Compile Include="Manager\SweeperManager\SweeperUpdater.cs" />
+    <Compile Include="Manager\TransacManager\TransacAdapter.cs" />
+    <Compile Include="Manager\TransacManager\TransacCreator.cs" />
+    <Compile Include="Manager\TransacManager\TransacDTO.cs" />
+    <Compile Include="Manager\TransacManager\TransacInDTO.cs" />
+    <Compile Include="Manager\TransacManager\TransacOutDTO.cs" />
+    <Compile Include="Manager\TransacManager\TransacQuery.cs" />
+    <Compile Include="Manager\UserManager\UserAdapter.cs" />
+    <Compile Include="Manager\UserManager\UserDTO.cs" />
+    <Compile Include="Manager\UserManager\UserQuery.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneAdapter.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneCreator.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneDeleter.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneDTO.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneQuery.cs" />
+    <Compile Include="Manager\ZoneManager\ZoneUpdater.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{85c2d4ad-ce45-49b7-9fe9-9e43b4b7387e}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
