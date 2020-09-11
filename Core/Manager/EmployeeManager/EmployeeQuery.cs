@@ -497,7 +497,8 @@ namespace Core.Manager.EmployeeManager
 						Region = val.Region.RegionName,
 						Role = val.Role.RoleName,
 						ZoneName = val.Zone.ZoneName,
-						Age = todayDateTime.Year - val.Person.DateOfBirth.Value.Year
+						Age = todayDateTime.Year - val.Person.DateOfBirth.Value.Year,
+						Shift = val.Shift
 					}).FirstOrDefault();
 		}
 	}

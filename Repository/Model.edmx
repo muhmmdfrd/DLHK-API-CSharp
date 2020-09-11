@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DLHKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DLHKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -256,7 +256,7 @@
           <Property Name="ZoneName" Type="varchar" MaxLength="30" />
           <Property Name="RegionId" Type="bigint" />
         </EntityType>
-        <Association Name="FK__Assessmen__Emplo__0B5CAFEA">
+        <Association Name="FK__Assessmen__Emplo__5CD6CB2B">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="AssessmentZone" Type="Self.AssessmentZone" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,7 +268,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Drainage__Presen__2EDAF651">
+        <Association Name="FK__Drainage__Presen__5DCAEF64">
           <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
           <End Role="Drainage" Type="Self.Drainage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__Person__4E88ABD4">
+        <Association Name="FK__Employee__Person__5EBF139D">
           <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -292,7 +292,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__Region__1BC821DD">
+        <Association Name="FK__Employee__Region__5FB337D6">
           <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -304,7 +304,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__RoleId__160F4887">
+        <Association Name="FK__Employee__RoleId__60A75C0F">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -316,7 +316,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__ZoneId__1AD3FDA4">
+        <Association Name="FK__Employee__ZoneId__619B8048">
           <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -328,7 +328,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Garbage__Presenc__2BFE89A6">
+        <Association Name="FK__Garbage__Presenc__628FA481">
           <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
           <End Role="Garbage" Type="Self.Garbage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -340,7 +340,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HeadOfZon__Prese__31B762FC">
+        <Association Name="FK__HeadOfZon__Prese__6383C8BA">
           <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
           <End Role="HeadOfZone" Type="Self.HeadOfZone" Multiplicity="*" />
           <ReferentialConstraint>
@@ -352,7 +352,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Leave__EmployeeI__02FC7413">
+        <Association Name="FK__Leave__EmployeeI__6477ECF3">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
           <ReferentialConstraint>
@@ -364,7 +364,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Presence__Employ__5165187F">
+        <Association Name="FK__Presence__Employ__656C112C">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Presence" Type="Self.Presence" Multiplicity="*" />
           <ReferentialConstraint>
@@ -376,7 +376,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sweeper__Presenc__29221CFB">
+        <Association Name="FK__Sweeper__Presenc__66603565">
           <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
           <End Role="Sweeper" Type="Self.Sweeper" Multiplicity="*" />
           <ReferentialConstraint>
@@ -388,7 +388,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User__EmployeeId__4F47C5E3">
+        <Association Name="FK__User__EmployeeId__6754599E">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
@@ -400,7 +400,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Zone__RegionId__3A4CA8FD">
+        <Association Name="FK__Zone__RegionId__68487DD7">
           <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
           <End Role="Zone" Type="Self.Zone" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,236 +434,123 @@
           <EntitySet Name="Transac" EntityType="Self.Transac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Assessmen__Emplo__0B5CAFEA" Association="Self.FK__Assessmen__Emplo__0B5CAFEA">
+          <AssociationSet Name="FK__Assessmen__Emplo__5CD6CB2B" Association="Self.FK__Assessmen__Emplo__5CD6CB2B">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="AssessmentZone" EntitySet="AssessmentZone" />
           </AssociationSet>
-          <AssociationSet Name="FK__Drainage__Presen__2EDAF651" Association="Self.FK__Drainage__Presen__2EDAF651">
+          <AssociationSet Name="FK__Drainage__Presen__5DCAEF64" Association="Self.FK__Drainage__Presen__5DCAEF64">
             <End Role="Presence" EntitySet="Presence" />
             <End Role="Drainage" EntitySet="Drainage" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__Person__4E88ABD4" Association="Self.FK__Employee__Person__4E88ABD4">
+          <AssociationSet Name="FK__Employee__Person__5EBF139D" Association="Self.FK__Employee__Person__5EBF139D">
             <End Role="Person" EntitySet="Person" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__Region__1BC821DD" Association="Self.FK__Employee__Region__1BC821DD">
+          <AssociationSet Name="FK__Employee__Region__5FB337D6" Association="Self.FK__Employee__Region__5FB337D6">
             <End Role="Region" EntitySet="Region" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__RoleId__160F4887" Association="Self.FK__Employee__RoleId__160F4887">
+          <AssociationSet Name="FK__Employee__RoleId__60A75C0F" Association="Self.FK__Employee__RoleId__60A75C0F">
             <End Role="Role" EntitySet="Role" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__ZoneId__1AD3FDA4" Association="Self.FK__Employee__ZoneId__1AD3FDA4">
+          <AssociationSet Name="FK__Employee__ZoneId__619B8048" Association="Self.FK__Employee__ZoneId__619B8048">
             <End Role="Zone" EntitySet="Zone" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Garbage__Presenc__2BFE89A6" Association="Self.FK__Garbage__Presenc__2BFE89A6">
+          <AssociationSet Name="FK__Garbage__Presenc__628FA481" Association="Self.FK__Garbage__Presenc__628FA481">
             <End Role="Presence" EntitySet="Presence" />
             <End Role="Garbage" EntitySet="Garbage" />
           </AssociationSet>
-          <AssociationSet Name="FK__HeadOfZon__Prese__31B762FC" Association="Self.FK__HeadOfZon__Prese__31B762FC">
+          <AssociationSet Name="FK__HeadOfZon__Prese__6383C8BA" Association="Self.FK__HeadOfZon__Prese__6383C8BA">
             <End Role="Presence" EntitySet="Presence" />
             <End Role="HeadOfZone" EntitySet="HeadOfZone" />
           </AssociationSet>
-          <AssociationSet Name="FK__Leave__EmployeeI__02FC7413" Association="Self.FK__Leave__EmployeeI__02FC7413">
+          <AssociationSet Name="FK__Leave__EmployeeI__6477ECF3" Association="Self.FK__Leave__EmployeeI__6477ECF3">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Leave" EntitySet="Leave" />
           </AssociationSet>
-          <AssociationSet Name="FK__Presence__Employ__5165187F" Association="Self.FK__Presence__Employ__5165187F">
+          <AssociationSet Name="FK__Presence__Employ__656C112C" Association="Self.FK__Presence__Employ__656C112C">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Presence" EntitySet="Presence" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sweeper__Presenc__29221CFB" Association="Self.FK__Sweeper__Presenc__29221CFB">
+          <AssociationSet Name="FK__Sweeper__Presenc__66603565" Association="Self.FK__Sweeper__Presenc__66603565">
             <End Role="Presence" EntitySet="Presence" />
             <End Role="Sweeper" EntitySet="Sweeper" />
           </AssociationSet>
-          <AssociationSet Name="FK__User__EmployeeId__4F47C5E3" Association="Self.FK__User__EmployeeId__4F47C5E3">
+          <AssociationSet Name="FK__User__EmployeeId__6754599E" Association="Self.FK__User__EmployeeId__6754599E">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__Zone__RegionId__3A4CA8FD" Association="Self.FK__Zone__RegionId__3A4CA8FD">
+          <AssociationSet Name="FK__Zone__RegionId__68487DD7" Association="Self.FK__Zone__RegionId__68487DD7">
             <End Role="Region" EntitySet="Region" />
             <End Role="Zone" EntitySet="Zone" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DLHKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="DLHKEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Presences" EntityType="DLHKModel.Presence" />
-          <EntitySet Name="Leaves" EntityType="DLHKModel.Leave" />
-          <EntitySet Name="Regions" EntityType="DLHKModel.Region" />
-          <EntitySet Name="Roles" EntityType="DLHKModel.Role" />
-          <EntitySet Name="Zones" EntityType="DLHKModel.Zone" />
-          <AssociationSet Name="FK__Zone__RegionId__3A4CA8FD" Association="DLHKModel.FK__Zone__RegionId__3A4CA8FD">
-            <End Role="Region" EntitySet="Regions" />
-            <End Role="Zone" EntitySet="Zones" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="DLHKModel.User" />
-          <EntitySet Name="People" EntityType="DLHKModel.Person" />
-          <EntitySet Name="Employees" EntityType="DLHKModel.Employee" />
-          <AssociationSet Name="FK__Employee__Person__4E88ABD4" Association="DLHKModel.FK__Employee__Person__4E88ABD4">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employee__Region__1BC821DD" Association="DLHKModel.FK__Employee__Region__1BC821DD">
-            <End Role="Region" EntitySet="Regions" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employee__RoleId__160F4887" Association="DLHKModel.FK__Employee__RoleId__160F4887">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employee__ZoneId__1AD3FDA4" Association="DLHKModel.FK__Employee__ZoneId__1AD3FDA4">
-            <End Role="Zone" EntitySet="Zones" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Leave__EmployeeI__02FC7413" Association="DLHKModel.FK__Leave__EmployeeI__02FC7413">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Leave" EntitySet="Leaves" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Presence__Employ__5165187F" Association="DLHKModel.FK__Presence__Employ__5165187F">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Presence" EntitySet="Presences" />
-          </AssociationSet>
-          <AssociationSet Name="FK__User__EmployeeId__4F47C5E3" Association="DLHKModel.FK__User__EmployeeId__4F47C5E3">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="Applicants" EntityType="DLHKModel.Applicant" />
-          <EntitySet Name="Drainages" EntityType="DLHKModel.Drainage" />
-          <EntitySet Name="Garbages" EntityType="DLHKModel.Garbage" />
-          <EntitySet Name="Sweepers" EntityType="DLHKModel.Sweeper" />
-          <AssociationSet Name="FK__Drainage__Presen__2EDAF651" Association="DLHKModel.FK__Drainage__Presen__2EDAF651">
-            <End Role="Presence" EntitySet="Presences" />
-            <End Role="Drainage" EntitySet="Drainages" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Garbage__Presenc__2BFE89A6" Association="DLHKModel.FK__Garbage__Presenc__2BFE89A6">
-            <End Role="Presence" EntitySet="Presences" />
-            <End Role="Garbage" EntitySet="Garbages" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sweeper__Presenc__29221CFB" Association="DLHKModel.FK__Sweeper__Presenc__29221CFB">
-            <End Role="Presence" EntitySet="Presences" />
-            <End Role="Sweeper" EntitySet="Sweepers" />
-          </AssociationSet>
-          <EntitySet Name="HeadOfZones" EntityType="DLHKModel.HeadOfZone" />
-          <AssociationSet Name="FK__HeadOfZon__Prese__31B762FC" Association="DLHKModel.FK__HeadOfZon__Prese__31B762FC">
-            <End Role="Presence" EntitySet="Presences" />
-            <End Role="HeadOfZone" EntitySet="HeadOfZones" />
-          </AssociationSet>
-          <EntitySet Name="AssessmentZones" EntityType="DLHKModel.AssessmentZone" />
-          <AssociationSet Name="FK__Assessmen__Emplo__0B5CAFEA" Association="DLHKModel.FK__Assessmen__Emplo__0B5CAFEA">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="AssessmentZone" EntitySet="AssessmentZones" />
-          </AssociationSet>
-          <EntitySet Name="Categories" EntityType="DLHKModel.Category" />
-          <EntitySet Name="Supliers" EntityType="DLHKModel.Suplier" />
-          <EntitySet Name="Submissions" EntityType="DLHKModel.Submission" />
-          <EntitySet Name="Interviews" EntityType="DLHKModel.Interview" />
-          <EntitySet Name="Items" EntityType="DLHKModel.Item" />
-          <EntitySet Name="Transacs" EntityType="DLHKModel.Transac" />
-          <EntitySet Name="Coordinators" EntityType="DLHKModel.Coordinator" />
-          </EntityContainer>
-        <EntityType Name="Presence">
+        <EntityType Name="Applicant">
           <Key>
-            <PropertyRef Name="PresenceId" />
+            <PropertyRef Name="ApplicantId" />
           </Key>
-          <Property Name="PresenceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LivePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Coordinate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfPresence" Type="DateTime" Precision="3" />
-          <Property Name="PresenceStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="EmployeeId" Type="Int64" />
-          <NavigationProperty Name="Employee" Relationship="DLHKModel.FK__Presence__Employ__5165187F" FromRole="Presence" ToRole="Employee" />
-          <NavigationProperty Name="Drainages" Relationship="DLHKModel.FK__Drainage__Presen__2EDAF651" FromRole="Presence" ToRole="Drainage" />
-          <NavigationProperty Name="Garbages" Relationship="DLHKModel.FK__Garbage__Presenc__2BFE89A6" FromRole="Presence" ToRole="Garbage" />
-          <NavigationProperty Name="Sweepers" Relationship="DLHKModel.FK__Sweeper__Presenc__29221CFB" FromRole="Presence" ToRole="Sweeper" />
-          <NavigationProperty Name="HeadOfZones" Relationship="DLHKModel.FK__HeadOfZon__Prese__31B762FC" FromRole="Presence" ToRole="HeadOfZone" />
-        </EntityType>
-        <EntityType Name="Leave">
-          <Key>
-            <PropertyRef Name="LeaveId" />
-          </Key>
-          <Property Name="LeaveId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateOfLeave" Type="DateTime" Precision="3" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LeaveStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeId" Type="Int64" />
-          <NavigationProperty Name="Employee" Relationship="DLHKModel.FK__Leave__EmployeeI__02FC7413" FromRole="Leave" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="RegionId" />
-          </Key>
-          <Property Name="RegionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Zones" Relationship="DLHKModel.FK__Zone__RegionId__3A4CA8FD" FromRole="Region" ToRole="Zone" />
-          <NavigationProperty Name="Employees" Relationship="DLHKModel.FK__Employee__Region__1BC821DD" FromRole="Region" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employees" Relationship="DLHKModel.FK__Employee__RoleId__160F4887" FromRole="Role" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Zone">
-          <Key>
-            <PropertyRef Name="ZoneId" />
-          </Key>
-          <Property Name="ZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ZoneName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="RegionId" Type="Int64" />
-          <NavigationProperty Name="Region" Relationship="DLHKModel.FK__Zone__RegionId__3A4CA8FD" FromRole="Zone" ToRole="Region" />
-          <NavigationProperty Name="Employees" Relationship="DLHKModel.FK__Employee__ZoneId__1AD3FDA4" FromRole="Zone" ToRole="Employee" />
-        </EntityType>
-        <Association Name="FK__Zone__RegionId__3A4CA8FD">
-          <End Type="DLHKModel.Region" Role="Region" Multiplicity="0..1" />
-          <End Type="DLHKModel.Zone" Role="Zone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="RegionId" />
-            </Principal>
-            <Dependent Role="Zone">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeId" Type="Int64" />
-          <NavigationProperty Name="Employee" Relationship="DLHKModel.FK__User__EmployeeId__4F47C5E3" FromRole="User" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="PersonId" />
-          </Key>
-          <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PlaceOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="LastDegree" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PreviousJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NameOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JobOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="KTP" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Sertificate" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="AppLetter" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Jobdesk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employees" Relationship="DLHKModel.FK__Employee__Person__4E88ABD4" FromRole="Person" ToRole="Employee" />
-          <Property Name="TotalChild" Type="Int32" />
+          <Property Name="ApplicantId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AssessmentZone">
+          <Key>
+            <PropertyRef Name="AssessmentZoneId" />
+          </Key>
+          <Property Name="AssessmentZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiciplinePresence" Type="Int32" />
+          <Property Name="FirstSession" Type="Int32" />
+          <Property Name="SecondSession" Type="Int32" />
+          <Property Name="ThirdSession" Type="Int32" />
+          <Property Name="CleanlinessOfZone" Type="Int32" />
+          <Property Name="CompletenessOfTeam" Type="Int32" />
+          <Property Name="DataOfGarbage" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <Property Name="TypeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Assessmen__Emplo__5CD6CB2B" FromRole="AssessmentZone" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Coordinator">
+          <Key>
+            <PropertyRef Name="CoordinatorId" />
+          </Key>
+          <Property Name="CoordinatorId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PercentOfPresence" Type="Int32" />
+          <Property Name="PercentOfReport" Type="Int32" />
+          <Property Name="PercentOfCompletion" Type="Int32" />
+          <Property Name="PercentOfSatisfaction" Type="Int32" />
+          <Property Name="Cleanliness" Type="Int32" />
+          <Property Name="DataOfGarbage" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <Property Name="DateOfAssessment" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Drainage">
+          <Key>
+            <PropertyRef Name="DrainageId" />
+          </Key>
+          <Property Name="DrainageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dicipline" Type="Int32" />
+          <Property Name="Completeness" Type="Int32" />
+          <Property Name="Cleanliness" Type="Int32" />
+          <Property Name="Sediment" Type="Int32" />
+          <Property Name="Weed" Type="Int32" />
+          <Property Name="PresenceId" Type="Int64" />
+          <NavigationProperty Name="Presence" Relationship="Self.FK__Drainage__Presen__5DCAEF64" FromRole="Drainage" ToRole="Presence" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -679,121 +566,15 @@
           <Property Name="RegionId" Type="Int64" />
           <Property Name="ZoneId" Type="Int64" />
           <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Person" Relationship="DLHKModel.FK__Employee__Person__4E88ABD4" FromRole="Employee" ToRole="Person" />
-          <NavigationProperty Name="Region" Relationship="DLHKModel.FK__Employee__Region__1BC821DD" FromRole="Employee" ToRole="Region" />
-          <NavigationProperty Name="Role" Relationship="DLHKModel.FK__Employee__RoleId__160F4887" FromRole="Employee" ToRole="Role" />
-          <NavigationProperty Name="Zone" Relationship="DLHKModel.FK__Employee__ZoneId__1AD3FDA4" FromRole="Employee" ToRole="Zone" />
-          <NavigationProperty Name="Leaves" Relationship="DLHKModel.FK__Leave__EmployeeI__02FC7413" FromRole="Employee" ToRole="Leave" />
-          <NavigationProperty Name="Presences" Relationship="DLHKModel.FK__Presence__Employ__5165187F" FromRole="Employee" ToRole="Presence" />
-          <NavigationProperty Name="Users" Relationship="DLHKModel.FK__User__EmployeeId__4F47C5E3" FromRole="Employee" ToRole="User" />
-          <NavigationProperty Name="AssessmentZones" Relationship="DLHKModel.FK__Assessmen__Emplo__0B5CAFEA" FromRole="Employee" ToRole="AssessmentZone" />
           <Property Name="Shift" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          </EntityType>
-        <Association Name="FK__Employee__Person__4E88ABD4">
-          <End Type="DLHKModel.Person" Role="Person" Multiplicity="0..1" />
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonId" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="PersonId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employee__Region__1BC821DD">
-          <End Type="DLHKModel.Region" Role="Region" Multiplicity="0..1" />
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="RegionId" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employee__RoleId__160F4887">
-          <End Type="DLHKModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employee__ZoneId__1AD3FDA4">
-          <End Type="DLHKModel.Zone" Role="Zone" Multiplicity="0..1" />
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zone">
-              <PropertyRef Name="ZoneId" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="ZoneId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Leave__EmployeeI__02FC7413">
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="DLHKModel.Leave" Role="Leave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeId" />
-            </Principal>
-            <Dependent Role="Leave">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Presence__Employ__5165187F">
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="DLHKModel.Presence" Role="Presence" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeId" />
-            </Principal>
-            <Dependent Role="Presence">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__User__EmployeeId__4F47C5E3">
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="DLHKModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Applicant">
-          <Key>
-            <PropertyRef Name="ApplicantId" />
-          </Key>
-          <Property Name="ApplicantId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ApplicantName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Drainage">
-          <Key>
-            <PropertyRef Name="DrainageId" />
-          </Key>
-          <Property Name="DrainageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Dicipline" Type="Int32" />
-          <Property Name="Completeness" Type="Int32" />
-          <Property Name="Cleanliness" Type="Int32" />
-          <Property Name="Sediment" Type="Int32" />
-          <Property Name="Weed" Type="Int32" />
-          <Property Name="PresenceId" Type="Int64" />
-          <NavigationProperty Name="Presence" Relationship="DLHKModel.FK__Drainage__Presen__2EDAF651" FromRole="Drainage" ToRole="Presence" />
+          <NavigationProperty Name="AssessmentZones" Relationship="Self.FK__Assessmen__Emplo__5CD6CB2B" FromRole="Employee" ToRole="AssessmentZone" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Employee__Person__5EBF139D" FromRole="Employee" ToRole="Person" />
+          <NavigationProperty Name="Region" Relationship="Self.FK__Employee__Region__5FB337D6" FromRole="Employee" ToRole="Region" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Employee__RoleId__60A75C0F" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Zone" Relationship="Self.FK__Employee__ZoneId__619B8048" FromRole="Employee" ToRole="Zone" />
+          <NavigationProperty Name="Leaves" Relationship="Self.FK__Leave__EmployeeI__6477ECF3" FromRole="Employee" ToRole="Leave" />
+          <NavigationProperty Name="Presences" Relationship="Self.FK__Presence__Employ__656C112C" FromRole="Employee" ToRole="Presence" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__EmployeeId__6754599E" FromRole="Employee" ToRole="User" />
         </EntityType>
         <EntityType Name="Garbage">
           <Key>
@@ -807,58 +588,8 @@
           <Property Name="VolumeOfOrganic" Type="Int32" />
           <Property Name="VolumeOfAnorganic" Type="Int32" />
           <Property Name="PresenceId" Type="Int64" />
-          <NavigationProperty Name="Presence" Relationship="DLHKModel.FK__Garbage__Presenc__2BFE89A6" FromRole="Garbage" ToRole="Presence" />
+          <NavigationProperty Name="Presence" Relationship="Self.FK__Garbage__Presenc__628FA481" FromRole="Garbage" ToRole="Presence" />
         </EntityType>
-        <EntityType Name="Sweeper">
-          <Key>
-            <PropertyRef Name="SweeperId" />
-          </Key>
-          <Property Name="SweeperId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Dicipline" Type="Int32" />
-          <Property Name="Completeness" Type="Int32" />
-          <Property Name="Road" Type="Int32" />
-          <Property Name="Sidewalk" Type="Int32" />
-          <Property Name="WaterRope" Type="Int32" />
-          <Property Name="RoadMedian" Type="Int32" />
-          <Property Name="PresenceId" Type="Int64" />
-          <NavigationProperty Name="Presence" Relationship="DLHKModel.FK__Sweeper__Presenc__29221CFB" FromRole="Sweeper" ToRole="Presence" />
-        </EntityType>
-        <Association Name="FK__Drainage__Presen__2EDAF651">
-          <End Type="DLHKModel.Presence" Role="Presence" Multiplicity="0..1" />
-          <End Type="DLHKModel.Drainage" Role="Drainage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presence">
-              <PropertyRef Name="PresenceId" />
-            </Principal>
-            <Dependent Role="Drainage">
-              <PropertyRef Name="PresenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Garbage__Presenc__2BFE89A6">
-          <End Type="DLHKModel.Presence" Role="Presence" Multiplicity="0..1" />
-          <End Type="DLHKModel.Garbage" Role="Garbage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presence">
-              <PropertyRef Name="PresenceId" />
-            </Principal>
-            <Dependent Role="Garbage">
-              <PropertyRef Name="PresenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sweeper__Presenc__29221CFB">
-          <End Type="DLHKModel.Presence" Role="Presence" Multiplicity="0..1" />
-          <End Type="DLHKModel.Sweeper" Role="Sweeper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presence">
-              <PropertyRef Name="PresenceId" />
-            </Principal>
-            <Dependent Role="Sweeper">
-              <PropertyRef Name="PresenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="HeadOfZone">
           <Key>
             <PropertyRef Name="HeadOfZoneId" />
@@ -873,79 +604,7 @@
           <Property Name="DataOfGarbage" Type="Int32" />
           <Property Name="PresenceId" Type="Int64" />
           <Property Name="TypeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Presence" Relationship="DLHKModel.FK__HeadOfZon__Prese__31B762FC" FromRole="HeadOfZone" ToRole="Presence" />
-        </EntityType>
-        <Association Name="FK__HeadOfZon__Prese__31B762FC">
-          <End Type="DLHKModel.Presence" Role="Presence" Multiplicity="0..1" />
-          <End Type="DLHKModel.HeadOfZone" Role="HeadOfZone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presence">
-              <PropertyRef Name="PresenceId" />
-            </Principal>
-            <Dependent Role="HeadOfZone">
-              <PropertyRef Name="PresenceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AssessmentZone">
-          <Key>
-            <PropertyRef Name="AssessmentZoneId" />
-          </Key>
-          <Property Name="AssessmentZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DiciplinePresence" Type="Int32" />
-          <Property Name="FirstSession" Type="Int32" />
-          <Property Name="SecondSession" Type="Int32" />
-          <Property Name="ThirdSession" Type="Int32" />
-          <Property Name="CleanlinessOfZone" Type="Int32" />
-          <Property Name="CompletenessOfTeam" Type="Int32" />
-          <Property Name="DataOfGarbage" Type="Int32" />
-          <Property Name="EmployeeId" Type="Int64" />
-          <Property Name="TypeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employee" Relationship="DLHKModel.FK__Assessmen__Emplo__0B5CAFEA" FromRole="AssessmentZone" ToRole="Employee" />
-        </EntityType>
-        <Association Name="FK__Assessmen__Emplo__0B5CAFEA">
-          <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="DLHKModel.AssessmentZone" Role="AssessmentZone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeId" />
-            </Principal>
-            <Dependent Role="AssessmentZone">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryId" />
-          </Key>
-          <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CategoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Suplier">
-          <Key>
-            <PropertyRef Name="SuplierId" />
-          </Key>
-          <Property Name="SuplierId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Submission">
-          <Key>
-            <PropertyRef Name="SubmissionId" />
-          </Key>
-          <Property Name="SubmissionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemId" Type="Int64" />
-          <Property Name="DateOfSubmission" Type="DateTime" Precision="3" />
-          <Property Name="Qty" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SubmissionUser" Type="Int64" />
-          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Presence" Relationship="Self.FK__HeadOfZon__Prese__6383C8BA" FromRole="HeadOfZone" ToRole="Presence" />
         </EntityType>
         <EntityType Name="Interview">
           <Key>
@@ -970,6 +629,111 @@
           <Property Name="CategoryId" Type="Int64" />
           <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="LeaveId" />
+          </Key>
+          <Property Name="LeaveId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfLeave" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeaveStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Leave__EmployeeI__6477ECF3" FromRole="Leave" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="LastDegree" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="KTP" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Sertificate" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AppLetter" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Jobdesk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TotalChild" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Person__5EBF139D" FromRole="Person" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Presence">
+          <Key>
+            <PropertyRef Name="PresenceId" />
+          </Key>
+          <Property Name="PresenceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LivePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Coordinate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfPresence" Type="DateTime" Precision="3" />
+          <Property Name="PresenceStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <NavigationProperty Name="Drainages" Relationship="Self.FK__Drainage__Presen__5DCAEF64" FromRole="Presence" ToRole="Drainage" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Presence__Employ__656C112C" FromRole="Presence" ToRole="Employee" />
+          <NavigationProperty Name="Garbages" Relationship="Self.FK__Garbage__Presenc__628FA481" FromRole="Presence" ToRole="Garbage" />
+          <NavigationProperty Name="HeadOfZones" Relationship="Self.FK__HeadOfZon__Prese__6383C8BA" FromRole="Presence" ToRole="HeadOfZone" />
+          <NavigationProperty Name="Sweepers" Relationship="Self.FK__Sweeper__Presenc__66603565" FromRole="Presence" ToRole="Sweeper" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Region__5FB337D6" FromRole="Region" ToRole="Employee" />
+          <NavigationProperty Name="Zones" Relationship="Self.FK__Zone__RegionId__68487DD7" FromRole="Region" ToRole="Zone" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__RoleId__60A75C0F" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="SubmissionId" />
+          </Key>
+          <Property Name="SubmissionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int64" />
+          <Property Name="DateOfSubmission" Type="DateTime" Precision="3" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubmissionUser" Type="Int64" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Suplier">
+          <Key>
+            <PropertyRef Name="SuplierId" />
+          </Key>
+          <Property Name="SuplierId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Sweeper">
+          <Key>
+            <PropertyRef Name="SweeperId" />
+          </Key>
+          <Property Name="SweeperId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dicipline" Type="Int32" />
+          <Property Name="Completeness" Type="Int32" />
+          <Property Name="Road" Type="Int32" />
+          <Property Name="Sidewalk" Type="Int32" />
+          <Property Name="WaterRope" Type="Int32" />
+          <Property Name="RoadMedian" Type="Int32" />
+          <Property Name="PresenceId" Type="Int64" />
+          <NavigationProperty Name="Presence" Relationship="Self.FK__Sweeper__Presenc__66603565" FromRole="Sweeper" ToRole="Presence" />
+        </EntityType>
         <EntityType Name="Transac">
           <Key>
             <PropertyRef Name="TransacId" />
@@ -985,295 +749,532 @@
           <Property Name="UserRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Coordinator">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="CoordinatorId" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="CoordinatorId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PercentOfPresence" Type="Int32" />
-          <Property Name="PercentOfReport" Type="Int32" />
-          <Property Name="PercentOfCompletion" Type="Int32" />
-          <Property Name="PercentOfSatisfaction" Type="Int32" />
-          <Property Name="Cleanliness" Type="Int32" />
-          <Property Name="DataOfGarbage" Type="Int32" />
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeId" Type="Int64" />
-          <Property Name="DateOfAssessment" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__User__EmployeeId__6754599E" FromRole="User" ToRole="Employee" />
         </EntityType>
-        </Schema>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ZoneId" />
+          </Key>
+          <Property Name="ZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZoneName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RegionId" Type="Int64" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__ZoneId__619B8048" FromRole="Zone" ToRole="Employee" />
+          <NavigationProperty Name="Region" Relationship="Self.FK__Zone__RegionId__68487DD7" FromRole="Zone" ToRole="Region" />
+        </EntityType>
+        <Association Name="FK__Assessmen__Emplo__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="AssessmentZone" Type="Self.AssessmentZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="AssessmentZone">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Drainage__Presen__5DCAEF64">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="Drainage" Type="Self.Drainage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="PresenceId" />
+            </Principal>
+            <Dependent Role="Drainage">
+              <PropertyRef Name="PresenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Person__5EBF139D">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Region__5FB337D6">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__RoleId__60A75C0F">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__ZoneId__619B8048">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ZoneId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leave__EmployeeI__6477ECF3">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presence__Employ__656C112C">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Presence" Type="Self.Presence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Presence">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__EmployeeId__6754599E">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Garbage__Presenc__628FA481">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="Garbage" Type="Self.Garbage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="PresenceId" />
+            </Principal>
+            <Dependent Role="Garbage">
+              <PropertyRef Name="PresenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HeadOfZon__Prese__6383C8BA">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="HeadOfZone" Type="Self.HeadOfZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="PresenceId" />
+            </Principal>
+            <Dependent Role="HeadOfZone">
+              <PropertyRef Name="PresenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sweeper__Presenc__66603565">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="Sweeper" Type="Self.Sweeper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="PresenceId" />
+            </Principal>
+            <Dependent Role="Sweeper">
+              <PropertyRef Name="PresenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zone__RegionId__68487DD7">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Zone" Type="Self.Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="Zone">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DLHKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applicants" EntityType="Self.Applicant" />
+          <EntitySet Name="AssessmentZones" EntityType="Self.AssessmentZone" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Coordinators" EntityType="Self.Coordinator" />
+          <EntitySet Name="Drainages" EntityType="Self.Drainage" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Garbages" EntityType="Self.Garbage" />
+          <EntitySet Name="HeadOfZones" EntityType="Self.HeadOfZone" />
+          <EntitySet Name="Interviews" EntityType="Self.Interview" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Leaves" EntityType="Self.Leave" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Presences" EntityType="Self.Presence" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Submissions" EntityType="Self.Submission" />
+          <EntitySet Name="Supliers" EntityType="Self.Suplier" />
+          <EntitySet Name="Sweepers" EntityType="Self.Sweeper" />
+          <EntitySet Name="Transacs" EntityType="Self.Transac" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Zones" EntityType="Self.Zone" />
+          <AssociationSet Name="FK__Assessmen__Emplo__5CD6CB2B" Association="Self.FK__Assessmen__Emplo__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AssessmentZone" EntitySet="AssessmentZones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Drainage__Presen__5DCAEF64" Association="Self.FK__Drainage__Presen__5DCAEF64">
+            <End Role="Presence" EntitySet="Presences" />
+            <End Role="Drainage" EntitySet="Drainages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Person__5EBF139D" Association="Self.FK__Employee__Person__5EBF139D">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Region__5FB337D6" Association="Self.FK__Employee__Region__5FB337D6">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__RoleId__60A75C0F" Association="Self.FK__Employee__RoleId__60A75C0F">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__ZoneId__619B8048" Association="Self.FK__Employee__ZoneId__619B8048">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leave__EmployeeI__6477ECF3" Association="Self.FK__Leave__EmployeeI__6477ECF3">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Leave" EntitySet="Leaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presence__Employ__656C112C" Association="Self.FK__Presence__Employ__656C112C">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Presence" EntitySet="Presences" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__EmployeeId__6754599E" Association="Self.FK__User__EmployeeId__6754599E">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Garbage__Presenc__628FA481" Association="Self.FK__Garbage__Presenc__628FA481">
+            <End Role="Presence" EntitySet="Presences" />
+            <End Role="Garbage" EntitySet="Garbages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HeadOfZon__Prese__6383C8BA" Association="Self.FK__HeadOfZon__Prese__6383C8BA">
+            <End Role="Presence" EntitySet="Presences" />
+            <End Role="HeadOfZone" EntitySet="HeadOfZones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sweeper__Presenc__66603565" Association="Self.FK__Sweeper__Presenc__66603565">
+            <End Role="Presence" EntitySet="Presences" />
+            <End Role="Sweeper" EntitySet="Sweepers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zone__RegionId__68487DD7" Association="Self.FK__Zone__RegionId__68487DD7">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Zone" EntitySet="Zones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DLHKModelStoreContainer" CdmEntityContainer="DLHKEntities">
-          <EntitySetMapping Name="Presences">
-            <EntityTypeMapping TypeName="DLHKModel.Presence">
-              <MappingFragment StoreEntitySet="Presence">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="PresenceStatus" ColumnName="PresenceStatus" />
-                <ScalarProperty Name="DateOfPresence" ColumnName="DateOfPresence" />
-                <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
-                <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
-                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Leaves">
-            <EntityTypeMapping TypeName="DLHKModel.Leave">
-              <MappingFragment StoreEntitySet="Leave">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="LeaveStatus" ColumnName="LeaveStatus" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
-                <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Regions">
-            <EntityTypeMapping TypeName="DLHKModel.Region">
-              <MappingFragment StoreEntitySet="Region">
-                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
-                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="DLHKModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Zones">
-            <EntityTypeMapping TypeName="DLHKModel.Zone">
-              <MappingFragment StoreEntitySet="Zone">
-                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
-                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DLHKModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="DLHKModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TotalChild" ColumnName="TotalChild" />
-                <ScalarProperty Name="Jobdesk" ColumnName="Jobdesk" />
-                <ScalarProperty Name="AppLetter" ColumnName="AppLetter" />
-                <ScalarProperty Name="Sertificate" ColumnName="Sertificate" />
-                <ScalarProperty Name="KTP" ColumnName="KTP" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="JobOfCouple" ColumnName="JobOfCouple" />
-                <ScalarProperty Name="NameOfCouple" ColumnName="NameOfCouple" />
-                <ScalarProperty Name="PreviousJob" ColumnName="PreviousJob" />
-                <ScalarProperty Name="LastDegree" ColumnName="LastDegree" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
-                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="DLHKModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Shift" ColumnName="Shift" />
-                <ScalarProperty Name="Bank" ColumnName="Bank" />
-                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
-                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="LocationContract" ColumnName="LocationContract" />
-                <ScalarProperty Name="LastContract" ColumnName="LastContract" />
-                <ScalarProperty Name="FirstContract" ColumnName="FirstContract" />
-                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Applicants">
             <EntityTypeMapping TypeName="DLHKModel.Applicant">
               <MappingFragment StoreEntitySet="Applicant">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
                 <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Drainages">
-            <EntityTypeMapping TypeName="DLHKModel.Drainage">
-              <MappingFragment StoreEntitySet="Drainage">
-                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
-                <ScalarProperty Name="Weed" ColumnName="Weed" />
-                <ScalarProperty Name="Sediment" ColumnName="Sediment" />
-                <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
-                <ScalarProperty Name="Completeness" ColumnName="Completeness" />
-                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
-                <ScalarProperty Name="DrainageId" ColumnName="DrainageId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Garbages">
-            <EntityTypeMapping TypeName="DLHKModel.Garbage">
-              <MappingFragment StoreEntitySet="Garbage">
-                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
-                <ScalarProperty Name="VolumeOfAnorganic" ColumnName="VolumeOfAnorganic" />
-                <ScalarProperty Name="VolumeOfOrganic" ColumnName="VolumeOfOrganic" />
-                <ScalarProperty Name="Calculation" ColumnName="Calculation" />
-                <ScalarProperty Name="Separation" ColumnName="Separation" />
-                <ScalarProperty Name="TPS" ColumnName="TPS" />
-                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
-                <ScalarProperty Name="GerbageId" ColumnName="GerbageId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sweepers">
-            <EntityTypeMapping TypeName="DLHKModel.Sweeper">
-              <MappingFragment StoreEntitySet="Sweeper">
-                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
-                <ScalarProperty Name="RoadMedian" ColumnName="RoadMedian" />
-                <ScalarProperty Name="WaterRope" ColumnName="WaterRope" />
-                <ScalarProperty Name="Sidewalk" ColumnName="Sidewalk" />
-                <ScalarProperty Name="Road" ColumnName="Road" />
-                <ScalarProperty Name="Completeness" ColumnName="Completeness" />
-                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
-                <ScalarProperty Name="SweeperId" ColumnName="SweeperId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HeadOfZones">
-            <EntityTypeMapping TypeName="DLHKModel.HeadOfZone">
-              <MappingFragment StoreEntitySet="HeadOfZone">
-                <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
-                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
-                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
-                <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
-                <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
-                <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
-                <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
-                <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
-                <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
-                <ScalarProperty Name="HeadOfZoneId" ColumnName="HeadOfZoneId" />
+                <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessmentZones">
             <EntityTypeMapping TypeName="DLHKModel.AssessmentZone">
               <MappingFragment StoreEntitySet="AssessmentZone">
-                <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
-                <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
-                <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
-                <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
-                <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
-                <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
-                <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
                 <ScalarProperty Name="AssessmentZoneId" ColumnName="AssessmentZoneId" />
+                <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
+                <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
+                <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
+                <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
+                <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
+                <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
+                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="DLHKModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Supliers">
-            <EntityTypeMapping TypeName="DLHKModel.Suplier">
-              <MappingFragment StoreEntitySet="Suplier">
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
-                <ScalarProperty Name="SuplierId" ColumnName="SuplierId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Submissions">
-            <EntityTypeMapping TypeName="DLHKModel.Submission">
-              <MappingFragment StoreEntitySet="Submission">
-                <ScalarProperty Name="Document" ColumnName="Document" />
-                <ScalarProperty Name="SubmissionUser" ColumnName="SubmissionUser" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="DateOfSubmission" ColumnName="DateOfSubmission" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Interviews">
-            <EntityTypeMapping TypeName="DLHKModel.Interview">
-              <MappingFragment StoreEntitySet="Interview">
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DateOfInterview" ColumnName="DateOfInterview" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="Interviewer" ColumnName="Interviewer" />
-                <ScalarProperty Name="InterviewId" ColumnName="InterviewId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="DLHKModel.Item">
-              <MappingFragment StoreEntitySet="Item">
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
-                <ScalarProperty Name="ItemPhoto" ColumnName="ItemPhoto" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Transacs">
-            <EntityTypeMapping TypeName="DLHKModel.Transac">
-              <MappingFragment StoreEntitySet="Transac">
-                <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
-                <ScalarProperty Name="UserRequest" ColumnName="UserRequest" />
-                <ScalarProperty Name="UserRecorder" ColumnName="UserRecorder" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="TypeOfTransac" ColumnName="TypeOfTransac" />
-                <ScalarProperty Name="DateTransac" ColumnName="DateTransac" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="TransacId" ColumnName="TransacId" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Coordinators">
             <EntityTypeMapping TypeName="DLHKModel.Coordinator">
               <MappingFragment StoreEntitySet="Coordinator">
-                <ScalarProperty Name="DateOfAssessment" ColumnName="DateOfAssessment" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
-                <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
-                <ScalarProperty Name="PercentOfSatisfaction" ColumnName="PercentOfSatisfaction" />
-                <ScalarProperty Name="PercentOfCompletion" ColumnName="PercentOfCompletion" />
-                <ScalarProperty Name="PercentOfReport" ColumnName="PercentOfReport" />
-                <ScalarProperty Name="PercentOfPresence" ColumnName="PercentOfPresence" />
                 <ScalarProperty Name="CoordinatorId" ColumnName="CoordinatorId" />
+                <ScalarProperty Name="PercentOfPresence" ColumnName="PercentOfPresence" />
+                <ScalarProperty Name="PercentOfReport" ColumnName="PercentOfReport" />
+                <ScalarProperty Name="PercentOfCompletion" ColumnName="PercentOfCompletion" />
+                <ScalarProperty Name="PercentOfSatisfaction" ColumnName="PercentOfSatisfaction" />
+                <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DateOfAssessment" ColumnName="DateOfAssessment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drainages">
+            <EntityTypeMapping TypeName="DLHKModel.Drainage">
+              <MappingFragment StoreEntitySet="Drainage">
+                <ScalarProperty Name="DrainageId" ColumnName="DrainageId" />
+                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+                <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+                <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+                <ScalarProperty Name="Sediment" ColumnName="Sediment" />
+                <ScalarProperty Name="Weed" ColumnName="Weed" />
+                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DLHKModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="FirstContract" ColumnName="FirstContract" />
+                <ScalarProperty Name="LastContract" ColumnName="LastContract" />
+                <ScalarProperty Name="LocationContract" ColumnName="LocationContract" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Garbages">
+            <EntityTypeMapping TypeName="DLHKModel.Garbage">
+              <MappingFragment StoreEntitySet="Garbage">
+                <ScalarProperty Name="GerbageId" ColumnName="GerbageId" />
+                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+                <ScalarProperty Name="TPS" ColumnName="TPS" />
+                <ScalarProperty Name="Separation" ColumnName="Separation" />
+                <ScalarProperty Name="Calculation" ColumnName="Calculation" />
+                <ScalarProperty Name="VolumeOfOrganic" ColumnName="VolumeOfOrganic" />
+                <ScalarProperty Name="VolumeOfAnorganic" ColumnName="VolumeOfAnorganic" />
+                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeadOfZones">
+            <EntityTypeMapping TypeName="DLHKModel.HeadOfZone">
+              <MappingFragment StoreEntitySet="HeadOfZone">
+                <ScalarProperty Name="HeadOfZoneId" ColumnName="HeadOfZoneId" />
+                <ScalarProperty Name="DiciplinePresence" ColumnName="DiciplinePresence" />
+                <ScalarProperty Name="FirstSession" ColumnName="FirstSession" />
+                <ScalarProperty Name="SecondSession" ColumnName="SecondSession" />
+                <ScalarProperty Name="ThirdSession" ColumnName="ThirdSession" />
+                <ScalarProperty Name="CleanlinessOfZone" ColumnName="CleanlinessOfZone" />
+                <ScalarProperty Name="CompletenessOfTeam" ColumnName="CompletenessOfTeam" />
+                <ScalarProperty Name="DataOfGarbage" ColumnName="DataOfGarbage" />
+                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+                <ScalarProperty Name="TypeZone" ColumnName="TypeZone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interviews">
+            <EntityTypeMapping TypeName="DLHKModel.Interview">
+              <MappingFragment StoreEntitySet="Interview">
+                <ScalarProperty Name="InterviewId" ColumnName="InterviewId" />
+                <ScalarProperty Name="Interviewer" ColumnName="Interviewer" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="DateOfInterview" ColumnName="DateOfInterview" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="DLHKModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemPhoto" ColumnName="ItemPhoto" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaves">
+            <EntityTypeMapping TypeName="DLHKModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
+                <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LeaveStatus" ColumnName="LeaveStatus" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="DLHKModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastDegree" ColumnName="LastDegree" />
+                <ScalarProperty Name="PreviousJob" ColumnName="PreviousJob" />
+                <ScalarProperty Name="NameOfCouple" ColumnName="NameOfCouple" />
+                <ScalarProperty Name="JobOfCouple" ColumnName="JobOfCouple" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="KTP" ColumnName="KTP" />
+                <ScalarProperty Name="Sertificate" ColumnName="Sertificate" />
+                <ScalarProperty Name="AppLetter" ColumnName="AppLetter" />
+                <ScalarProperty Name="Jobdesk" ColumnName="Jobdesk" />
+                <ScalarProperty Name="TotalChild" ColumnName="TotalChild" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presences">
+            <EntityTypeMapping TypeName="DLHKModel.Presence">
+              <MappingFragment StoreEntitySet="Presence">
+                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+                <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
+                <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
+                <ScalarProperty Name="DateOfPresence" ColumnName="DateOfPresence" />
+                <ScalarProperty Name="PresenceStatus" ColumnName="PresenceStatus" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="DLHKModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DLHKModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Submissions">
+            <EntityTypeMapping TypeName="DLHKModel.Submission">
+              <MappingFragment StoreEntitySet="Submission">
+                <ScalarProperty Name="SubmissionId" ColumnName="SubmissionId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="DateOfSubmission" ColumnName="DateOfSubmission" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="SubmissionUser" ColumnName="SubmissionUser" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supliers">
+            <EntityTypeMapping TypeName="DLHKModel.Suplier">
+              <MappingFragment StoreEntitySet="Suplier">
+                <ScalarProperty Name="SuplierId" ColumnName="SuplierId" />
+                <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sweepers">
+            <EntityTypeMapping TypeName="DLHKModel.Sweeper">
+              <MappingFragment StoreEntitySet="Sweeper">
+                <ScalarProperty Name="SweeperId" ColumnName="SweeperId" />
+                <ScalarProperty Name="Dicipline" ColumnName="Dicipline" />
+                <ScalarProperty Name="Completeness" ColumnName="Completeness" />
+                <ScalarProperty Name="Road" ColumnName="Road" />
+                <ScalarProperty Name="Sidewalk" ColumnName="Sidewalk" />
+                <ScalarProperty Name="WaterRope" ColumnName="WaterRope" />
+                <ScalarProperty Name="RoadMedian" ColumnName="RoadMedian" />
+                <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transacs">
+            <EntityTypeMapping TypeName="DLHKModel.Transac">
+              <MappingFragment StoreEntitySet="Transac">
+                <ScalarProperty Name="TransacId" ColumnName="TransacId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DateTransac" ColumnName="DateTransac" />
+                <ScalarProperty Name="TypeOfTransac" ColumnName="TypeOfTransac" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UserRecorder" ColumnName="UserRecorder" />
+                <ScalarProperty Name="UserRequest" ColumnName="UserRequest" />
+                <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DLHKModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="DLHKModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

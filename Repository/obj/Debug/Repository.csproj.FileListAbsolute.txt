@@ -10,3 +10,14 @@ C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.csproj.Copy
 C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.dll
 C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.pdb
 C:\Users\muhmm\source\repos\DLHK-API\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\Repository.dll.config
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\Repository.dll
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\Repository.pdb
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\EntityFramework.dll
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\EntityFramework.xml
+D:\DLHK\DLHK-API-CSharp\Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.csproj.CopyComplete
+D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.dll
+D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.pdb

@@ -19,8 +19,8 @@ namespace Repository
         {
             this.Drainages = new HashSet<Drainage>();
             this.Garbages = new HashSet<Garbage>();
-            this.Sweepers = new HashSet<Sweeper>();
             this.HeadOfZones = new HashSet<HeadOfZone>();
+            this.Sweepers = new HashSet<Sweeper>();
         }
     
         public long PresenceId { get; set; }
@@ -30,14 +30,14 @@ namespace Repository
         public string PresenceStatus { get; set; }
         public Nullable<long> EmployeeId { get; set; }
     
-        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Drainage> Drainages { get; set; }
+        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Garbage> Garbages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sweeper> Sweepers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HeadOfZone> HeadOfZones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sweeper> Sweepers { get; set; }
     }
 }

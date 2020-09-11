@@ -25,26 +25,26 @@ namespace Repository
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Presence> Presences { get; set; }
-        public virtual DbSet<Leave> Leaves { get; set; }
-        public virtual DbSet<Region> Regions { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Zone> Zones { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Applicant> Applicants { get; set; }
-        public virtual DbSet<Drainage> Drainages { get; set; }
-        public virtual DbSet<Garbage> Garbages { get; set; }
-        public virtual DbSet<Sweeper> Sweepers { get; set; }
-        public virtual DbSet<HeadOfZone> HeadOfZones { get; set; }
         public virtual DbSet<AssessmentZone> AssessmentZones { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Suplier> Supliers { get; set; }
-        public virtual DbSet<Submission> Submissions { get; set; }
+        public virtual DbSet<Coordinator> Coordinators { get; set; }
+        public virtual DbSet<Drainage> Drainages { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Garbage> Garbages { get; set; }
+        public virtual DbSet<HeadOfZone> HeadOfZones { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Leave> Leaves { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Presence> Presences { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Submission> Submissions { get; set; }
+        public virtual DbSet<Suplier> Supliers { get; set; }
+        public virtual DbSet<Sweeper> Sweepers { get; set; }
         public virtual DbSet<Transac> Transacs { get; set; }
-        public virtual DbSet<Coordinator> Coordinators { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Zone> Zones { get; set; }
     }
 }
