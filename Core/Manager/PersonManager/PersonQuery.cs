@@ -23,6 +23,7 @@ namespace Core.Manager.PersonManager
 					select new PersonDTO()
 					{
 						PersonId = val.PersonId,
+						NIK = val.NIK,
 						PersonName = val.PersonName,
 						Address = val.Address,
 						DateOfBirth = val.DateOfBirth,
@@ -52,6 +53,7 @@ namespace Core.Manager.PersonManager
 						Address = val.Address,
 						DateOfBirth = val.DateOfBirth,
 						PlaceOfBirth = val.PlaceOfBirth,
+						NIK = val.NIK,
 						Phone = val.Phone,
 						LastDegree = val.LastDegree,
 						PreviousJob = val.PreviousJob,
@@ -82,6 +84,7 @@ namespace Core.Manager.PersonManager
 						Phone = val.Phone,
 						LastDegree = val.LastDegree,
 						PreviousJob = val.PreviousJob,
+						NIK = val.NIK,
 						NameOfCouple = val.NameOfCouple,
 						JobOfCouple = val.JobOfCouple,
 						AppLetter = val.AppLetter,
@@ -110,6 +113,7 @@ namespace Core.Manager.PersonManager
 						PreviousJob = val.PreviousJob,
 						NameOfCouple = val.NameOfCouple,
 						JobOfCouple = val.JobOfCouple,
+						NIK = val.NIK,
 						AppLetter = val.AppLetter,
 						Jobdesk = val.Jobdesk,
 						KTP = val.KTP,
@@ -127,6 +131,7 @@ namespace Core.Manager.PersonManager
 					val.Jobdesk != "Interview"
 					select new PersonDTO()
 					{
+						NIK = val.NIK,
 						PersonId = val.PersonId,
 						PersonName = val.PersonName,
 						Address = val.Address,

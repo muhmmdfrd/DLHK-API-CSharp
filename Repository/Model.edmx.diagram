@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c927b754aab4cc4b2d1d647c77d87e5" Name="Diagram1">
+      <Diagram DiagramId="2c927b754aab4cc4b2d1d647c77d87e5" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="DLHKModel.Applicant" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.AssessmentZone" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />

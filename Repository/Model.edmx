@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DLHKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DLHKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="ApplicantId" />
@@ -161,6 +161,7 @@
           <Property Name="Jobdesk" Type="varchar" MaxLength="20" />
           <Property Name="TotalChild" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="NIK" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Presence">
           <Key>
@@ -186,6 +187,7 @@
           </Key>
           <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="15" />
+          <Property Name="Status" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="Submission">
           <Key>
@@ -487,8 +489,7 @@
             <End Role="Zone" EntitySet="Zone" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DLHKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -662,6 +663,7 @@
           <Property Name="TotalChild" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Person__5EBF139D" FromRole="Person" ToRole="Employee" />
+          <Property Name="NIK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Presence">
           <Key>
@@ -695,6 +697,7 @@
           <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__RoleId__60A75C0F" FromRole="Role" ToRole="Employee" />
+          <Property Name="Status" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Submission">
           <Key>
@@ -1155,6 +1158,7 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="DLHKModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="NIK" ColumnName="NIK" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="PersonName" ColumnName="PersonName" />
                 <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
@@ -1198,6 +1202,7 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="DLHKModel.Role">
               <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>

@@ -8,6 +8,9 @@ namespace Core.Manager.PersonManager
 		[JsonProperty("personId")]
 		public long PersonId { get; set; }
 
+		[JsonProperty("nik")]
+		public string NIK { get; set; }
+
 		[JsonProperty("personName")]
 		public string PersonName { get; set; }
 

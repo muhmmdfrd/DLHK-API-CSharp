@@ -37,6 +37,7 @@ namespace Repository
         public string Jobdesk { get; set; }
         public Nullable<int> TotalChild { get; set; }
         public string Email { get; set; }
+        public string NIK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }

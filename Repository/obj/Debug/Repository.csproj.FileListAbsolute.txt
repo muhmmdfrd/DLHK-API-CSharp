@@ -21,3 +21,4 @@ D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.csproj.CoreCompileInputs
 D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.csproj.CopyComplete
 D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.dll
 D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.pdb
+D:\DLHK\DLHK-API-CSharp\Repository\obj\Debug\Repository.csprojAssemblyReference.cache

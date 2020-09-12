@@ -33,6 +33,7 @@ namespace Core.Manager.PersonManager
 				exist.Jobdesk = dto.Jobdesk ?? exist.Jobdesk;
 				exist.TotalChild = dto.TotalChild;
 				exist.Email = dto.Email;
+				exist.NIK = dto.NIK;
 
 				Manager.Database.SaveChanges();
 

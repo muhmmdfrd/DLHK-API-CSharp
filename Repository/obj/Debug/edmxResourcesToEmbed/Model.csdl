@@ -170,6 +170,7 @@
     <Property Name="TotalChild" Type="Int32" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Person__5EBF139D" FromRole="Person" ToRole="Employee" />
+    <Property Name="NIK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Presence">
     <Key>
@@ -203,6 +204,7 @@
     <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__RoleId__60A75C0F" FromRole="Role" ToRole="Employee" />
+    <Property Name="Status" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Submission">
     <Key>

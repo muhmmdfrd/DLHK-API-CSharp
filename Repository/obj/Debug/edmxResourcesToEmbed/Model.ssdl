@@ -156,6 +156,7 @@
     <Property Name="Jobdesk" Type="varchar" MaxLength="20" />
     <Property Name="TotalChild" Type="int" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="NIK" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Presence">
     <Key>
@@ -181,6 +182,7 @@
     </Key>
     <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleName" Type="varchar" MaxLength="15" />
+    <Property Name="Status" Type="varchar" MaxLength="6" />
   </EntityType>
   <EntityType Name="Submission">
     <Key>

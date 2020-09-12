@@ -150,6 +150,7 @@
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="DLHKModel.Person">
         <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="NIK" ColumnName="NIK" />
           <ScalarProperty Name="PersonId" ColumnName="PersonId" />
           <ScalarProperty Name="PersonName" ColumnName="PersonName" />
           <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
@@ -193,6 +194,7 @@
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="DLHKModel.Role">
         <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
         </MappingFragment>

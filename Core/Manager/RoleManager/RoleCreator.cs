@@ -16,7 +16,8 @@ namespace Core.Manager.RoleManager
 			{
 				var newEntity = new Role
 				{
-					RoleName = dto.RoleName
+					RoleName = dto.RoleName,
+					Status = "true"
 				};
 
 				Manager.Database.Roles.Add(newEntity);

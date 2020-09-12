@@ -9,5 +9,8 @@ namespace Core.Manager.RoleManager
 
 		[JsonProperty("roleName")]
 		public string RoleName { get; set; }
+
+		[JsonProperty("status")]
+		public string Status { get; set; }
 	}
 }

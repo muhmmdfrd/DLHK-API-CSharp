@@ -12,6 +12,7 @@ namespace DLHK_API.Controllers
 		private readonly ApiResponse<RoleDTO> resp = new ApiResponse<RoleDTO>();
 
 		[HttpGet]
+		[Route("api/role")]
 		public IHttpActionResult Get()
 		{
 			try
@@ -35,7 +36,58 @@ namespace DLHK_API.Controllers
 			return Json(respList);
 		}
 
+		[HttpGet]
+		[Route("api/role/applicant")]
+		public IHttpActionResult GetRoleApplicant()
+		{
+			try
+			{
+				using (var manager = new RoleAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TransformApplicant();
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 1;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+		}
+
+		[HttpGet]
+		[Route("api/role/{id}")]
+		public IHttpActionResult GetId([FromUri] long id)
+		{
+			try
+			{
+				using (var manager = new RoleAdapter())
+				{
+					resp.Message = "data inserted";
+					resp.MessageCode = 201;
+					resp.ErrorCode = 0;
+					resp.Data = manager.Query.Value.TransformId(id);
+				}
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
+
 		[HttpPost]
+		[Route("api/role")]
 		public IHttpActionResult Post([FromBody] RoleDTO dto)
 		{
 			try
@@ -62,6 +114,7 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpPut]
+		[Route("api/role")]
 		public IHttpActionResult Put([FromBody] RoleDTO dto)
 		{
 			try
@@ -88,6 +141,7 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpDelete]
+		[Route("api/role/{id}")]
 		public IHttpActionResult Delete([FromUri] long id)
 		{
 			try

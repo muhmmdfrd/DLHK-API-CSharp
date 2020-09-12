@@ -23,6 +23,7 @@ namespace Core.Manager.PersonManager
 					PlaceOfBirth = dto.PlaceOfBirth,
 					Phone = dto.Phone,
 					PersonName = dto.PersonName,
+					NIK = dto.NIK,
 					LastDegree = dto.LastDegree,
 					NameOfCouple = dto.NameOfCouple,
 					Jobdesk = dto.Jobdesk,

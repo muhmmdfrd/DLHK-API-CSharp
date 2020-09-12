@@ -22,6 +22,7 @@ namespace Core.Manager.RoleManager
 					throw new Exception("data not found");
 
 				exist.RoleName = dto.RoleName;
+				exist.Status = dto.Status;
 
 				Manager.Database.SaveChanges();
 

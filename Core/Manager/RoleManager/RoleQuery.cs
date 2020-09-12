@@ -22,7 +22,22 @@ namespace Core.Manager.RoleManager
 					select new RoleDTO()
 					{
 						RoleId = val.RoleId,
-						RoleName = val.RoleName
+						RoleName = val.RoleName,
+						Status = val.Status
+					}).ToList();
+
+		}
+
+		public List<RoleDTO> TransformApplicant()
+		{
+			return (from val in Get()
+					where val.Status.Equals("true") &&
+					val.RoleId != 6
+					select new RoleDTO()
+					{
+						RoleId = val.RoleId,
+						RoleName = val.RoleName,
+						Status = val.Status
 					}).ToList();
 
 		}
@@ -34,7 +49,8 @@ namespace Core.Manager.RoleManager
 					select new RoleDTO()
 					{
 						RoleId = val.RoleId,
-						RoleName = val.RoleName
+						RoleName = val.RoleName,
+						Status = val.Status
 					}).FirstOrDefault();
 		}
 	}
