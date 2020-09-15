@@ -73,7 +73,7 @@ namespace DLHK_API.Controllers
 					var formData = HttpContext.Current.Request.Params;
 					var upload = Utilities.Util.Compress();
 
-					var dto = new ItemDTO()
+					var dto = new ItemDTO
 					{
 						ItemName = formData["itemName"],
 						ItemQty = Convert.ToInt32(formData["itemQty"]),
