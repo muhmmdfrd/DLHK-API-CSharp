@@ -1,4 +1,5 @@
 ﻿using Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -85,7 +86,9 @@ namespace Core.Manager.TransacManager
 						ItemName = val.ItemName,
 						Note = val.Note,
 						UserRecorder = val.UserRecorder,
-						UserRequest = val.UserRequest
+						UserRequest = val.UserRequest,
+						Zone = val.ZoneName,
+						Region = val.RegionName
 					}).ToList();
 		}
 
@@ -104,8 +107,58 @@ namespace Core.Manager.TransacManager
 						ItemName = val.ItemName,
 						Note = val.Note,
 						UserRecorder = val.UserRecorder,
-						UserRequest = val.UserRequest
+						UserRequest = val.UserRequest,
+						Zone = val.ZoneName,
+						Region = val.RegionName
 					}).FirstOrDefault();
+		}
+
+		public List<TransacDTO> TransformOutDate(string start, string end)
+		{
+			var startDate = Convert.ToDateTime(start);
+			var endDate = Convert.ToDateTime(end);
+
+			return (from val in Get()
+					where val.TypeOfTransac.Equals("OUT") &&
+					val.DateTransac >= startDate &&
+					val.DateTransac <= endDate
+					select new TransacDTO()
+					{
+						DateTransac = val.DateTransac,
+						Qty = val.Qty,
+						TransacId = val.TransacId,
+						TypeOfTransac = val.TypeOfTransac,
+						ItemCode = val.ItemCode,
+						ItemName = val.ItemName,
+						Note = val.Note,
+						UserRecorder = val.UserRecorder,
+						UserRequest = val.UserRequest,
+						Zone = val.ZoneName,
+						Region = val.RegionName
+					}).ToList();
+		}
+
+		public List<TransacDTO> TransformInDate(string start, string end)
+		{
+			var startDate = Convert.ToDateTime(start);
+			var endDate = Convert.ToDateTime(end);
+
+			return (from val in Get()
+					where val.TypeOfTransac.Equals("IN") &&
+					val.DateTransac >= startDate &&
+					val.DateTransac <= endDate
+					select new TransacDTO()
+					{
+						DateTransac = val.DateTransac,
+						Qty = val.Qty,
+						TransacId = val.TransacId,
+						TypeOfTransac = val.TypeOfTransac,
+						ItemCode = val.ItemCode,
+						ItemName = val.ItemName,
+						Note = val.Note,
+						UserRecorder = val.UserRecorder,
+						UserRequest = val.UserRequest
+					}).ToList();
 		}
 	}
 }

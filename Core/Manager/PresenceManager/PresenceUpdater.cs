@@ -35,5 +35,25 @@ namespace Core.Manager.PresenceManager
 				return exist;
 			}
 		}
+
+		public Presence UpdateLocationPresence(string locationParams, long? presenceIdParams)
+		{
+			using (var transac = new TransactionScope())
+			{
+
+				var exist = Manager.Query.Value.Get().FirstOrDefault(x => x.PresenceId == presenceIdParams);
+
+				if (exist == null)
+					throw new Exception("data not found");
+
+				exist.Location = locationParams;
+
+				Manager.Database.SaveChanges();
+
+				transac.Complete();
+
+				return exist;
+			}
+		}
 	}
 }

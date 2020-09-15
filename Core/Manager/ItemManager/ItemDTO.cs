@@ -16,8 +16,17 @@ namespace Core.Manager.ItemManager
 		[JsonProperty("itemPhoto")]
 		public byte[] ItemPhoto { get; set; }
 
+		[JsonProperty("firstQty")]
+		public int? FirstQty { get; set; }
+
 		[JsonProperty("qty")]
 		public int? ItemQty { get; set; }
+
+		[JsonProperty("dataIn")]
+		public int? In { get; set; }
+
+		[JsonProperty("out")]
+		public int? Out { get; set; }
 
 		[JsonProperty("note")]
 		public string Note { get; set; }

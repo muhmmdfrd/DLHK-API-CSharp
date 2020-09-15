@@ -501,5 +501,32 @@ namespace Core.Manager.EmployeeManager
 						Shift = val.Shift
 					}).FirstOrDefault();
 		}
+
+		public EmployeeDTO TransformName(string nameParams)
+		{
+			return (from val in Get(true)
+					join person in Manager.Database.People
+					on val.PersonId equals person.PersonId
+					where person.PersonName.ToLower().Trim().Equals(nameParams.ToLower().Trim())
+					select new EmployeeDTO()
+					{
+						EmployeeId = val.EmployeeId,
+						NamePerson = val.Person.PersonName,
+						EmployeeNumber = val.EmployeeNumber,
+						FirstContract = val.FirstContract,
+						LastContract = val.LastContract,
+						LocationContract = val.LocationContract,
+						PersonId = val.PersonId,
+						Bank = val.Bank,
+						RegionId = val.RegionId,
+						RoleId = val.RoleId,
+						ZoneId = val.ZoneId,
+						Region = val.Region.RegionName,
+						Role = val.Role.RoleName,
+						ZoneName = val.Zone.ZoneName,
+						Age = todayDateTime.Year - val.Person.DateOfBirth.Value.Year,
+						Shift = val.Shift
+					}).FirstOrDefault();
+		}
 	}
 }

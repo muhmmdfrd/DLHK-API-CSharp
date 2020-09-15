@@ -43,14 +43,6 @@ namespace Core.Manager.LeaveManager
 				if (exist == null)
 					throw new Exception("data not found");
 
-				exist.LeaveStatus = "terkonfirmasi";
-
-				Manager.PresenceManager.Value.Creator.Value.SaveLeave(exist.EmployeeId);
-
-				Manager.Database.SaveChanges();
-
-				transac.Complete();
-
 				return exist;
 			}
 		}

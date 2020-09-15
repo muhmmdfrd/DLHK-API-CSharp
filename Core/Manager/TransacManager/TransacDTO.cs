@@ -34,5 +34,11 @@ namespace Core.Manager.TransacManager
 
 		[JsonProperty("userRequest")]
 		public string UserRequest { get; set; }
+
+		[JsonProperty("zone")]
+		public string Zone { get; set; }
+
+		[JsonProperty("region")]
+		public string Region { get; set; }
 	}
 }

@@ -21,7 +21,9 @@ namespace Core.Manager.PresenceManager
 					DateOfPresence = dto.DateOfPresence,
 					EmployeeId = dto.EmployeeId,
 					LivePhoto = dto.LivePhoto,
-					PresenceStatus = "1"
+					PresenceStatus = "1",
+					Location = dto.Location,
+					Counter = 0
 				};
 
 				Manager.Database.Presences.Add(newEntity);
@@ -33,7 +35,7 @@ namespace Core.Manager.PresenceManager
 			}
 		}
 
-		public Presence SaveLeave(long? employeeIdParams)
+		public Presence SaveLeave(long? employeeIdParams, string locationParams)
 		{
 			using (var transac = new TransactionScope())
 			{
@@ -43,7 +45,8 @@ namespace Core.Manager.PresenceManager
 					DateOfPresence = DateTime.Now,
 					EmployeeId = employeeIdParams,
 					LivePhoto = null,
-					PresenceStatus = "2"
+					PresenceStatus = "2",
+					Location = locationParams
 				};
 
 				Manager.Database.Presences.Add(newEntity);
@@ -55,7 +58,7 @@ namespace Core.Manager.PresenceManager
 			}
 		}
 
-		public Presence SaveAbsence(long? employeeIdParams)
+		public Presence SaveAbsence(long? employeeIdParams, string locationParams)
 		{
 			using (var transac = new TransactionScope())
 			{
@@ -65,7 +68,8 @@ namespace Core.Manager.PresenceManager
 					DateOfPresence = DateTime.Now,
 					EmployeeId = employeeIdParams,
 					LivePhoto = null,
-					PresenceStatus = "0"
+					PresenceStatus = "0",
+					Location = locationParams
 				};
 
 				Manager.Database.Presences.Add(newEntity);

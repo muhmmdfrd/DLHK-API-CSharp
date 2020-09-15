@@ -102,6 +102,12 @@
     <Compile Include="Manager\HeadZoneManager\HeadZoneDTO.cs" />
     <Compile Include="Manager\HeadZoneManager\HeadZoneQuery.cs" />
     <Compile Include="Manager\HeadZoneManager\HeadZoneUpdater.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiAdapter.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiCreator.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiDeleter.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiDTO.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiQuery.cs" />
+    <Compile Include="Manager\ImeiManager\ImeiUpdater.cs" />
     <Compile Include="Manager\InterviewManager\InterviewAdapter.cs" />
     <Compile Include="Manager\InterviewManager\InterviewCreator.cs" />
     <Compile Include="Manager\InterviewManager\InterviewDTO.cs" />

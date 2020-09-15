@@ -19,16 +19,17 @@ namespace Core.Manager.LeaveManager
 					DateOfLeave = dto.DateOfLeave,
 					Description = dto.Description,
 					EmployeeId = dto.EmployeeId,
-					LeaveStatus = dto.LeaveStatus
+					LeaveStatus = dto.LeaveStatus,
+					Location = dto.Location
 				};
 
 				if (dto.LeaveStatus.Equals("Alfa"))
 				{
-					Manager.PresenceManager.Value.Creator.Value.SaveAbsence(dto.EmployeeId);
+					Manager.PresenceManager.Value.Creator.Value.SaveAbsence(dto.EmployeeId, dto.Location);
 				}
 				else
 				{
-					Manager.PresenceManager.Value.Creator.Value.SaveLeave(dto.EmployeeId);
+					Manager.PresenceManager.Value.Creator.Value.SaveLeave(dto.EmployeeId, dto.Location);
 				}
 
 				Manager.Database.Leaves.Add(newEntity);

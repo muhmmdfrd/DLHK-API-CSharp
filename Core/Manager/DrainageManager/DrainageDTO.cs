@@ -24,5 +24,8 @@ namespace Core.Manager.DrainageManager
 
 		[JsonProperty("presenceId")]
 		public long? PresenceId { get; set; }
+
+		[JsonProperty("location")]
+		public string Location { get; set; }
 	}
 }

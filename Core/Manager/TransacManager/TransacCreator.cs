@@ -53,7 +53,9 @@ namespace Core.Manager.TransacManager
 					ItemCode = dto.ItemCode,
 					ItemName = dto.ItemName,
 					Note = dto.Note,
-					UserRequest = dto.UserRequest
+					UserRequest = dto.UserRequest,
+					RegionName = dto.Region,
+					ZoneName = dto.Zone
 				};
 
 				var dataItem = Manager.ItemManager.Value.Query.Value.Get()

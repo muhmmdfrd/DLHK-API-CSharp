@@ -30,5 +30,8 @@ namespace Core.Manager.SweeperManager
 
 		[JsonProperty("presenceId")]
 		public long? PresenceId { get; set; }
+
+		[JsonProperty("location")]
+		public string Location { get; set; }
 	}
 }

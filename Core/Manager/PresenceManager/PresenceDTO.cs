@@ -14,6 +14,9 @@ namespace Core.Manager.PresenceManager
 		[JsonProperty("coordinate")]
 		public string Coordinate { get; set; }
 
+		[JsonProperty("location")]
+		public string Location { get; set; }
+
 		[JsonProperty("dateOfPresence")]
 		public DateTime? DateOfPresence { get; set; }
 
@@ -43,6 +46,9 @@ namespace Core.Manager.PresenceManager
 
 		[JsonProperty("shift")]
 		public string Shift { get; set; }
+
+		[JsonProperty("counter")]
+		public int? Counter { get; set; }
 	}
 
 	public class PresenceResumeDTO
@@ -70,9 +76,6 @@ namespace Core.Manager.PresenceManager
 
 		[JsonProperty("absence")]
 		public int Absence { get; set; }
-
-		[JsonProperty("late")]
-		public int Late { get; set; }
 
 		[JsonProperty("percentage")]
 		public int Percentage { get; set; }
@@ -113,9 +116,6 @@ namespace Core.Manager.PresenceManager
 		[JsonProperty("absence")]
 		public int Absence { get; set; }
 
-		[JsonProperty("late")]
-		public int Late { get; set; }
-
 		[JsonProperty("percentage")]
 		public int Percentage { get; set; }
 	}
@@ -142,9 +142,6 @@ namespace Core.Manager.PresenceManager
 
 		[JsonProperty("absence")]
 		public int Absence { get; set; }
-
-		[JsonProperty("late")]
-		public int Late { get; set; }
 
 		[JsonProperty("percentage")]
 		public int Percentage { get; set; }
@@ -226,9 +223,6 @@ namespace Core.Manager.PresenceManager
 
 		[JsonProperty("absence")]
 		public int Absence { get; set; }
-
-		[JsonProperty("late")]
-		public int Late { get; set; }
 
 		[JsonProperty("percentage")]
 		public int Percentage { get; set; }

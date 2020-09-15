@@ -15,10 +15,8 @@ namespace Core.Manager.LeaveManager
 
 		public IQueryable<Leave> Get(bool withDetail = false)
 		{
-			var fullLeaveData = withDetail ?
+			return withDetail ?
 				Manager.Database.Leaves.AsQueryable().Include(x => x.Employee) : Manager.Database.Leaves;
-
-			return fullLeaveData;
 		}
 
 		public List<LeaveDTO> Transform()
@@ -32,9 +30,9 @@ namespace Core.Manager.LeaveManager
 						EmployeeNumber = val.Employee.EmployeeNumber,
 						LeaveId = val.LeaveId,
 						LeaveStatus = val.LeaveStatus,
-						LocationContract = val.Employee.LocationContract,
 						PersonName = val.Employee.Person.PersonName,
-						Phone = val.Employee.Person.Phone
+						Phone = val.Employee.Person.Phone,
+						Location = val.Location
 					}).ToList();
 		}
 
@@ -52,7 +50,7 @@ namespace Core.Manager.LeaveManager
 						EmployeeNumber = val.Employee.EmployeeNumber,
 						LeaveId = val.LeaveId,
 						LeaveStatus = val.LeaveStatus,
-						LocationContract = val.Employee.LocationContract,
+						Location = val.Location,
 						PersonName = val.Employee.Person.PersonName,
 						Phone = val.Employee.Person.Phone
 					}).ToList();
@@ -70,7 +68,7 @@ namespace Core.Manager.LeaveManager
 						EmployeeNumber = val.Employee.EmployeeNumber,
 						LeaveId = val.LeaveId,
 						LeaveStatus = val.LeaveStatus,
-						LocationContract = val.Employee.LocationContract,
+						Location = val.Location,
 						PersonName = val.Employee.Person.PersonName,
 						Phone = val.Employee.Person.Phone
 					}).FirstOrDefault();

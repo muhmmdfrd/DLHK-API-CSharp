@@ -17,8 +17,8 @@ namespace Core.Manager.LeaveManager
 		[JsonProperty("employeeNumber")]
 		public string EmployeeNumber { get; set; }
 
-		[JsonProperty("locationContract")]
-		public string LocationContract { get; set; }
+		[JsonProperty("location")]
+		public string Location { get; set; }
 
 		[JsonProperty("dateOfLeave")]
 		public DateTime? DateOfLeave { get; set; }

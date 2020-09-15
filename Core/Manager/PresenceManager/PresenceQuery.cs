@@ -41,7 +41,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location
 					}).ToList();
 		}
 
@@ -61,7 +63,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location
 					}).ToList();
 		}
 
@@ -73,9 +77,11 @@ namespace Core.Manager.PresenceManager
 					val.Employee.Region.RegionName.Equals(regionParams) &&
 					val.Employee.Shift.Equals(shiftParams) &&
 					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
-					!(from sw in Manager.Database.Sweepers.AsEnumerable()
-					  where sw.Presence.DateOfPresence.Value.ToShortDateString().Equals(DateTime.Now.ToShortDateString())
-					  select sw.Presence.PresenceId).Contains(val.PresenceId)
+					val.Counter < 3
+					// &&
+					//!(from sw in Manager.Database.Sweepers.AsEnumerable()
+					//  where sw.Presence.DateOfPresence.Value.ToShortDateString().Equals(DateTime.Now.ToShortDateString())
+					//  select sw.Presence.PresenceId).Contains(val.PresenceId)
 					select new PresenceDTO()
 					{
 						Coordinate = val.Coordinate,
@@ -89,7 +95,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location,
 					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
 		}
 
@@ -100,10 +108,12 @@ namespace Core.Manager.PresenceManager
 					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
 					val.Employee.Region.RegionName.Equals(regionParams) &&
 					val.Employee.Shift.Equals(shiftParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
-					!(from d in Manager.Database.Drainages.AsEnumerable()
-					  where d.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					  select d.Presence.PresenceId).Contains(val.PresenceId)
+					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())  &&
+					val.Counter < 3
+					// &&
+					//!(from d in Manager.Database.Drainages.AsEnumerable()
+					//  where d.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
+					//  select d.Presence.PresenceId).Contains(val.PresenceId)
 					select new PresenceDTO()
 					{
 						Coordinate = val.Coordinate,
@@ -117,7 +127,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location
 					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
 		}
 
@@ -128,10 +140,12 @@ namespace Core.Manager.PresenceManager
 					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
 					val.Employee.Region.RegionName.Equals(regionParams) &&
 					val.Employee.Shift.Equals(shiftParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
-					!(from g in Manager.Database.Garbages.AsEnumerable()
-					  where g.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					  select g.Presence.PresenceId).Contains(val.PresenceId)
+					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())  &&
+					val.Counter < 3
+					// &&
+					//!(from g in Manager.Database.Garbages.AsEnumerable()
+					//  where g.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
+					// select g.Presence.PresenceId).Contains(val.PresenceId)
 					select new PresenceDTO()
 					{
 						Coordinate = val.Coordinate,
@@ -145,7 +159,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location
 					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
 		}
 
@@ -167,7 +183,9 @@ namespace Core.Manager.PresenceManager
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location
 					}).ToList();
 		}
 
@@ -185,10 +203,6 @@ namespace Core.Manager.PresenceManager
 						   where val.PresenceStatus.Equals("1")
 						   select val;
 
-			var late = from val in Get()
-					   where val.PresenceStatus.Equals("3")
-					   select val;
-
 			var allPresence = from val in Get() select val;
 
 			return (from val in Get(true)
@@ -201,7 +215,6 @@ namespace Core.Manager.PresenceManager
 						Absence = absence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						Leave = leave.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						PresenceTotal = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						Late = late.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						RegionName = val.Employee.Region.RegionName,
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
@@ -225,10 +238,6 @@ namespace Core.Manager.PresenceManager
 							where val.PresenceStatus.Equals("1")
 							select val;
 
-			var late =	from val in Get()
-						where val.PresenceStatus.Equals("3")
-						select val;
-
 			var allPresence = from val in Get() select val; 
 
 			return (from val in Get(true)
@@ -244,7 +253,6 @@ namespace Core.Manager.PresenceManager
 						Absence = absence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						Leave = leave.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						PresenceTotal = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						Late = late.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 						Percentage = ((presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100) /
 						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(X => X.PresenceStatus).Count()),
 						RegionName = val.Employee.Region.RegionName,
@@ -363,10 +371,6 @@ namespace Core.Manager.PresenceManager
 								val.Employee.ZoneId == z.ZoneId
 								select new ZoneValueDTO()
 								{
-									Late = presence.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId &&
-										x.PresenceStatus.Equals("3") &&
-										x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())).Count(),
-
 									PresenceTotal = presence.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId && 
 										x.PresenceStatus.Equals("1") && 
 										x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())).Count(),
@@ -409,10 +413,6 @@ namespace Core.Manager.PresenceManager
 								 val.Employee.ZoneId == z.ZoneId
 								 select new ZoneValueDTO()
 								 {
-									 Late = presence.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId &&
-										 x.PresenceStatus.Equals("3") &&
-										 x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())).Count(),
-
 									 PresenceTotal = presence.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId &&
 										x.PresenceStatus.Equals("1") &&
 										x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())).Count(),
@@ -550,8 +550,6 @@ namespace Core.Manager.PresenceManager
 						TotalEmployee = employee
 							.Where(x => x.ZoneId == val.Employee.Zone.ZoneId).GroupBy(x => x.EmployeeId).Count(),
 						RegionName = r.RegionName,
-						Late = presence
-							.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId && x.PresenceStatus.Equals("3")).Count(),
 						PresenceTotal = presence
 							.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId && x.PresenceStatus.Equals("1")).Count(),
 						Absence = presence
@@ -587,8 +585,6 @@ namespace Core.Manager.PresenceManager
 						TotalEmployee = employee
 							.Where(x => x.ZoneId == val.Employee.Zone.ZoneId).GroupBy(x => x.EmployeeId).Count(),
 						RegionName = r.RegionName,
-						Late = presence
-							.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId && x.PresenceStatus.Equals("3")).Count(),
 						PresenceTotal = presence
 							.Where(x => x.Employee.ZoneId == val.Employee.Zone.ZoneId && x.PresenceStatus.Equals("1")).Count(),
 						Absence = presence
@@ -761,8 +757,6 @@ namespace Core.Manager.PresenceManager
 							.Where(x => x.Employee.RegionId == r.RegionId && x.PresenceStatus.Equals("2")).Count(),
 						PresenceTotal = presence
 							.Where(x => x.Employee.RegionId == r.RegionId && x.PresenceStatus.Equals("1")).Count(),
-						Late = presence
-							.Where(x => x.Employee.RegionId == r.RegionId && x.PresenceStatus.Equals("3")).Count(),
 						Percentage =
 							presence.Where(x => x.Employee.RegionId == r.RegionId).Count() == 0 ? 0 :
 							((presence.Where(x => x.Employee.RegionId == r.RegionId && 
