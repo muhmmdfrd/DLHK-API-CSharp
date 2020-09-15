@@ -238,7 +238,7 @@ namespace DLHK_API.Controllers
 
 		[HttpGet]
 		[Route("api/employee/zone/{region}")]
-		public IHttpActionResult GetId([FromUri] string region)
+		public IHttpActionResult GetRegionName([FromUri] string region)
 		{
 			try
 			{
@@ -273,6 +273,31 @@ namespace DLHK_API.Controllers
 					resp.MessageCode = 200;
 					resp.ErrorCode = 0;
 					resp.Data = manager.Query.Value.TransformId(id);
+				}
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
+
+		[HttpGet]
+		[Route("api/employee/name/{employeeName}")]
+		public IHttpActionResult EmployeeName([FromUri] string employeeName)
+		{
+			try
+			{
+				using (var manager = new EmployeeAdapter())
+				{
+					resp.Message = "data found";
+					resp.MessageCode = 200;
+					resp.ErrorCode = 0;
+					resp.Data = manager.Query.Value.TransformName(employeeName);
 				}
 			}
 			catch (Exception ex)

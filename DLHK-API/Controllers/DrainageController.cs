@@ -42,12 +42,12 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new DrainageAdapter())
 				{
-					var result = manager.Creator.Value.Save(dto);
+					manager.Creator.Value.Save(dto);
 
 					resp.Message = "data inserted";
 					resp.MessageCode = 201;
 					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.DrainageId);
+					resp.Data = null;
 				}
 			}
 			catch (Exception ex)
