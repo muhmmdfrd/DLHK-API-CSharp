@@ -88,6 +88,31 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/transac/in/{start}/{end}")]
+		public IHttpActionResult GetTransacInDate([FromUri] string start, string end)
+		{
+			try
+			{
+				using (var manager = new TransacAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TransformInDate(start, end);
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 0;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+		}
+
+		[HttpGet]
 		[Route("api/transac/out")]
 		public IHttpActionResult GetOut()
 		{
@@ -135,6 +160,31 @@ namespace DLHK_API.Controllers
 			}
 
 			return Json(resp);
+		}
+
+		[HttpGet]
+		[Route("api/transac/out/{start}/{end}")]
+		public IHttpActionResult GetTransacOutDate([FromUri] string start, string end)
+		{
+			try
+			{
+				using (var manager = new TransacAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TransformOutDate(start, end);
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 0;
+				respList.Data = null;
+			}
+
+			return Json(respList);
 		}
 
 		[HttpPost]
