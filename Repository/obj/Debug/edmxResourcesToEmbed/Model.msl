@@ -139,6 +139,7 @@
     <EntitySetMapping Name="Leaves">
       <EntityTypeMapping TypeName="DLHKModel.Leave">
         <MappingFragment StoreEntitySet="Leave">
+          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
           <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -174,6 +175,8 @@
     <EntitySetMapping Name="Presences">
       <EntityTypeMapping TypeName="DLHKModel.Presence">
         <MappingFragment StoreEntitySet="Presence">
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
           <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
           <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
@@ -243,6 +246,8 @@
     <EntitySetMapping Name="Transacs">
       <EntityTypeMapping TypeName="DLHKModel.Transac">
         <MappingFragment StoreEntitySet="Transac">
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
           <ScalarProperty Name="TransacId" ColumnName="TransacId" />
           <ScalarProperty Name="Qty" ColumnName="Qty" />
           <ScalarProperty Name="Note" ColumnName="Note" />
@@ -272,6 +277,15 @@
           <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
           <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
           <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMEIs">
+      <EntityTypeMapping TypeName="DLHKModel.IMEI">
+        <MappingFragment StoreEntitySet="IMEI">
+          <ScalarProperty Name="Device" ColumnName="Device" />
+          <ScalarProperty Name="Imei1" ColumnName="Imei" />
+          <ScalarProperty Name="ImeiId" ColumnName="ImeiId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

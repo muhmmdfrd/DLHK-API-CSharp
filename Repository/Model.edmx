@@ -107,6 +107,14 @@
           <Property Name="PresenceId" Type="bigint" />
           <Property Name="TypeZone" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="IMEI">
+          <Key>
+            <PropertyRef Name="ImeiId" />
+          </Key>
+          <Property Name="ImeiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imei" Type="varchar" MaxLength="20" />
+          <Property Name="Device" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Interview">
           <Key>
             <PropertyRef Name="InterviewId" />
@@ -139,6 +147,7 @@
           <Property Name="Description" Type="varchar" MaxLength="100" />
           <Property Name="LeaveStatus" Type="varchar" MaxLength="15" />
           <Property Name="EmployeeId" Type="bigint" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -173,6 +182,8 @@
           <Property Name="DateOfPresence" Type="datetime" />
           <Property Name="PresenceStatus" Type="char" MaxLength="1" />
           <Property Name="EmployeeId" Type="bigint" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Counter" Type="int" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -240,6 +251,8 @@
           <Property Name="UserRecorder" Type="varchar" MaxLength="50" />
           <Property Name="UserRequest" Type="varchar" MaxLength="50" />
           <Property Name="SuplierName" Type="varchar" MaxLength="50" />
+          <Property Name="ZoneName" Type="varchar" MaxLength="50" />
+          <Property Name="RegionName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -423,6 +436,7 @@
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Garbage" EntityType="Self.Garbage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HeadOfZone" EntityType="Self.HeadOfZone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMEI" EntityType="Self.IMEI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
@@ -640,6 +654,7 @@
           <Property Name="LeaveStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeId" Type="Int64" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Leave__EmployeeI__6477ECF3" FromRole="Leave" ToRole="Employee" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -680,6 +695,8 @@
           <NavigationProperty Name="Garbages" Relationship="Self.FK__Garbage__Presenc__628FA481" FromRole="Presence" ToRole="Garbage" />
           <NavigationProperty Name="HeadOfZones" Relationship="Self.FK__HeadOfZon__Prese__6383C8BA" FromRole="Presence" ToRole="HeadOfZone" />
           <NavigationProperty Name="Sweepers" Relationship="Self.FK__Sweeper__Presenc__66603565" FromRole="Presence" ToRole="Sweeper" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Counter" Type="Int32" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -751,6 +768,8 @@
           <Property Name="UserRecorder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZoneName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1002,7 +1021,16 @@
             <End Role="Region" EntitySet="Regions" />
             <End Role="Zone" EntitySet="Zones" />
           </AssociationSet>
+          <EntitySet Name="IMEIs" EntityType="DLHKModel.IMEI" />
         </EntityContainer>
+        <EntityType Name="IMEI">
+          <Key>
+            <PropertyRef Name="ImeiId" />
+          </Key>
+          <Property Name="ImeiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imei1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Device" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1147,6 +1175,7 @@
           <EntitySetMapping Name="Leaves">
             <EntityTypeMapping TypeName="DLHKModel.Leave">
               <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
                 <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1182,6 +1211,8 @@
           <EntitySetMapping Name="Presences">
             <EntityTypeMapping TypeName="DLHKModel.Presence">
               <MappingFragment StoreEntitySet="Presence">
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
                 <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
                 <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
@@ -1251,6 +1282,8 @@
           <EntitySetMapping Name="Transacs">
             <EntityTypeMapping TypeName="DLHKModel.Transac">
               <MappingFragment StoreEntitySet="Transac">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
                 <ScalarProperty Name="TransacId" ColumnName="TransacId" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
@@ -1280,6 +1313,15 @@
                 <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
                 <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
                 <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMEIs">
+            <EntityTypeMapping TypeName="DLHKModel.IMEI">
+              <MappingFragment StoreEntitySet="IMEI">
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Imei1" ColumnName="Imei" />
+                <ScalarProperty Name="ImeiId" ColumnName="ImeiId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

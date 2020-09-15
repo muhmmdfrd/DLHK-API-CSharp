@@ -147,6 +147,7 @@
     <Property Name="LeaveStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="EmployeeId" Type="Int64" />
     <NavigationProperty Name="Employee" Relationship="Self.FK__Leave__EmployeeI__6477ECF3" FromRole="Leave" ToRole="Employee" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Person">
     <Key>
@@ -187,6 +188,8 @@
     <NavigationProperty Name="Garbages" Relationship="Self.FK__Garbage__Presenc__628FA481" FromRole="Presence" ToRole="Garbage" />
     <NavigationProperty Name="HeadOfZones" Relationship="Self.FK__HeadOfZon__Prese__6383C8BA" FromRole="Presence" ToRole="HeadOfZone" />
     <NavigationProperty Name="Sweepers" Relationship="Self.FK__Sweeper__Presenc__66603565" FromRole="Presence" ToRole="Sweeper" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Counter" Type="Int32" />
   </EntityType>
   <EntityType Name="Region">
     <Key>
@@ -258,6 +261,8 @@
     <Property Name="UserRecorder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UserRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZoneName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -509,5 +514,14 @@
       <End Role="Region" EntitySet="Regions" />
       <End Role="Zone" EntitySet="Zones" />
     </AssociationSet>
+    <EntitySet Name="IMEIs" EntityType="DLHKModel.IMEI" />
   </EntityContainer>
+  <EntityType Name="IMEI">
+    <Key>
+      <PropertyRef Name="ImeiId" />
+    </Key>
+    <Property Name="ImeiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imei1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Device" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

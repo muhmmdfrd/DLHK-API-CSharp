@@ -24,5 +24,7 @@ namespace Repository
         public string UserRecorder { get; set; }
         public string UserRequest { get; set; }
         public string SuplierName { get; set; }
+        public string ZoneName { get; set; }
+        public string RegionName { get; set; }
     }
 }

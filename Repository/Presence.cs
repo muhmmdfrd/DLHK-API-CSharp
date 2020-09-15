@@ -29,6 +29,8 @@ namespace Repository
         public Nullable<System.DateTime> DateOfPresence { get; set; }
         public string PresenceStatus { get; set; }
         public Nullable<long> EmployeeId { get; set; }
+        public string Location { get; set; }
+        public Nullable<int> Counter { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Drainage> Drainages { get; set; }

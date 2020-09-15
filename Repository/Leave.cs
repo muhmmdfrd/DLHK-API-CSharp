@@ -19,6 +19,7 @@ namespace Repository
         public string Description { get; set; }
         public string LeaveStatus { get; set; }
         public Nullable<long> EmployeeId { get; set; }
+        public string Location { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

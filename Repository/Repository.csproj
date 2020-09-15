@@ -74,6 +74,9 @@
     <Compile Include="HeadOfZone.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="IMEI.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Interview.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

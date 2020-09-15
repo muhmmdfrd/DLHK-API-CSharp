@@ -46,5 +46,6 @@ namespace Repository
         public virtual DbSet<Transac> Transacs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Zone> Zones { get; set; }
+        public virtual DbSet<IMEI> IMEIs { get; set; }
     }
 }
