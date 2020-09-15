@@ -36,31 +36,6 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/leave/postpone/{regionName}")]
-		public IHttpActionResult GetPostPone([FromUri] string regionName)
-		{
-			try
-			{
-				using (var manager = new LeaveAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformStatus(regionName);
-				}
-			}
-			catch (Exception ex)
-			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
-			}
-
-			return Json(respList);
-		}
-
-		[HttpGet]
 		[Route("api/leave/{id}")]
 		public IHttpActionResult GetId([FromUri] long id)
 		{
