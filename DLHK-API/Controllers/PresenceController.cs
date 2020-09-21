@@ -24,6 +24,7 @@ namespace DLHK_API.Controllers
 		private readonly ApiResponse<List<ZonePropertyDTO>> respZoneLive = new ApiResponse<List<ZonePropertyDTO>>();
 		private readonly ApiResponse<List<ZonePerformLiveDTO>> respZonePerformLive = new ApiResponse<List<ZonePerformLiveDTO>>();
 		private readonly ApiResponse<List<EmployeePerformDTO>> respEmployee = new ApiResponse<List<EmployeePerformDTO>>();
+		private readonly ApiResponse<DashboardDTO> respDashboard = new ApiResponse<DashboardDTO>();
 
 		[HttpGet]
 		[Route("api/presence")]
@@ -48,6 +49,57 @@ namespace DLHK_API.Controllers
 			}
 
 			return Json(respList);
+		}
+
+		[HttpGet]
+		[Route("api/presence/dashboard")]
+		public IHttpActionResult GetDashboard()
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respDashboard.Message = "data found";
+					respDashboard.MessageCode = 200;
+					respDashboard.ErrorCode = 0;
+					respDashboard.Data = manager.Query.Value.TransformDashboard();
+				}
+			}
+			catch (Exception ex)
+			{
+				respDashboard.Message = ex.Message;
+				respDashboard.MessageCode = 400;
+				respDashboard.ErrorCode = 1;
+				respDashboard.Data = null;
+			}
+
+			return Json(respDashboard);
+		}
+
+		[HttpGet]
+		[Route("api/presence/headregion")]
+		public IHttpActionResult GetHeadRegion()
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TransformHeadRegion();
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 1;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+
 		}
 
 		[HttpGet]

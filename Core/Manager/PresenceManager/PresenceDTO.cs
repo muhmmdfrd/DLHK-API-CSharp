@@ -419,4 +419,19 @@ namespace Core.Manager.PresenceManager
 		[JsonProperty("percentage")]
 		public int? Percentage { get; set; }
 	}
+
+	public class DashboardDTO
+	{
+		[JsonProperty("employees")]
+		public int Employees { get; set; }
+
+		[JsonProperty("presences")]
+		public int Presences { get; set; }
+
+		[JsonProperty("performances")]
+		public int Performances { get; set; }
+
+		[JsonProperty("score")]
+		public int Score { get; set; }
+	}
 }

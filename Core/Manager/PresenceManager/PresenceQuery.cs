@@ -69,6 +69,30 @@ namespace Core.Manager.PresenceManager
 					}).ToList();
 		}
 
+		public List<PresenceDTO> TransformHeadRegion()
+		{
+			return (from val in Get(true).AsEnumerable()
+					where val.Employee.RoleId == 3 &&
+					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
+					select new PresenceDTO()
+					{
+						Coordinate = val.Coordinate,
+						DateOfPresence = val.DateOfPresence,
+						EmployeeId = val.EmployeeId,
+						EmployeeName = val.Employee.Person.PersonName,
+						EmployeeNumber = val.Employee.EmployeeNumber,
+						LivePhoto = null,
+						PresenceId = val.PresenceId,
+						PresenceStatus = val.PresenceStatus,
+						RegionName = val.Employee.Region.RegionName,
+						RoleName = val.Employee.Role.RoleName,
+						ZoneName = val.Employee.Zone.ZoneName,
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location,
+					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
+		}
+
 		public List<PresenceDTO> TransformSweeper(string zoneParams, string regionParams, string shiftParams)
 		{
 			return (from val in Get(true).AsEnumerable()
@@ -101,6 +125,7 @@ namespace Core.Manager.PresenceManager
 					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
 		}
 
+
 		public List<PresenceDTO> TransformDrainage(string zoneParams, string regionParams, string shiftParams)
 		{
 			return (from val in Get(true).AsEnumerable()
@@ -131,6 +156,27 @@ namespace Core.Manager.PresenceManager
 						Counter = val.Counter,
 						Location = val.Location
 					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
+		}
+
+		public DashboardDTO TransformDashboard()
+		{
+			var employees = from employee in Manager.Database.Employees
+							select employee;
+
+			var allPresence = (from all in Get() 
+							  select all).Count();
+
+			var presences = (from presence in Get()
+							where presence.PresenceStatus.Equals("1")
+							select presence).Count() * 100;
+
+			return new DashboardDTO()
+			{
+				Employees = employees.Count(),
+				Presences = presences / allPresence,
+				Performances = 79,
+				Score = (79 + presences / allPresence) / 2
+			};
 		}
 
 		public List<PresenceDTO> TransformGarbage(string zoneParams, string regionParams, string shiftParams)
