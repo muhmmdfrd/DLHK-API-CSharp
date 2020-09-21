@@ -160,7 +160,8 @@ namespace Core.Manager.PresenceManager
 
 		public DashboardDTO TransformDashboard()
 		{
-			var employees = from employee in Manager.Database.Employees
+			var db = Manager.Database;
+			var employees = from employee in db.Employees
 							select employee;
 
 			var allPresence = (from all in Get() 
@@ -170,12 +171,76 @@ namespace Core.Manager.PresenceManager
 							where presence.PresenceStatus.Equals("1")
 							select presence).Count() * 100;
 
+			var sweeper = from sw in db.Sweepers
+						  select sw;
+
+			var drainage = from dr in db.Drainages
+						   select dr;
+
+			var garbage = from gr in db.Garbages
+						  select gr;
+
 			return new DashboardDTO()
 			{
 				Employees = employees.Count(),
 				Presences = presences / allPresence,
-				Performances = 79,
-				Score = (79 + presences / allPresence) / 2
+				Performances = 
+				((sweeper.Sum(x => x.Dicipline + x.Completeness + x.WaterRope + x.Sidewalk + x.Road + x.RoadMedian) / (sweeper.Count() * 6)) +
+				(drainage.Sum(x => x.Cleanliness + x.Completeness + x.Dicipline + x.Sediment + x.Weed) / (drainage.Count() * 5)) +
+				(garbage.Sum(x => x.Calculation + x.Dicipline + x.Separation + x.TPS) / (garbage.Count() * 4))) / 3,
+				Score = (((sweeper.Sum(x => x.Dicipline + x.Completeness + x.WaterRope + x.Sidewalk + x.Road + x.RoadMedian) / (sweeper.Count() * 6)) +
+				(drainage.Sum(x => x.Cleanliness + x.Completeness + x.Dicipline + x.Sediment + x.Weed) / (drainage.Count() * 5)) +
+				(garbage.Sum(x => x.Calculation + x.Dicipline + x.Separation + x.TPS) / (garbage.Count() * 4))) / 3 + presences / allPresence) / 2
+			};
+		}
+
+		public DashboardItemDTO TransformDashboardItem()
+		{
+			var db = Manager.Database;
+			var item = (from i in db.Items
+					   select i).Count();
+
+			var transac = from t in db.Transacs
+						  select t;
+
+			return new DashboardItemDTO()
+			{
+				Items = item,
+				In = transac.Where(x => x.TypeOfTransac.Equals("IN")).Count(),
+				Out = transac.Where(x => x.TypeOfTransac.Equals("OUT")).Count()
+			};
+		}
+
+		public DashboardContractDTO TransformDashboardContract()
+		{
+			var db = Manager.Database;
+			var app = from p in db.People
+					  where p.Jobdesk != "Employee" &&
+					  p.Jobdesk != "Interview"
+					  select p;
+
+			var interview = from p in db.People
+							 where p.Jobdesk.Equals("Interview")
+							 select p;
+
+			var role = (from r in db.Roles
+						where r.RoleId != 6
+						select r).Count();
+
+			var today = DateTime.Now;
+			var employee = from emp in db.Employees
+						   where (emp.LastContract.Value.Month == today.Month &&
+						   emp.LastContract.Value.Year <= today.Year) ||
+						   emp.LastContract.Value.Month <= today.Month &&
+						   emp.LastContract.Value.Year <= today.Year
+						   select emp;
+
+			return new DashboardContractDTO()
+			{
+				Applicants = app.Count(),
+				Interviewers = interview.Count(),
+				RoleActive = role,
+				Expired = employee.Count()
 			};
 		}
 

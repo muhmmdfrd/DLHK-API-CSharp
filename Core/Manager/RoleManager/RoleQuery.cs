@@ -19,6 +19,7 @@ namespace Core.Manager.RoleManager
 		public List<RoleDTO> Transform()
 		{
 			return (from val in Get()
+					where val.RoleId != 6
 					select new RoleDTO()
 					{
 						RoleId = val.RoleId,

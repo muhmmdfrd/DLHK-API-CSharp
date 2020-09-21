@@ -25,6 +25,8 @@ namespace DLHK_API.Controllers
 		private readonly ApiResponse<List<ZonePerformLiveDTO>> respZonePerformLive = new ApiResponse<List<ZonePerformLiveDTO>>();
 		private readonly ApiResponse<List<EmployeePerformDTO>> respEmployee = new ApiResponse<List<EmployeePerformDTO>>();
 		private readonly ApiResponse<DashboardDTO> respDashboard = new ApiResponse<DashboardDTO>();
+		private readonly ApiResponse<DashboardItemDTO> respItem = new ApiResponse<DashboardItemDTO>();
+		private readonly ApiResponse<DashboardContractDTO> respContract = new ApiResponse<DashboardContractDTO>();
 
 		[HttpGet]
 		[Route("api/presence")]
@@ -74,6 +76,56 @@ namespace DLHK_API.Controllers
 			}
 
 			return Json(respDashboard);
+		}
+
+		[HttpGet]
+		[Route("api/presence/dashboard-contract")]
+		public IHttpActionResult GetDashboardContract()
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respContract.Message = "data found";
+					respContract.MessageCode = 200;
+					respContract.ErrorCode = 0;
+					respContract.Data = manager.Query.Value.TransformDashboardContract();
+				}
+			}
+			catch (Exception ex)
+			{
+				respContract.Message = ex.Message;
+				respContract.MessageCode = 400;
+				respContract.ErrorCode = 1;
+				respContract.Data = null;
+			}
+
+			return Json(respContract);
+		}
+
+		[HttpGet]
+		[Route("api/presence/dashboard-item")]
+		public IHttpActionResult GetDashboardItem()
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respItem.Message = "data found";
+					respItem.MessageCode = 200;
+					respItem.ErrorCode = 0;
+					respItem.Data = manager.Query.Value.TransformDashboardItem();
+				}
+			}
+			catch (Exception ex)
+			{
+				respItem.Message = ex.Message;
+				respItem.MessageCode = 400;
+				respItem.ErrorCode = 1;
+				respItem.Data = null;
+			}
+
+			return Json(respItem);
 		}
 
 		[HttpGet]

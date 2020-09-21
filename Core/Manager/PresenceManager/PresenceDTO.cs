@@ -429,9 +429,36 @@ namespace Core.Manager.PresenceManager
 		public int Presences { get; set; }
 
 		[JsonProperty("performances")]
-		public int Performances { get; set; }
+		public int? Performances { get; set; }
 
 		[JsonProperty("score")]
-		public int Score { get; set; }
+		public int? Score { get; set; }
+	}
+
+	public class DashboardItemDTO
+	{
+		[JsonProperty("items")]
+		public int Items { get; set; }
+
+		[JsonProperty("transacIn")]
+		public int In { get; set; }
+
+		[JsonProperty("out")]
+		public int Out { get; set; }
+	}
+
+	public class DashboardContractDTO
+	{
+		[JsonProperty("expired")]
+		public int Expired { get; set; }
+
+		[JsonProperty("applicants")]
+		public int Applicants { get; set; }
+
+		[JsonProperty("interviewers")]
+		public int? Interviewers { get; set; }
+
+		[JsonProperty("roleActive")]
+		public int? RoleActive { get; set; }
 	}
 }
