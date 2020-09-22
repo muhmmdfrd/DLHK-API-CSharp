@@ -229,7 +229,7 @@ namespace Core.Manager.PresenceManager
 
 			var today = DateTime.Now;
 			var employee = from emp in db.Employees
-						   where (emp.LastContract.Value.Month == today.Month &&
+						   where (emp.LastContract.Value.Month == today.Month + 1 &&
 						   emp.LastContract.Value.Year <= today.Year) ||
 						   emp.LastContract.Value.Month <= today.Month &&
 						   emp.LastContract.Value.Year <= today.Year

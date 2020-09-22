@@ -146,3 +146,9 @@ D:\DLHK\DLHK-API-CSharp\DLHK-API\obj\Debug\DLHK-API.csproj.CoreCompileInputs.cac
 D:\DLHK\DLHK-API-CSharp\DLHK-API\obj\Debug\DLHK-API.csproj.CopyComplete
 D:\DLHK\DLHK-API-CSharp\DLHK-API\obj\Debug\DLHK-API.dll
 D:\DLHK\DLHK-API-CSharp\DLHK-API\obj\Debug\DLHK-API.pdb
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.DataSet.dll
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.dll
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.pdb
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.xml
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.DataSet.pdb
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.DataSet.xml

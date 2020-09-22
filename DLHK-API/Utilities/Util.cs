@@ -1,9 +1,13 @@
 ﻿using Core.Manager.InterviewManager;
+using ExcelDataReader;
+using Repository;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Web;
 
@@ -115,7 +119,7 @@ namespace DLHK_API.Utilities
 			var toAddress = new MailAddress(dto.Email);
 			const string fromPassword = "calloftugasww2_";
 			const string subject = "Undangan Interview";
-			string[] months = new string[] 
+			string[] months = new string[]
 			{
 				"Januari", "Februari", "Maret", "April", "Mei", "Juni",
 				"Juli", "Agustus", "September", "Oktober", "November", "Desember"
@@ -126,8 +130,8 @@ namespace DLHK_API.Utilities
 			body += "<p>Saudara/i " + dto.Interviewer + ", Anda lolos untuk ke tahap interview dengan membawa berkas berupa:</p>";
 			body += "<ul><li>KTP</li><li>Ijazah</li><li>Surat Lamaran</li></ul>";
 			body += "<br />";
-			body += "<p>Silakan datang ke kantor DLHK Kota Bandung pada " + GetDateFormatter(months, dto.DateOfInterview) 
-					+ " jam  " +dto.DateOfInterview.Value.ToShortTimeString() + " WIB.</p>";
+			body += "<p>Silakan datang ke kantor DLHK Kota Bandung pada " + GetDateFormatter(months, dto.DateOfInterview)
+					+ " jam  " + dto.DateOfInterview.Value.ToShortTimeString() + " WIB.</p>";
 			body += "<br /><br />";
 			body += "<p>Homat kami,</p>";
 			body += "<p>Kadis DLHK Kota Bandung</p>";
@@ -159,6 +163,68 @@ namespace DLHK_API.Utilities
 			var year = schedule.Value.Year.ToString();
 
 			return $"{date} {month} {year}";
+		}
+
+		public string ExcelUpload()
+		{
+			using (var objEntity = new DLHKEntities())
+			{
+				string message = "";
+				HttpResponseMessage result = null;
+				var httpRequest = HttpContext.Current.Request;
+
+				if (httpRequest.Files.Count > 0)
+				{
+					HttpPostedFile file = httpRequest.Files[0];
+					Stream stream = file.InputStream;
+
+					IExcelDataReader reader = null;
+
+					if (file.FileName.EndsWith(".xls"))
+					{
+						reader = ExcelReaderFactory.CreateBinaryReader(stream);
+					}
+					else if (file.FileName.EndsWith(".xlsx"))
+					{
+						reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+					}
+					else
+					{
+						message = "This file format is not supported";
+					}
+
+					DataSet excelRecords = reader.AsDataSet();
+					reader.Close();
+
+					var finalRecords = excelRecords.Tables[0];
+					for (int i = 0; i < finalRecords.Rows.Count; i++)
+					{
+						//EmployeeDTO employee = new EmployeeDTO()
+						//{
+						//	EmployeeId = Convert.ToInt64(finalRecords.Rows[i][0]),
+						//	ZoneName = Convert.
+						//};
+
+					}
+
+					int output = objEntity.SaveChanges();
+					if (output > 0)
+					{
+						message = "Excel file has been successfully uploaded";
+					}
+					else
+					{
+						message = "Excel file uploaded has fiald";
+					}
+
+				}
+				else
+				{
+					message = "error";
+				}
+
+				return message;
+			}
 		}
 	}
 }
