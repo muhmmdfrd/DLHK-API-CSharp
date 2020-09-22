@@ -41,11 +41,22 @@ namespace Core.Manager.SweeperManager
 				else if (counter <= 2 && existSweeper != null)
 				{
 					existSweeper.Completeness += dto.Completeness;
+					existSweeper.Completeness /= 2;
+
 					existSweeper.Dicipline += dto.Dicipline;
+					existSweeper.Dicipline /= 2;
+
 					existSweeper.Road += dto.Road;
+					existSweeper.Road /= 2;
+
 					existSweeper.RoadMedian += dto.RoadMedian;
+					existSweeper.RoadMedian /= 2;
+
 					existSweeper.Sidewalk += dto.Sidewalk;
+					existSweeper.Sidewalk /= 2;
+
 					existSweeper.WaterRope += dto.WaterRope;
+					existSweeper.WaterRope /= 2;
 				}
 				else if (counter == 3 && existSweeper != null)
 				{

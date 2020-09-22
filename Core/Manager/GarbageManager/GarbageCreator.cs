@@ -18,10 +18,10 @@ namespace Core.Manager.GarbageManager
 			using (var transac = new TransactionScope())
 			{
 				var existPresence = Manager.Database.Presences.FirstOrDefault(x => x.PresenceId == dto.PresenceId);
-				var existSweeper = Manager.Query.Value.Get().FirstOrDefault(x => x.PresenceId == dto.PresenceId);
+				var existGarbage = Manager.Query.Value.Get().FirstOrDefault(x => x.PresenceId == dto.PresenceId);
 				var counter = existPresence.Counter + 1;
 
-				if (counter == 1 && existSweeper == null)
+				if (counter == 1 && existGarbage == null)
 				{
 					var newEntity = new Garbage
 					{
@@ -38,34 +38,45 @@ namespace Core.Manager.GarbageManager
 
 					Manager.Database.Garbages.Add(newEntity);
 				}
-				else if (counter <= 2 && existSweeper != null)
+				else if (counter <= 2 && existGarbage != null)
 				{
-					existSweeper.Calculation += dto.Calculation;
-					existSweeper.Dicipline += dto.Dicipline;
-					existSweeper.Separation += dto.Separation;
-					existSweeper.TPS += dto.TPS;
-					existSweeper.VolumeOfAnorganic += dto.VolumeOfAnorganic;
-					existSweeper.VolumeOfOrganic += dto.VolumeOfOrganic;
+					existGarbage.Calculation += dto.Calculation;
+					existGarbage.Calculation /= 2;
+
+					existGarbage.Dicipline += dto.Dicipline;
+					existGarbage.Dicipline /= 2;
+					
+					existGarbage.Separation += dto.Separation;
+					existGarbage.Separation /= 2;
+					
+					existGarbage.TPS += dto.TPS;
+					existGarbage.TPS /= 2;
+					
+					existGarbage.VolumeOfAnorganic += dto.VolumeOfAnorganic;
+					existGarbage.VolumeOfAnorganic /= 2;
+					
+					existGarbage.VolumeOfOrganic += dto.VolumeOfOrganic;
+					existGarbage.VolumeOfOrganic /= 2;
 				}
-				else if (counter == 3 && existSweeper != null)
+				else if (counter == 3 && existGarbage != null)
 				{
-					existSweeper.Calculation += dto.Calculation;
-					existSweeper.Calculation /= 3;
+					existGarbage.Calculation += dto.Calculation;
+					existGarbage.Calculation /= 3;
 
-					existSweeper.Dicipline += dto.Dicipline;
-					existSweeper.Dicipline /= 3;
+					existGarbage.Dicipline += dto.Dicipline;
+					existGarbage.Dicipline /= 3;
 
-					existSweeper.Separation += dto.Separation;
-					existSweeper.Separation /= 3;
+					existGarbage.Separation += dto.Separation;
+					existGarbage.Separation /= 3;
 
-					existSweeper.TPS += dto.TPS;
-					existSweeper.TPS /= 3;
+					existGarbage.TPS += dto.TPS;
+					existGarbage.TPS /= 3;
 
-					existSweeper.VolumeOfAnorganic += dto.VolumeOfAnorganic;
-					existSweeper.VolumeOfAnorganic /= 3;
+					existGarbage.VolumeOfAnorganic += dto.VolumeOfAnorganic;
+					existGarbage.VolumeOfAnorganic /= 3;
 
-					existSweeper.VolumeOfOrganic += dto.VolumeOfOrganic;
-					existSweeper.VolumeOfOrganic /= 3;
+					existGarbage.VolumeOfOrganic += dto.VolumeOfOrganic;
+					existGarbage.VolumeOfOrganic /= 3;
 				}
 				else
 				{
