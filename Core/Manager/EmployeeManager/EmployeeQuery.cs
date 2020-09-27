@@ -63,6 +63,13 @@ namespace Core.Manager.EmployeeManager
 			var garbage = db.Garbages;
 			var headZone = db.HeadOfZones;
 
+			var allPresence = from all in presence
+							  select all;
+			
+			var attend = from pr in presence
+						 where pr.PresenceStatus.Equals("1")
+						 select pr;
+
 			return (from val in Get(true)
 					where val.RoleId != 6
 					select new EmployeeDTO()
@@ -83,6 +90,11 @@ namespace Core.Manager.EmployeeManager
 						ZoneName = val.Zone.ZoneName,
 						Age = todayDateTime.Year - val.Person.DateOfBirth.Value.Year,
 						Shift = val.Shift,
+						SmartPresence =
+							 attend.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100 /
+						(allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() == 0 ? 1 
+						:
+						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count()),
 						Perform = val.RoleId == 4 ? ((sweeper.Where(x => x.Presence.Employee.RoleId == 4 &&
 							 x.Presence.Employee.EmployeeId == val.EmployeeId)
 								.Sum(x => x.Dicipline + x.Completeness + x.WaterRope + x.Sidewalk + x.Road + x.RoadMedian)) /

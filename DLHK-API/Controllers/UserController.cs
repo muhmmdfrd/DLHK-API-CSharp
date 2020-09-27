@@ -1,5 +1,7 @@
-﻿using DLHK_API.Models;
+﻿using Core.Manager.UserManager;
+using DLHK_API.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Http;
@@ -9,6 +11,33 @@ namespace DLHK_API.Controllers
 	public class UserController : ApiController
     {
 		private readonly ApiResponse<NameForClaim> resp = new ApiResponse<NameForClaim>();
+		private readonly ApiResponse<List<UserDTO>> respList = new ApiResponse<List<UserDTO>>();
+
+		[HttpGet]
+		[Route("api/user")]
+		public IHttpActionResult Get()
+		{
+			try
+			{
+				using (var manager = new UserAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.Tranform();
+				}
+				 
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 1;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+		}
 
 		[HttpGet]
 		[Route("api/user/claim")]

@@ -53,6 +53,32 @@ namespace DLHK_API.Controllers
 			return Json(respList);
 		}
 
+
+		[HttpGet]
+		[Route("api/presence/{zoneParams}/{statusParams}")]
+		public IHttpActionResult GetZoneAndStatus([FromUri] string zoneParams, string statusParams)
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TransformWithPhotoAndParam(statusParams, zoneParams);
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 1;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+		}
+
 		[HttpGet]
 		[Route("api/presence/dashboard")]
 		public IHttpActionResult GetDashboard()

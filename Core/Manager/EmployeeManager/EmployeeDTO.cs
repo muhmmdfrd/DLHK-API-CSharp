@@ -54,7 +54,7 @@ namespace Core.Manager.EmployeeManager
 		public string Shift { get; set; }
 
 		[JsonProperty("smartPresence")]
-		public int SmartPresence { get; set; }
+		public int? SmartPresence { get; set; }
 
 		[JsonProperty("perform")]
 		public int? Perform { get; set; }

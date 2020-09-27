@@ -170,7 +170,6 @@ namespace DLHK_API.Utilities
 			using (var objEntity = new DLHKEntities())
 			{
 				string message = "";
-				HttpResponseMessage result = null;
 				var httpRequest = HttpContext.Current.Request;
 
 				if (httpRequest.Files.Count > 0)

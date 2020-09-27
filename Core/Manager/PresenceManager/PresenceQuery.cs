@@ -69,6 +69,32 @@ namespace Core.Manager.PresenceManager
 					}).ToList();
 		}
 
+		public List<PresenceDTO> TransformWithPhotoAndParam(string status, string zoneParams)
+		{
+			return (from val in Get(true).AsEnumerable()
+					where val.PresenceStatus.Equals(status) &&
+					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
+					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
+					select new PresenceDTO()
+					{
+						Coordinate = val.Coordinate,
+						DateOfPresence = val.DateOfPresence,
+						EmployeeId = val.EmployeeId,
+						EmployeeName = val.Employee.Person.PersonName,
+						EmployeeNumber = val.Employee.EmployeeNumber,
+						LivePhoto = val.LivePhoto,
+						PresenceId = val.PresenceId,
+						PresenceStatus = val.PresenceStatus,
+						RegionName = val.Employee.Region.RegionName,
+						RoleName = val.Employee.Role.RoleName,
+						ZoneName = val.Employee.Zone.ZoneName,
+						Shift = val.Employee.Shift,
+						Counter = val.Counter,
+						Location = val.Location,
+						TimeOfPresence = val.DateOfPresence.Value.ToShortTimeString()
+					}).ToList();
+		}
+
 		public List<PresenceDTO> TransformHeadRegion()
 		{
 			return (from val in Get(true).AsEnumerable()
@@ -314,7 +340,8 @@ namespace Core.Manager.PresenceManager
 						   where val.PresenceStatus.Equals("1")
 						   select val;
 
-			var allPresence = from val in Get() select val;
+			var allPresence = from val in Get() 
+							  select val;
 
 			return (from val in Get(true)
 					select new PresenceResumeDTO()
@@ -330,8 +357,8 @@ namespace Core.Manager.PresenceManager
 						RoleName = val.Employee.Role.RoleName,
 						ZoneName = val.Employee.Zone.ZoneName,
 						Shift = val.Employee.Shift,
-						Percentage = ((presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100) /
-						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(X => X.PresenceStatus).Count()),
+						Percentage = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100 /
+						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
 					}).OrderBy(x => x.ZoneName).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
 		}
 
