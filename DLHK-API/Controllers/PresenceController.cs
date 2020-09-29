@@ -331,6 +331,31 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/presence/filter/{start}/{end}")]
+		public IHttpActionResult GetResume([FromUri] string start, string end)
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respResume.Message = "data found";
+					respResume.MessageCode = 200;
+					respResume.ErrorCode = 0;
+					respResume.Data = manager.Query.Value.TransformResume(start, end);
+				}
+			}
+			catch (Exception ex)
+			{
+				respResume.Message = ex.Message;
+				respResume.MessageCode = 400;
+				respResume.ErrorCode = 1;
+				respResume.Data = null;
+			}
+
+			return Json(respResume);
+		}
+
+		[HttpGet]
 		[Route("api/presence/resume/{zoneParams}/{regionParams}")]
 		public IHttpActionResult GetResumeZoneRegion(string zoneParams, string regionParams)
 		{

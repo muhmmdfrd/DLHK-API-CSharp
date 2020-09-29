@@ -4,10 +4,10 @@ namespace Core.Manager.ImeiManager
 {
 	public class ImeiDTO
 	{
-		[JsonProperty("ImeiId")]
+		[JsonProperty("imeiId")]
 		public long ImeiId { get; set; }
 
-		[JsonProperty("ImeiName")]
+		[JsonProperty("imeiName")]
 		public string ImeiName { get; set; }
 
 		[JsonProperty("device")]

@@ -37,6 +37,25 @@ namespace Core.Manager.UserManager
 					}).ToList();
 		}
 
+		public UserDTO TransformId(long id)
+		{
+			return (from val in Get(true)
+					where val.UserId == id
+					select new UserDTO()
+					{
+						UserId = val.UserId,
+						EmployeeId = val.EmployeeId,
+						Username = val.Username,
+						Password = val.Password,
+						PersonName = val.Employee.Person.PersonName,
+						Photo = val.Employee.Person.Photo,
+						RegionName = val.Employee.Region.RegionName,
+						ZoneName = val.Employee.Zone.ZoneName,
+						RoleName = val.Employee.Role.RoleName,
+						Shift = val.Employee.Shift
+					}).FirstOrDefault();
+		}
+
 		public UserDTO TransformUsername(string username)
 		{
 			return (from val in Get(true)

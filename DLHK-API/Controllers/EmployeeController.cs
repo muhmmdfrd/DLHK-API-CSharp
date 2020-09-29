@@ -11,6 +11,32 @@ namespace DLHK_API.Controllers
 		private readonly ApiResponse<List<EmployeeDTO>> respList = new ApiResponse<List<EmployeeDTO>>();
 		private readonly ApiResponse<EmployeeDTO> resp = new ApiResponse<EmployeeDTO>();
 
+
+		[HttpGet]
+		[Route("api/employee/unregister")]
+		public IHttpActionResult GetUser()
+		{
+			try
+			{
+				using (var manager = new EmployeeAdapter())
+				{
+					respList.Message = "data found";
+					respList.MessageCode = 200;
+					respList.ErrorCode = 0;
+					respList.Data = manager.Query.Value.TranformUserLogin();
+				}
+			}
+			catch (Exception ex)
+			{
+				respList.Message = ex.Message;
+				respList.MessageCode = 400;
+				respList.ErrorCode = 1;
+				respList.Data = null;
+			}
+
+			return Json(respList);
+		}
+
 		[HttpGet]
 		[Route("api/employee")]
 		public IHttpActionResult Get()

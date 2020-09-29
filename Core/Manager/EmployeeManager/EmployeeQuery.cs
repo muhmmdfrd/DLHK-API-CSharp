@@ -27,6 +27,36 @@ namespace Core.Manager.EmployeeManager
 				.Include(x => x.Zone) : dataContext;
 		}
 
+		public List<EmployeeDTO> TranformUserLogin()
+		{
+			return (from val in Get()
+					where
+					!(from user in Manager.Database.Users
+					  select user.EmployeeId).Contains(val.EmployeeId) &&
+					val.RoleId != 5 &&
+					val.RoleId != 4 &&
+					val.RoleId != 10
+					select new EmployeeDTO()
+					{
+						EmployeeId = val.EmployeeId,
+						EmployeeNumber = val.EmployeeNumber,
+						FirstContract = val.FirstContract,
+						LastContract = val.LastContract,
+						LocationContract = val.LocationContract,
+						PersonId = val.PersonId,
+						Bank = val.Bank,
+						RegionId = val.RegionId,
+						RoleId = val.RoleId,
+						ZoneId = val.ZoneId,
+						NamePerson = val.Person.PersonName,
+						Role = val.Role.RoleName,
+						Region = val.Zone.Region.RegionName,
+						ZoneName = val.Zone.ZoneName,
+						Age = todayDateTime.Year - val.Person.DateOfBirth.Value.Year,
+						Shift = val.Shift
+					}).ToList();
+		}
+
 		public List<EmployeeDTO> TransformHeadRegion()
 		{
 			return (from val in Get(true)

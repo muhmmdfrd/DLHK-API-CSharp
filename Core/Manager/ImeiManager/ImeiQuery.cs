@@ -28,15 +28,15 @@ namespace Core.Manager.ImeiManager
 					}).ToList();
 		}
 
-		public ImeiDTO TransformIMEICheck(string imeiParams)
+		public ImeiDTO TransformIMEICheck(string deviceParams)
 		{
-			var exist = Get().FirstOrDefault(x => x.Imei1.Equals(imeiParams));
+			var exist = Get().FirstOrDefault(x => x.Device.Equals(deviceParams));
 
 			if (exist == null)
-				throw new Exception("IMEI not found");
+				throw new Exception("DeviceId not found");
 
 			return (from val in Get()
-					where val.Imei1.Equals(imeiParams)
+					where val.Device.Equals(deviceParams)
 					select new ImeiDTO()
 					{
 						ImeiId = val.ImeiId,

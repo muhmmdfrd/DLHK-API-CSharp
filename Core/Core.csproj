@@ -167,8 +167,11 @@
     <Compile Include="Manager\TransacManager\TransacOutDTO.cs" />
     <Compile Include="Manager\TransacManager\TransacQuery.cs" />
     <Compile Include="Manager\UserManager\UserAdapter.cs" />
+    <Compile Include="Manager\UserManager\UserCreator.cs" />
+    <Compile Include="Manager\UserManager\UserDeleter.cs" />
     <Compile Include="Manager\UserManager\UserDTO.cs" />
     <Compile Include="Manager\UserManager\UserQuery.cs" />
+    <Compile Include="Manager\UserManager\UserUpdater.cs" />
     <Compile Include="Manager\ZoneManager\ZoneAdapter.cs" />
     <Compile Include="Manager\ZoneManager\ZoneCreator.cs" />
     <Compile Include="Manager\ZoneManager\ZoneDeleter.cs" />

@@ -362,6 +362,55 @@ namespace Core.Manager.PresenceManager
 					}).OrderBy(x => x.ZoneName).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
 		}
 
+		public List<PresenceResumeDTO> TransformResume(string start, string end)
+		{
+			var startDate = Convert.ToDateTime(start);
+			var endDate = Convert.ToDateTime(end);
+
+			var absence = from val in Get()
+						  where val.PresenceStatus.Equals("0") &&
+						  val.DateOfPresence >= startDate &&
+						  val.DateOfPresence <= endDate
+						  select val;
+
+			var leave = from val in Get()
+						where val.PresenceStatus.Equals("2") &&
+						val.DateOfPresence >= startDate &&
+						val.DateOfPresence <= endDate
+						select val;
+
+			var presence = from val in Get()
+						   where val.PresenceStatus.Equals("1") &&
+						   val.DateOfPresence >= startDate &&
+						   val.DateOfPresence <= endDate
+						   select val;
+
+			var allPresence = from val in Get()
+							  where val.DateOfPresence >= startDate &&
+							  val.DateOfPresence <= endDate
+							  select val;
+
+			return (from val in Get(true)
+					where val.DateOfPresence >= startDate &&
+					val.DateOfPresence <= endDate
+					select new PresenceResumeDTO()
+					{
+						LocationContract = val.Employee.LocationContract,
+						EmployeeId = val.EmployeeId,
+						EmployeeName = val.Employee.Person.PersonName,
+						EmployeeNumber = val.Employee.EmployeeNumber,
+						Absence = absence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
+						Leave = leave.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
+						PresenceTotal = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
+						RegionName = val.Employee.Region.RegionName,
+						RoleName = val.Employee.Role.RoleName,
+						ZoneName = val.Employee.Zone.ZoneName,
+						Shift = val.Employee.Shift,
+						Percentage = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100 /
+						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
+					}).OrderBy(x => x.ZoneName).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
+		}
+
 		public List<PresenceResumeDTO> TransformResumeZoneRegion(string zoneParams, string regionParams)
 		{
 			var absence = from val in Get()

@@ -37,19 +37,19 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/Imei/{imeiParams}")]
-		public IHttpActionResult GetImei([FromUri] string imeiParams)
+		[Route("api/Imei/{deviceParams}")]
+		public IHttpActionResult GetImei([FromUri] string deviceParams)
 		{
 			try
 			{
 				using (var manager = new ImeiAdapter())
 				{
-					manager.Query.Value.TransformIMEICheck(imeiParams);
+					
 
 					resp.Message = "data found";
 					resp.MessageCode = 200;
 					resp.ErrorCode = 0;
-					resp.Data = null;
+					resp.Data = manager.Query.Value.TransformIMEICheck(deviceParams);
 				}
 			}
 			catch (Exception ex)

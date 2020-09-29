@@ -12,6 +12,7 @@ namespace DLHK_API.Controllers
     {
 		private readonly ApiResponse<NameForClaim> resp = new ApiResponse<NameForClaim>();
 		private readonly ApiResponse<List<UserDTO>> respList = new ApiResponse<List<UserDTO>>();
+		private readonly ApiResponse<UserDTO> respSingle = new ApiResponse<UserDTO>();
 
 		[HttpGet]
 		[Route("api/user")]
@@ -40,6 +41,32 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/user/{id}")]
+		public IHttpActionResult Post([FromUri] long id)
+		{
+			try
+			{
+				using (var manager = new UserAdapter())
+				{
+					respSingle.Message = "data founded";
+					respSingle.MessageCode = 200;
+					respSingle.ErrorCode = 0;
+					respSingle.Data = manager.Query.Value.TransformId(id);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				respSingle.Message = ex.Message;
+				respSingle.MessageCode = 400;
+				respSingle.ErrorCode = 1;
+				respSingle.Data = null;
+			}
+
+			return Json(respSingle);
+		}
+
+		[HttpGet]
 		[Route("api/user/claim")]
 		public IHttpActionResult GetClaim()
 		{
@@ -62,6 +89,90 @@ namespace DLHK_API.Controllers
 				resp.MessageCode = 200;
 				resp.ErrorCode = 0;
 				resp.Data = newResponse;
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
+
+		[HttpPost]
+		[Route("api/user")]
+		public IHttpActionResult Post([FromBody] UserDTO dto)
+		{
+			try
+			{
+				using (var manager = new UserAdapter())
+				{
+					manager.Creator.Value.Save(dto);
+
+					resp.Message = "data inserted";
+					resp.MessageCode = 201;
+					resp.ErrorCode = 0;
+					resp.Data = null;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
+
+		[HttpPut]
+		[Route("api/user")]
+		public IHttpActionResult Put([FromBody] UserDTO dto)
+		{
+			try
+			{
+				using (var manager = new UserAdapter())
+				{
+					manager.Updater.Value.Update(dto);
+
+					resp.Message = "data updated";
+					resp.MessageCode = 202;
+					resp.ErrorCode = 0;
+					resp.Data = null;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
+
+		[HttpDelete]
+		[Route("api/user/{id}")]
+		public IHttpActionResult Delete([FromUri] long id)
+		{
+			try
+			{
+				using (var manager = new UserAdapter())
+				{
+					manager.Deleter.Value.Delete(id);
+
+					resp.Message = "data deleted";
+					resp.MessageCode = 202;
+					resp.ErrorCode = 0;
+					resp.Data = null;
+				}
+
 			}
 			catch (Exception ex)
 			{
