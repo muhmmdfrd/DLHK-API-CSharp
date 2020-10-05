@@ -317,10 +317,7 @@ namespace Core.Manager.EmployeeManager
 			return (from val in Get(true)
 					where val.Zone.ZoneName.Equals(zoneParams) &&
 					val.Region.RegionName.Equals(regionParams) &&
-					val.RoleId == 4 &&
-					val.RoleId != 1 && 
-					val.RoleId != 3 &&
-					val.RoleId != 6
+					val.RoleId == 4
 					select new EmployeeDTO()
 					{
 						EmployeeId = val.EmployeeId,
@@ -346,10 +343,7 @@ namespace Core.Manager.EmployeeManager
 			return (from val in Get(true)
 					where val.Zone.ZoneName.Equals(zoneParams) &&
 					val.Region.RegionName.Equals(regionParams) &&
-					val.RoleId == 10 &&
-					val.RoleId != 1 && 
-					val.RoleId != 3 && 
-					val.RoleId != 6
+					val.RoleId == 10
 					select new EmployeeDTO()
 					{
 						EmployeeId = val.EmployeeId,
@@ -375,10 +369,7 @@ namespace Core.Manager.EmployeeManager
 			return (from val in Get(true)
 					where val.Zone.ZoneName.Equals(zoneParams) &&
 					val.Region.RegionName.Equals(regionParams) &&
-					val.RoleId == 5 &&
-					val.RoleId != 1 && 
-					val.RoleId != 3 && 
-					val.RoleId != 6
+					val.RoleId == 5
 					select new EmployeeDTO()
 					{
 						EmployeeId = val.EmployeeId,

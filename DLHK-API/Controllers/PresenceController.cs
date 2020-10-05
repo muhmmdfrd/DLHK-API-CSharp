@@ -781,6 +781,31 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/presence/perform/filter/{start}/{end}")]
+		public IHttpActionResult GetResumePerformFilter([FromUri] string start, string end)
+		{
+			try
+			{
+				using (var manager = new PresenceAdapter())
+				{
+					respEmployee.Message = "data found";
+					respEmployee.MessageCode = 200;
+					respEmployee.ErrorCode = 0;
+					respEmployee.Data = manager.Query.Value.TransformPerformFilter(start, end);
+				}
+			}
+			catch (Exception ex)
+			{
+				respEmployee.Message = ex.Message;
+				respEmployee.MessageCode = 400;
+				respEmployee.ErrorCode = 1;
+				respEmployee.Data = null;
+			}
+
+			return Json(respEmployee);
+		}
+
+		[HttpGet]
 		[Route("api/presence/perform/{zoneName}")]
 		public IHttpActionResult GetPerform([FromUri] string zoneName)
 		{

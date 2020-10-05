@@ -22,6 +22,8 @@ namespace Core.Manager.PresenceManager
 			return withDetail ?
 				dataContext.AsQueryable()
 				.Include(x => x.Employee)
+				.Include(x => x.Sweepers)
+				.Include(x => x.Drainages)
 				.Include(x => x.Sweepers) : dataContext;
 		}
 
@@ -536,6 +538,56 @@ namespace Core.Manager.PresenceManager
 									x.Presence.Employee.EmployeeId == val.EmployeeId)
 									.Sum(x => x.CleanlinessOfZone + x.CompletenessOfTeam + x.DataOfGarbage + x.DiciplinePresence +
 										x.FirstSession + x.SecondSession + x.ThirdSession)) / 
+											(7 * headZone.Where(x => x.Presence.Employee.EmployeeId == val.EmployeeId).Count())) : 0
+					}).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
+		}
+
+		public List<EmployeePerformDTO> TransformPerformFilter(string start, string to)
+		{
+			var db = Manager.Database;
+			var sweeper = db.Sweepers;
+			var drainage = db.Drainages;
+			var garbage = db.Garbages;
+			var headZone = db.HeadOfZones;
+
+			var startDate = Convert.ToDateTime(start);
+			var endDate = Convert.ToDateTime(to);
+
+			return (from val in Get(true)
+					where val.DateOfPresence >= startDate &&
+					val.DateOfPresence <= endDate
+					select new EmployeePerformDTO()
+					{
+						LocationContract = val.Employee.LocationContract,
+						EmployeeId = val.EmployeeId,
+						EmployeeName = val.Employee.Person.PersonName,
+						EmployeeNumber = val.Employee.EmployeeNumber,
+						Photo = val.Employee.Person.Photo,
+						RegionName = val.Employee.Region.RegionName,
+						RoleName = val.Employee.Role.RoleName,
+						ZoneName = val.Employee.Zone.ZoneName,
+						Shift = val.Employee.Shift,
+						Percentage = val.Employee.RoleId == 4 ? ((sweeper.Where(x => x.Presence.Employee.RoleId == 4 &&
+							x.Presence.Employee.EmployeeId == val.EmployeeId)
+								.Sum(x => x.Dicipline + x.Completeness + x.WaterRope + x.Sidewalk + x.Road + x.RoadMedian)) /
+								(6 * sweeper.Where(x => x.Presence.Employee.RoleId == 4 &&
+									x.Presence.Employee.EmployeeId == val.EmployeeId).Count())) :
+							val.Employee.RoleId == 10 ? ((drainage.Where(x => x.Presence.Employee.RoleId == 10 &&
+								x.Presence.Employee.EmployeeId == val.EmployeeId)
+								.Sum(x => x.Cleanliness + x.Completeness + x.Dicipline + x.Sediment + x.Weed)) /
+								(5 * drainage.Where(x => x.Presence.Employee.RoleId == 10 &&
+									x.Presence.Employee.EmployeeId == val.EmployeeId).Count())) :
+							val.Employee.RoleId == 5 ?
+								((garbage.Where(x => x.Presence.Employee.RoleId == 5 &&
+									x.Presence.Employee.EmployeeId == val.EmployeeId)
+									.Sum(x => x.Calculation + x.Dicipline + x.Separation + x.TPS)) /
+									(4 * garbage.Where(x => x.Presence.Employee.RoleId == 5 &&
+										x.Presence.Employee.EmployeeId == val.EmployeeId).Count())) :
+							val.Employee.RoleId == 1 ?
+								((headZone.Where(x => x.Presence.Employee.RoleId == 1 &&
+									x.Presence.Employee.EmployeeId == val.EmployeeId)
+									.Sum(x => x.CleanlinessOfZone + x.CompletenessOfTeam + x.DataOfGarbage + x.DiciplinePresence +
+										x.FirstSession + x.SecondSession + x.ThirdSession)) /
 											(7 * headZone.Where(x => x.Presence.Employee.EmployeeId == val.EmployeeId).Count())) : 0
 					}).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
 		}

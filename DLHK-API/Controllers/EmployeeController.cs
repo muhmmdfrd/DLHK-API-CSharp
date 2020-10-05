@@ -11,7 +11,6 @@ namespace DLHK_API.Controllers
 		private readonly ApiResponse<List<EmployeeDTO>> respList = new ApiResponse<List<EmployeeDTO>>();
 		private readonly ApiResponse<EmployeeDTO> resp = new ApiResponse<EmployeeDTO>();
 
-
 		[HttpGet]
 		[Route("api/employee/unregister")]
 		public IHttpActionResult GetUser()
