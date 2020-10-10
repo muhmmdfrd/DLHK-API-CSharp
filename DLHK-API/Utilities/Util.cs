@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Web;
 
@@ -165,12 +164,16 @@ namespace DLHK_API.Utilities
 			return $"{date} {month} {year}";
 		}
 
-		public string ExcelUpload()
+		public void ExcelUpload()
 		{
 			using (var objEntity = new DLHKEntities())
 			{
-				string message = "";
 				var httpRequest = HttpContext.Current.Request;
+				var typeParams = httpRequest.Params;
+				string status = typeParams["type"].ToString();
+
+				if (string.IsNullOrEmpty(status))
+					throw new Exception("please insert type of file");
 
 				if (httpRequest.Files.Count > 0)
 				{
@@ -179,51 +182,134 @@ namespace DLHK_API.Utilities
 
 					IExcelDataReader reader = null;
 
-					if (file.FileName.EndsWith(".xls"))
-					{
-						reader = ExcelReaderFactory.CreateBinaryReader(stream);
-					}
-					else if (file.FileName.EndsWith(".xlsx"))
-					{
+					if (file.FileName.EndsWith(".xlsx"))
 						reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-					}
 					else
-					{
-						message = "This file format is not supported";
-					}
+						throw new Exception("This file format is not supported");
 
 					DataSet excelRecords = reader.AsDataSet();
 					reader.Close();
 
 					var finalRecords = excelRecords.Tables[0];
-					for (int i = 0; i < finalRecords.Rows.Count; i++)
+					switch (status)
 					{
-						//EmployeeDTO employee = new EmployeeDTO()
-						//{
-						//	EmployeeId = Convert.ToInt64(finalRecords.Rows[i][0]),
-						//	ZoneName = Convert.
-						//};
+						case "person":
+							for (int i = 1; i < finalRecords.Rows.Count; i++)
+							{
+								var val = finalRecords.Rows;
 
+								var data = new Person
+								{
+									PersonName = ObjToString(val[i][0]),
+									PlaceOfBirth = ObjToString(val[i][1]),
+									DateOfBirth = ObjToDate(val[i][2]),
+									Address = ObjToString(val[i][3]),
+									Phone = ObjToString(val[i][4]),
+									LastDegree = ObjToString(val[i][5]),
+									PreviousJob = ObjToString(val[i][6]),
+									NameOfCouple = ObjToString(val[i][7]),
+									JobOfCouple = ObjToString(val[i][8]),
+									Jobdesk = "Employee",
+									TotalChild = ObjToInt(val[i][14]),
+									Email = ObjToString(val[i][15]),
+									NIK = ObjToString(val[i][16])
+
+								};
+
+								objEntity.People.Add(data);
+							}
+							break;
+						case "employee":
+							for (int i = 1; i < finalRecords.Rows.Count; i++)
+							{
+								var val = finalRecords.Rows;
+
+								var data = new Employee
+								{
+									EmployeeNumber = ObjToString(val[i][0]),
+									FirstContract = ObjToDate(val[i][1]),
+									LastContract = ObjToDate(val[i][2]),
+									LocationContract = ObjToString(val[1][3]),
+									PersonId = ObjToLong(val[i][4]),
+									RoleId = ObjToLong(val[i][5]),
+									RegionId = ObjToLong(val[i][6]),
+									ZoneId = ObjToLong(val[i][7]),
+									Bank = ObjToString(val[i][8]),
+									Shift = ObjToString(val[i][9])
+								};
+
+
+								objEntity.Employees.Add(data);
+							}
+							break;
+						case "item":
+							for (int i = 1; i < finalRecords.Rows.Count; i++)
+							{
+								var val = finalRecords.Rows;
+
+								var data = new Item
+								{
+									ItemName = ObjToString(val[i][0]),
+									ItemQty = ObjToInt(val[i][1]),
+									Note = ObjToString(val[i][2]),
+									CategoryId = ObjToLong(val[i][3]),
+									ItemCode = ObjToString(val[i][4])
+								};
+
+								objEntity.Items.Add(data);
+
+								var itemIn = new Transac
+								{
+									DateTransac = DateTime.Now,
+									ItemCode = ObjToString(val[i][4]),
+									ItemName = ObjToString(val[i][0]),
+									Note = ObjToString(val[i][2]),
+									Qty = ObjToInt(val[i][1]),
+									TypeOfTransac = "IN",
+									UserRecorder = "Admin",
+									SuplierName = ObjToString(val[i][5])
+								};
+
+								objEntity.Transacs.Add(itemIn);
+							}
+							break;
+						default:
+							throw new Exception("can't identified status");
 					}
+
 
 					int output = objEntity.SaveChanges();
-					if (output > 0)
+					if (output < 0)
 					{
-						message = "Excel file has been successfully uploaded";
-					}
-					else
-					{
-						message = "Excel file uploaded has fiald";
+						throw new Exception("Excel file uploaded has failed");
 					}
 
 				}
 				else
 				{
-					message = "error";
+					throw new Exception("be sure to including file!");
 				}
-
-				return message;
 			}
+		}
+
+		private string ObjToString(object value)
+		{
+			return Convert.ToString(value);
+		}
+
+		private DateTime ObjToDate(object value)
+		{
+			return Convert.ToDateTime(value);
+		}
+
+		private long? ObjToLong(object value)
+		{
+			return Convert.ToInt32(value);
+		}
+
+		private int ObjToInt(object value)
+		{
+			return Convert.ToInt16(value);
 		}
 	}
 }

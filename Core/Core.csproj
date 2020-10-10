@@ -110,6 +110,7 @@
     <Compile Include="Manager\ImeiManager\ImeiUpdater.cs" />
     <Compile Include="Manager\InterviewManager\InterviewAdapter.cs" />
     <Compile Include="Manager\InterviewManager\InterviewCreator.cs" />
+    <Compile Include="Manager\InterviewManager\InterviewDeleter.cs" />
     <Compile Include="Manager\InterviewManager\InterviewDTO.cs" />
     <Compile Include="Manager\InterviewManager\InterviewQuery.cs" />
     <Compile Include="Manager\ItemManager\ItemAdapter.cs" />

@@ -9,6 +9,7 @@ namespace Core.Manager.InterviewManager
 		public Lazy<InterviewQuery> Query { get; set; }
 		public Lazy<InterviewCreator> Creator { get; set; }
 		public Lazy<PersonAdapter> PersonManager { get; set; }
+		public Lazy<InterviewDeleter> Deleter { get; set; }
 
 		public InterviewAdapter() : base()
 		{
@@ -25,6 +26,8 @@ namespace Core.Manager.InterviewManager
 			Query = new Lazy<InterviewQuery>(() => { return new InterviewQuery(this); }, true);
 			Creator = new Lazy<InterviewCreator>(() => { return new InterviewCreator(this); }, true);
 			PersonManager = new Lazy<PersonAdapter>(() => { return new PersonAdapter(this.Database); }, true);
+			Deleter = new Lazy<InterviewDeleter>(() => { return new InterviewDeleter(this); }, true);
 		}
+
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Repository;
+using System.Linq;
 using System.Transactions;
 
 namespace Core.Manager.EmployeeManager
@@ -27,8 +28,15 @@ namespace Core.Manager.EmployeeManager
 					ZoneId = dto.ZoneId
 				};
 
-				Manager.PersonManager.Value.Updater.Value.Accepted(dto.PersonId);
+				var applicantName = Manager.PersonManager.Value.Query.Value.TransformInterviewed().FirstOrDefault(x => x.PersonId == dto.PersonId);
+				var applicant = Manager.Database.Interviews.FirstOrDefault(x => x.Interviewer.Equals(applicantName.PersonName));
 
+				if (applicant != null)
+				{
+					Manager.Database.Interviews.Remove(applicant);
+				}
+
+				Manager.PersonManager.Value.Updater.Value.Accepted(dto.PersonId);
 				Manager.Database.Employees.Add(newEntity);
 				Manager.Database.SaveChanges();
 

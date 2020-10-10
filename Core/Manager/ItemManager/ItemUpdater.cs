@@ -31,8 +31,8 @@ namespace Core.Manager.ItemManager
 				transac.Complete();
 
 				return exist;
-			}
-		}
+				}
+	}
 
 		public Item UpdateQty(ItemDTO dto)
 		{

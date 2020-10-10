@@ -114,6 +114,31 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/person/search/{personName}")]
+		public IHttpActionResult GetPersonName([FromUri] string personName)
+		{
+			try
+			{
+				using (var manager = new PersonAdapter())
+				{
+					resp.Message = "data found";
+					resp.MessageCode = 200;
+					resp.ErrorCode = 0;
+					resp.Data = manager.Query.Value.TransformName(personName);
+				}
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Ok(resp);
+		}
+
+		[HttpGet]
 		[Route("api/person/applicant/{id}")]
 		public IHttpActionResult GetApplicantId([FromUri] long id)
 		{

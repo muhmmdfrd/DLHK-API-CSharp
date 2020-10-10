@@ -42,6 +42,22 @@ namespace Core.Manager.ApplicantManager
 				var exist = Manager.Query.Value.Get()
 					.FirstOrDefault(x => x.Email.Equals(dto.Email) && x.Password.Equals(dto.Password));
 
+				var existEmail = Manager.PersonManager.Value.Query.Value.
+					TransformApplicant()
+					.Select(x => x.Email);
+
+				foreach (var email in existEmail)
+				{
+					if (email == null)
+					{
+						continue;
+					}
+					else if (email.Equals(dto.Email))
+					{
+						throw new Exception("you have submitted an application letter");
+					}
+				}
+
 				if (exist == null)
 					throw new Exception("data not found");
 				else

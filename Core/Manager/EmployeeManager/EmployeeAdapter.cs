@@ -1,4 +1,5 @@
-﻿using Core.Manager.PersonManager;
+﻿using Core.Manager.ApplicantManager;
+using Core.Manager.PersonManager;
 using Repository;
 using System;
 
@@ -11,6 +12,7 @@ namespace Core.Manager.EmployeeManager
 		public Lazy<EmployeeUpdater> Updater { get; set; }
 		public Lazy<EmployeeDeleter> Deleter { get; set; }
 		public Lazy<PersonAdapter> PersonManager { get; set; }
+		public Lazy<ApplicantAdapter> ApplicantManager { get; set; }
 
 		public EmployeeAdapter() : base()
 		{
@@ -28,7 +30,8 @@ namespace Core.Manager.EmployeeManager
 			Creator = new Lazy<EmployeeCreator>(() => { return new EmployeeCreator(this); }, true);
 			Updater = new Lazy<EmployeeUpdater>(() => { return new EmployeeUpdater(this); }, true);
 			Deleter = new Lazy<EmployeeDeleter>(() => { return new EmployeeDeleter(this); }, true);
-			PersonManager = new Lazy<PersonAdapter>(() => { return new PersonAdapter(this.Database); }, true);
+			PersonManager = new Lazy<PersonAdapter>(() => { return new PersonAdapter(Database); }, true);
+			ApplicantManager = new Lazy<ApplicantAdapter>(() => { return new ApplicantAdapter(Database); }, true);
 		}
 	}
 }

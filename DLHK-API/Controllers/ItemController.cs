@@ -79,9 +79,13 @@ namespace DLHK_API.Controllers
 						ItemQty = Convert.ToInt32(formData["itemQty"]),
 						Note = formData["note"],
 						ItemPhoto = upload,
-						CategoryId = Convert.ToInt64(formData["categoryId"]),
 						SuplierName = formData["suplierName"]
 					};
+
+					if (dto.CategoryId == null)
+						dto.CategoryId = 0;
+					else
+						dto.CategoryId = Convert.ToInt32(formData["categoryId"]);
 
 					manager.Creator.Value.Save(dto);
 

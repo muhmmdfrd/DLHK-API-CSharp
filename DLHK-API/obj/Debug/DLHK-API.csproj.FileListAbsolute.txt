@@ -152,3 +152,10 @@ D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.pdb
 D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.xml
 D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.DataSet.pdb
 D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelDataReader.DataSet.xml
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ClosedXML.dll
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\DocumentFormat.OpenXml.dll
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelNumberFormat.dll
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ClosedXML.pdb
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ClosedXML.xml
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\DocumentFormat.OpenXml.xml
+D:\DLHK\DLHK-API-CSharp\DLHK-API\bin\ExcelNumberFormat.xml

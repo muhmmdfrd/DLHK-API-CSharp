@@ -161,6 +161,7 @@ namespace Core.Manager.EmployeeManager
 					where val.Zone.ZoneName.Equals(zoneParams) &&
 					val.Region.RegionName.Equals(regionParams) &&
 					val.RoleId != 1 && val.RoleId != 3 && val.RoleId != 6 &&
+					val.RoleId != 13 && val.RoleId != 14 && val.RoleId != 15 &&
 					!(from pr in db.Presences
 					  where pr.DateOfPresence.Value.Day == today &&
 					  pr.DateOfPresence.Value.Month == thisMonth &&

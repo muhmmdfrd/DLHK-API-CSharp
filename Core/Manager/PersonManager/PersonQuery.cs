@@ -69,6 +69,33 @@ namespace Core.Manager.PersonManager
 					}).FirstOrDefault(x => x.PersonId == id);
 		}
 
+		public PersonDTO TransformName(string name)
+		{
+			return (from val in Get()
+					where val.PersonName.Equals(name)
+					select new PersonDTO()
+					{
+						PersonId = val.PersonId,
+						PersonName = val.PersonName,
+						Address = val.Address,
+						DateOfBirth = val.DateOfBirth,
+						PlaceOfBirth = val.PlaceOfBirth,
+						NIK = val.NIK,
+						Phone = val.Phone,
+						LastDegree = val.LastDegree,
+						PreviousJob = val.PreviousJob,
+						NameOfCouple = val.NameOfCouple,
+						JobOfCouple = val.JobOfCouple,
+						AppLetter = val.AppLetter,
+						Jobdesk = val.Jobdesk,
+						KTP = val.KTP,
+						Photo = val.Photo,
+						Sertificate = val.Sertificate,
+						Email = val.Email,
+						TotalChild = val.TotalChild
+					}).FirstOrDefault();
+		}
+
 		public List<PersonDTO> TransformApplicant()
 		{
 			return (from val in Get()

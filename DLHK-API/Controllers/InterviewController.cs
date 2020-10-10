@@ -87,5 +87,32 @@ namespace DLHK_API.Controllers
 
 			return Json(resp);
 		}
+
+		[HttpDelete]
+		[Route("api/interview/{id}")]
+		public IHttpActionResult Delete([FromUri] long id)
+		{
+			try
+			{
+				using (var manager = new InterviewAdapter())
+				{
+					manager.Deleter.Value.Delete(id);
+
+					resp.Message = "data deleted";
+					resp.MessageCode = 201;
+					resp.ErrorCode = 0;
+					resp.Data = null;
+				}
+			}
+			catch (Exception ex)
+			{
+				resp.Message = ex.Message;
+				resp.MessageCode = 400;
+				resp.ErrorCode = 1;
+				resp.Data = null;
+			}
+
+			return Json(resp);
+		}
 	}
 }
