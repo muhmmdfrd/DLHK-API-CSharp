@@ -308,7 +308,10 @@ namespace Core.Manager.PresenceManager
 		{
 			return (from val in Get(true).AsEnumerable()
 					where val.Employee.RoleId == 1 &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
+					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
+					!(from hz in Manager.Database.HeadOfZones.AsEnumerable()
+					  where hz.Presence.DateOfPresence.Value.ToShortDateString().Equals(DateTime.Now.ToShortDateString())
+					  select hz.Presence.PresenceId).Contains(val.PresenceId)
 					select new PresenceDTO()
 					{
 						Coordinate = val.Coordinate,
