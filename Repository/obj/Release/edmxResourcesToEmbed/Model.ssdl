@@ -192,7 +192,7 @@
       <PropertyRef Name="RoleId" />
     </Key>
     <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RoleName" Type="varchar" MaxLength="15" />
+    <Property Name="RoleName" Type="varchar" MaxLength="100" />
     <Property Name="Status" Type="varchar" MaxLength="6" />
   </EntityType>
   <EntityType Name="Submission">

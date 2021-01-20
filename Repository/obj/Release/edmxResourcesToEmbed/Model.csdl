@@ -78,11 +78,11 @@
     <NavigationProperty Name="AssessmentZones" Relationship="Self.FK__Assessmen__Emplo__5EBF139D" FromRole="Employee" ToRole="AssessmentZone" />
     <NavigationProperty Name="Person" Relationship="Self.FK__Employee__Person__60A75C0F" FromRole="Employee" ToRole="Person" />
     <NavigationProperty Name="Region" Relationship="Self.FK__Employee__Region__619B8048" FromRole="Employee" ToRole="Region" />
-    <NavigationProperty Name="Role" Relationship="Self.FK__Employee__RoleId__628FA481" FromRole="Employee" ToRole="Role" />
     <NavigationProperty Name="Zone" Relationship="Self.FK__Employee__ZoneId__6383C8BA" FromRole="Employee" ToRole="Zone" />
     <NavigationProperty Name="Leaves" Relationship="Self.FK__Leave__EmployeeI__66603565" FromRole="Employee" ToRole="Leave" />
     <NavigationProperty Name="Presences" Relationship="Self.FK__Presence__Employ__6754599E" FromRole="Employee" ToRole="Presence" />
     <NavigationProperty Name="Users" Relationship="Self.FK__User__EmployeeId__693CA210" FromRole="Employee" ToRole="User" />
+    <NavigationProperty Name="Role" Relationship="DLHKModel.FK__Employee__RoleId__60A75C0F" FromRole="Employee" ToRole="Role" />
   </EntityType>
   <EntityType Name="Garbage">
     <Key>
@@ -208,15 +208,6 @@
     <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Region__619B8048" FromRole="Region" ToRole="Employee" />
     <NavigationProperty Name="Zones" Relationship="Self.FK__Zone__RegionId__6A30C649" FromRole="Region" ToRole="Zone" />
   </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="Status" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__RoleId__628FA481" FromRole="Role" ToRole="Employee" />
-  </EntityType>
   <EntityType Name="Submission">
     <Key>
       <PropertyRef Name="SubmissionId" />
@@ -340,18 +331,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employee__RoleId__628FA481">
-    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="RoleId" />
-      </Principal>
-      <Dependent Role="Employee">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Employee__ZoneId__6383C8BA">
     <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
     <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -464,7 +443,6 @@
     <EntitySet Name="People" EntityType="Self.Person" />
     <EntitySet Name="Presences" EntityType="Self.Presence" />
     <EntitySet Name="Regions" EntityType="Self.Region" />
-    <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="Submissions" EntityType="Self.Submission" />
     <EntitySet Name="Supliers" EntityType="Self.Suplier" />
     <EntitySet Name="Sweepers" EntityType="Self.Sweeper" />
@@ -485,10 +463,6 @@
     </AssociationSet>
     <AssociationSet Name="FK__Employee__Region__619B8048" Association="Self.FK__Employee__Region__619B8048">
       <End Role="Region" EntitySet="Regions" />
-      <End Role="Employee" EntitySet="Employees" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Employee__RoleId__628FA481" Association="Self.FK__Employee__RoleId__628FA481">
-      <End Role="Role" EntitySet="Roles" />
       <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
     <AssociationSet Name="FK__Employee__ZoneId__6383C8BA" Association="Self.FK__Employee__ZoneId__6383C8BA">
@@ -524,6 +498,11 @@
       <End Role="Zone" EntitySet="Zones" />
     </AssociationSet>
     <EntitySet Name="vPresenceResumes" EntityType="DLHKModel.vPresenceResume" />
+    <EntitySet Name="Roles" EntityType="DLHKModel.Role" />
+    <AssociationSet Name="FK__Employee__RoleId__60A75C0F" Association="DLHKModel.FK__Employee__RoleId__60A75C0F">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="vPresenceResume">
     <Key>
@@ -544,4 +523,25 @@
     <Property Name="RegionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Shift" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="DLHKModel.FK__Employee__RoleId__60A75C0F" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__Employee__RoleId__60A75C0F">
+    <End Type="DLHKModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="DLHKModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

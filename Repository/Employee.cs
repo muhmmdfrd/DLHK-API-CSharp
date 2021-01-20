@@ -39,7 +39,6 @@ namespace Repository
         public virtual ICollection<AssessmentZone> AssessmentZones { get; set; }
         public virtual Person Person { get; set; }
         public virtual Region Region { get; set; }
-        public virtual Role Role { get; set; }
         public virtual Zone Zone { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Leave> Leaves { get; set; }
@@ -47,5 +46,6 @@ namespace Repository
         public virtual ICollection<Presence> Presences { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

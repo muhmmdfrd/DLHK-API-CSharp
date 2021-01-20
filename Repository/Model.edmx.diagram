@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="DLHKModel.Person" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Presence" Width="1.5" PointX="7.5" PointY="27.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Region" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Role" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Submission" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Suplier" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Sweeper" Width="1.5" PointX="9.75" PointY="33.125" IsExpanded="true" />
@@ -31,7 +30,6 @@
         <AssociationConnector Association="DLHKModel.FK__Drainage__Presen__5FB337D6" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Employee__Person__60A75C0F" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Employee__Region__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Employee__RoleId__628FA481" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Employee__ZoneId__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Leave__EmployeeI__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Presence__Employ__6754599E" ManuallyRouted="false" />
@@ -41,6 +39,8 @@
         <AssociationConnector Association="DLHKModel.FK__Sweeper__Presenc__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="DLHKModel.FK__Zone__RegionId__6A30C649" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DLHKModel.vPresenceResume" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DLHKModel.Role" Width="1.5" PointX="5.375" PointY="7.875" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__RoleId__60A75C0F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -40,7 +40,6 @@ namespace Repository
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Presence> Presences { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Submission> Submissions { get; set; }
         public virtual DbSet<Suplier> Supliers { get; set; }
         public virtual DbSet<Sweeper> Sweepers { get; set; }
@@ -48,5 +47,6 @@ namespace Repository
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Zone> Zones { get; set; }
         public virtual DbSet<vPresenceResume> vPresenceResumes { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
     }
 }
