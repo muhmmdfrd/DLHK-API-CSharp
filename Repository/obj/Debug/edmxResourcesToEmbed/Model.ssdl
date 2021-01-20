@@ -266,6 +266,27 @@
     <Property Name="ZoneName" Type="varchar" MaxLength="30" />
     <Property Name="RegionId" Type="bigint" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DLHK.dbo.vPresenceResume' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vPresenceResume">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="LocationContract" Type="varchar" MaxLength="100" />
+    <Property Name="EmployeeId" Type="bigint" />
+    <Property Name="PersonName" Type="varchar" MaxLength="50" />
+    <Property Name="EmployeeNumber" Type="varchar" MaxLength="50" />
+    <Property Name="RoleName" Type="varchar" MaxLength="15" />
+    <Property Name="Absence" Type="int" />
+    <Property Name="Leave" Type="int" />
+    <Property Name="PresenceTotal" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="Presence" Type="int" />
+    <Property Name="ZoneName" Type="varchar" MaxLength="30" />
+    <Property Name="RegionName" Type="varchar" MaxLength="30" />
+    <Property Name="Shift" Type="varchar" MaxLength="10" />
+  </EntityType>
   <Association Name="FK__Assessmen__Emplo__5CD6CB2B">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="AssessmentZone" Type="Self.AssessmentZone" Multiplicity="*" />
@@ -445,6 +466,24 @@
     <EntitySet Name="Transac" EntityType="Self.Transac" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vPresenceResume" EntityType="Self.vPresenceResume" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vPresenceResume].[Id] AS [Id], 
+    [vPresenceResume].[LocationContract] AS [LocationContract], 
+    [vPresenceResume].[EmployeeId] AS [EmployeeId], 
+    [vPresenceResume].[PersonName] AS [PersonName], 
+    [vPresenceResume].[EmployeeNumber] AS [EmployeeNumber], 
+    [vPresenceResume].[RoleName] AS [RoleName], 
+    [vPresenceResume].[Absence] AS [Absence], 
+    [vPresenceResume].[Leave] AS [Leave], 
+    [vPresenceResume].[PresenceTotal] AS [PresenceTotal], 
+    [vPresenceResume].[Total] AS [Total], 
+    [vPresenceResume].[Presence] AS [Presence], 
+    [vPresenceResume].[ZoneName] AS [ZoneName], 
+    [vPresenceResume].[RegionName] AS [RegionName], 
+    [vPresenceResume].[Shift] AS [Shift]
+    FROM [dbo].[vPresenceResume] AS [vPresenceResume]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__Assessmen__Emplo__5CD6CB2B" Association="Self.FK__Assessmen__Emplo__5CD6CB2B">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="AssessmentZone" EntitySet="AssessmentZone" />

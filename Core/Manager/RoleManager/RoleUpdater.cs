@@ -16,7 +16,7 @@ namespace Core.Manager.RoleManager
 		{
 			using (var transac = new TransactionScope())
 			{
-				var exist = Manager.Query.Value.Get().FirstOrDefault(x => x.RoleId == dto.RoleId);
+				var exist = Manager.Database.Roles.Find(dto.RoleId);
 
 				if (exist == null)
 					throw new Exception("data not found");

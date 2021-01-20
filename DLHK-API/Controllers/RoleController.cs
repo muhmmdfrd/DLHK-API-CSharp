@@ -1,16 +1,12 @@
 ﻿using Core.Manager.RoleManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class RoleController : ApiController
     {
-		private readonly ApiResponse<List<RoleDTO>> respList = new ApiResponse<List<RoleDTO>>();
-		private readonly ApiResponse<RoleDTO> resp = new ApiResponse<RoleDTO>();
-
 		[HttpGet]
 		[Route("api/role")]
 		public IHttpActionResult Get()
@@ -19,21 +15,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new RoleAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -44,21 +34,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new RoleAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformApplicant();
+					var data = manager.Query.Value.TransformApplicant();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -69,21 +53,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new RoleAdapter())
 				{
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(id);
+					var data = manager.Query.Value.TransformId(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPost]
@@ -95,22 +73,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new RoleAdapter())
 				{
 					var result = manager.Creator.Value.Save(dto);
+					var data = manager.Query.Value.TransformId(result.RoleId);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.RoleId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -122,22 +93,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new RoleAdapter())
 				{
 					var result = manager.Updater.Value.Update(dto);
+					var data = manager.Query.Value.TransformId(result.RoleId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.RoleId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -150,21 +114,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 	}
 }

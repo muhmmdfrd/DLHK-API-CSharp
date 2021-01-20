@@ -1,16 +1,12 @@
 ﻿using Core.Manager.EmployeeManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class EmployeeController : ApiController
 	{
-		private readonly ApiResponse<List<EmployeeDTO>> respList = new ApiResponse<List<EmployeeDTO>>();
-		private readonly ApiResponse<EmployeeDTO> resp = new ApiResponse<EmployeeDTO>();
-
 		[HttpGet]
 		[Route("api/employee/unregister")]
 		public IHttpActionResult GetUser()
@@ -19,21 +15,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TranformUserLogin();
+					var data = manager.Query.Value.TranformUserLogin();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -44,21 +34,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -69,21 +53,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformZoneAndRegion(zoneName, regionName);
+					var data = manager.Query.Value.TransformZoneAndRegion(zoneName, regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -94,21 +72,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformZoneAndRegionShift(zoneName, regionName, shift);
+					var data = manager.Query.Value.TransformZoneAndRegionShift(zoneName, regionName, shift);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -119,21 +91,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformHeadZoneShift(regionName);
+					var data = manager.Query.Value.TransformHeadZoneShift(regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -144,21 +110,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformRegionShift();
+					var data = manager.Query.Value.TransformRegionShift();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -169,21 +129,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformHeadRegion();
+					var data = manager.Query.Value.TransformHeadRegion();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -194,21 +148,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformZoneAndRegionSweeper(zoneName, regionName);
+					var data = manager.Query.Value.TransformZoneAndRegionSweeper(zoneName, regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -219,21 +167,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformZoneAndRegionDrainage(zoneName, regionName);
+					var data = manager.Query.Value.TransformZoneAndRegionDrainage(zoneName, regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -244,21 +186,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformZoneAndRegionGarbage(zoneName, regionName);
+					var data = manager.Query.Value.TransformZoneAndRegionGarbage(zoneName, regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -269,21 +205,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformHeadZone(region);
+					var data = manager.Query.Value.TransformHeadZone(region);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -294,21 +224,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(id);
+					var data = manager.Query.Value.TransformId(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpGet]
@@ -319,21 +243,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new EmployeeAdapter())
 				{
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformName(employeeName);
+					var data = manager.Query.Value.TransformName(employeeName);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpGet]
@@ -343,22 +261,14 @@ namespace DLHK_API.Controllers
 			try
 			{
 				using (var manager = new EmployeeAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformSweeper();
+				{var data = manager.Query.Value.TransformSweeper();
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -368,22 +278,14 @@ namespace DLHK_API.Controllers
 			try
 			{
 				using (var manager = new EmployeeAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformDrainage();
+				{var data = manager.Query.Value.TransformDrainage();
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -393,22 +295,14 @@ namespace DLHK_API.Controllers
 			try
 			{
 				using (var manager = new EmployeeAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformGarbage();
+				{var data = manager.Query.Value.TransformGarbage();
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpPost]
@@ -420,22 +314,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new EmployeeAdapter())
 				{
 					var result = manager.Creator.Value.Save(dto);
+					var data = manager.Query.Value.TransformId(result.EmployeeId);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.EmployeeId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -447,22 +334,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new EmployeeAdapter())
 				{
 					var result = manager.Updater.Value.Update(dto);
+					var data = manager.Query.Value.TransformId(result.EmployeeId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.EmployeeId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -474,22 +354,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new EmployeeAdapter())
 				{
 					var result = manager.Updater.Value.UpdateLocation(dto);
+					var data = manager.Query.Value.TransformId(result.EmployeeId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.EmployeeId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -501,22 +374,15 @@ namespace DLHK_API.Controllers
 				try
 				{
 					var result = manager.Updater.Value.UpdateContract(dto);
+					var data = manager.Query.Value.TransformId(result.EmployeeId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.EmployeeId);
+					return Json(Response.Updated(data));
 				}
 				catch (Exception ex)
 				{
-					resp.Message = ex.Message;
-					resp.MessageCode = 400;
-					resp.ErrorCode = 1;
-					resp.Data = null;
+					return Json(Response.Fail(ex.Message));
 				}
 			}
-	
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -529,21 +395,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 	}

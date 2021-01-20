@@ -80,7 +80,7 @@ namespace DLHK_API.Security
 		{
 			using (var manager = new UserAdapter())
 			{
-				var query = manager.Query.Value.Get();
+				var query = manager.Query.Value.GetQuery();
 				var result = query.FirstOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
 
 				return result != null;

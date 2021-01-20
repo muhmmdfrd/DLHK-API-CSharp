@@ -1,9 +1,6 @@
 ﻿using Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace Core.Manager.ApplicantManager
@@ -42,9 +39,7 @@ namespace Core.Manager.ApplicantManager
 				var exist = Manager.Query.Value.Get()
 					.FirstOrDefault(x => x.Email.Equals(dto.Email) && x.Password.Equals(dto.Password));
 
-				var existEmail = Manager.PersonManager.Value.Query.Value.
-					TransformApplicant()
-					.Select(x => x.Email);
+				var existEmail = Manager.PersonManager.Value.Query.Value.TransformApplicant().Select(x => x.Email);
 
 				foreach (var email in existEmail)
 				{

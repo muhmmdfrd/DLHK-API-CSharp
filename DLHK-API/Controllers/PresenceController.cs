@@ -1,8 +1,6 @@
 ﻿using Core.Manager.PresenceManager;
 using DLHK_API.Models;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Web;
 using System.Web.Http;
 
@@ -10,24 +8,6 @@ namespace DLHK_API.Controllers
 {
 	public class PresenceController : ApiController
     {
-		private readonly ApiResponse<List<PresenceDTO>> respList = new ApiResponse<List<PresenceDTO>>();
-		private readonly ApiResponse<PresenceDTO> resp = new ApiResponse<PresenceDTO>();
-		private readonly ApiResponse<List<PresenceResumeDTO>> respResume = new ApiResponse<List<PresenceResumeDTO>>();
-		private readonly ApiResponse<List<ZoneResumeDTO>> respZone = new ApiResponse<List<ZoneResumeDTO>>();
-		private readonly ApiResponse<List<RegionResumeDTO>> respRegion = new ApiResponse<List<RegionResumeDTO>>();
-		private readonly ApiResponse<PerformSweeperDTO> respSweeper = new ApiResponse<PerformSweeperDTO>();
-		private readonly ApiResponse<PerformDrainageDTO> respDrainage = new ApiResponse<PerformDrainageDTO>();
-		private readonly ApiResponse<PerformGarbageDTO> respGarbage = new ApiResponse<PerformGarbageDTO>();
-		private readonly ApiResponse<List<ZonePerformDTO>> respZonePerform = new ApiResponse<List<ZonePerformDTO>>();
-		private readonly ApiResponse<List<RegionPerformDTO>> respRegionPerform = new ApiResponse<List<RegionPerformDTO>>();
-		private readonly ApiResponse<PerformHeadZoneDTO> respHeadZone = new ApiResponse<PerformHeadZoneDTO>();
-		private readonly ApiResponse<List<ZonePropertyDTO>> respZoneLive = new ApiResponse<List<ZonePropertyDTO>>();
-		private readonly ApiResponse<List<ZonePerformLiveDTO>> respZonePerformLive = new ApiResponse<List<ZonePerformLiveDTO>>();
-		private readonly ApiResponse<List<EmployeePerformDTO>> respEmployee = new ApiResponse<List<EmployeePerformDTO>>();
-		private readonly ApiResponse<DashboardDTO> respDashboard = new ApiResponse<DashboardDTO>();
-		private readonly ApiResponse<DashboardItemDTO> respItem = new ApiResponse<DashboardItemDTO>();
-		private readonly ApiResponse<DashboardContractDTO> respContract = new ApiResponse<DashboardContractDTO>();
-
 		[HttpGet]
 		[Route("api/presence")]
 		public IHttpActionResult Get()
@@ -36,21 +16,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 
@@ -62,21 +36,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformWithPhotoAndParam(statusParams, zoneParams);
+					var data = manager.Query.Value.TransformWithPhotoAndParam(statusParams, zoneParams);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -87,21 +55,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respDashboard.Message = "data found";
-					respDashboard.MessageCode = 200;
-					respDashboard.ErrorCode = 0;
-					respDashboard.Data = manager.Query.Value.TransformDashboard();
+					var data = manager.Query.Value.TransformDashboard();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respDashboard.Message = ex.Message;
-				respDashboard.MessageCode = 400;
-				respDashboard.ErrorCode = 1;
-				respDashboard.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respDashboard);
 		}
 
 		[HttpGet]
@@ -112,21 +74,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respContract.Message = "data found";
-					respContract.MessageCode = 200;
-					respContract.ErrorCode = 0;
-					respContract.Data = manager.Query.Value.TransformDashboardContract();
+					var data = manager.Query.Value.TransformDashboardContract();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respContract.Message = ex.Message;
-				respContract.MessageCode = 400;
-				respContract.ErrorCode = 1;
-				respContract.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respContract);
 		}
 
 		[HttpGet]
@@ -137,21 +93,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respItem.Message = "data found";
-					respItem.MessageCode = 200;
-					respItem.ErrorCode = 0;
-					respItem.Data = manager.Query.Value.TransformDashboardItem();
+					var data = manager.Query.Value.TransformDashboardItem();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respItem.Message = ex.Message;
-				respItem.MessageCode = 400;
-				respItem.ErrorCode = 1;
-				respItem.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respItem);
 		}
 
 		[HttpGet]
@@ -162,21 +112,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformHeadRegion();
+					var data = manager.Query.Value.TransformHeadRegion();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 
 		}
 
@@ -188,21 +132,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformSweeper(zoneName, regionName, shift);
+					var data = manager.Query.Value.TransformSweeper(zoneName, regionName, shift);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -213,21 +151,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformDrainage(zoneName, regionName, shift);
+					var data = manager.Query.Value.TransformDrainage(zoneName, regionName, shift);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -238,21 +170,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformHeadZone();
+					var data = manager.Query.Value.TransformHeadZone();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -263,21 +189,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformGarbage(zoneName, regionName, shift);
+					var data = manager.Query.Value.TransformGarbage(zoneName, regionName, shift);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -288,21 +208,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformWithPhoto();
+					var data = manager.Query.Value.TransformWithPhoto();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -313,21 +227,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respResume.Message = "data found";
-					respResume.MessageCode = 200;
-					respResume.ErrorCode = 0;
-					respResume.Data = manager.Query.Value.TransformResume();
+					var data = manager.Query.Value.TransformResume();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respResume.Message = ex.Message;
-				respResume.MessageCode = 400;
-				respResume.ErrorCode = 1;
-				respResume.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respResume);
 		}
 
 		[HttpGet]
@@ -337,22 +245,14 @@ namespace DLHK_API.Controllers
 			try
 			{
 				using (var manager = new PresenceAdapter())
-				{
-					respResume.Message = "data found";
-					respResume.MessageCode = 200;
-					respResume.ErrorCode = 0;
-					respResume.Data = manager.Query.Value.TransformResume(start, end);
+				{var data = manager.Query.Value.TransformResume(start, end);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respResume.Message = ex.Message;
-				respResume.MessageCode = 400;
-				respResume.ErrorCode = 1;
-				respResume.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respResume);
 		}
 
 		[HttpGet]
@@ -363,71 +263,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respResume.Message = "data found";
-					respResume.MessageCode = 200;
-					respResume.ErrorCode = 0;
-					respResume.Data = manager.Query.Value.TransformResumeZoneRegion(zoneParams, regionParams);
+					var data = manager.Query.Value.TransformResumeZoneRegion(zoneParams, regionParams);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respResume.Message = ex.Message;
-				respResume.MessageCode = 400;
-				respResume.ErrorCode = 1;
-				respResume.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respResume);
-		}
-
-		[HttpGet]
-		[Route("api/presence/live/sweeper/{zoneParams}")]
-		public IHttpActionResult GetLiveSweeper([FromBody]string zoneParams)
-		{
-			try
-			{
-				using (var manager = new PresenceAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformLiveSweeper(zoneParams);
-				}
-			}
-			catch (Exception ex)
-			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
-			}
-
-			return Json(respList);
-		}
-
-		[HttpGet]
-		[Route("api/presence/live/drainage/{zoneParams}")]
-		public IHttpActionResult GetLiveDrainage([FromBody]string zoneParams)
-		{
-			try
-			{
-				using (var manager = new PresenceAdapter())
-				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformLiveDrainage(zoneParams);
-				}
-			}
-			catch (Exception ex)
-			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
-			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -438,21 +282,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZoneLive.Message = "data found";
-					respZoneLive.MessageCode = 200;
-					respZoneLive.ErrorCode = 0;
-					respZoneLive.Data = manager.Query.Value.TransformLivePresenceZone();
+					var data = manager.Query.Value.TransformLivePresenceZone();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZoneLive.Message = ex.Message;
-				respZoneLive.MessageCode = 400;
-				respZoneLive.ErrorCode = 1;
-				respZoneLive.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZoneLive);
 		}
 
 		[HttpGet]
@@ -463,21 +301,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZoneLive.Message = "data found";
-					respZoneLive.MessageCode = 200;
-					respZoneLive.ErrorCode = 0;
-					respZoneLive.Data = manager.Query.Value.TransformLivePresenceZone(regionParams);
+					var data = manager.Query.Value.TransformLivePresenceZone(regionParams);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZoneLive.Message = ex.Message;
-				respZoneLive.MessageCode = 400;
-				respZoneLive.ErrorCode = 1;
-				respZoneLive.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZoneLive);
 		}
 
 		[HttpGet]
@@ -488,21 +320,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZonePerformLive.Message = "data found";
-					respZonePerformLive.MessageCode = 200;
-					respZonePerformLive.ErrorCode = 0;
-					respZonePerformLive.Data = manager.Query.Value.TransformPerformLive();
+					var data = manager.Query.Value.TransformPerformLive();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZonePerformLive.Message = ex.Message;
-				respZonePerformLive.MessageCode = 400;
-				respZonePerformLive.ErrorCode = 1;
-				respZonePerformLive.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZonePerformLive);
 		}
 
 		[HttpGet]
@@ -513,21 +339,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZone.Message = "data found";
-					respZone.MessageCode = 200;
-					respZone.ErrorCode = 0;
-					respZone.Data = manager.Query.Value.TransformZoneTestResume();
+					var data = manager.Query.Value.TransformZoneTestResume();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZone.Message = ex.Message;
-				respZone.MessageCode = 400;
-				respZone.ErrorCode = 1;
-				respZone.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZone);
 		}
 
 		[HttpGet]
@@ -538,21 +358,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZone.Message = "data found";
-					respZone.MessageCode = 200;
-					respZone.ErrorCode = 0;
-					respZone.Data = manager.Query.Value.TransformZoneTestResumeRegion(regionParams);
+					var data = manager.Query.Value.TransformZoneTestResumeRegion(regionParams);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZone.Message = ex.Message;
-				respZone.MessageCode = 400;
-				respZone.ErrorCode = 1;
-				respZone.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZone);
 		}
 
 		[HttpGet]
@@ -563,21 +377,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respRegion.Message = "data found";
-					respRegion.MessageCode = 200;
-					respRegion.ErrorCode = 0;
-					respRegion.Data = manager.Query.Value.TransformRegionResume();
+					var data = manager.Query.Value.TransformRegionResume();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respRegion.Message = ex.Message;
-				respRegion.MessageCode = 400;
-				respRegion.ErrorCode = 1;
-				respRegion.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respRegion);
 		}
 
 		[HttpGet]
@@ -587,22 +395,14 @@ namespace DLHK_API.Controllers
 			try
 			{
 				using (var manager = new PresenceAdapter())
-				{
-					respSweeper.Message = "data found";
-					respSweeper.MessageCode = 200;
-					respSweeper.ErrorCode = 0;
-					respSweeper.Data = manager.Query.Value.TransformResumePerformSweeper(employeeId);
+				{var data = manager.Query.Value.TransformResumePerformSweeper(employeeId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respSweeper.Message = ex.Message;
-				respSweeper.MessageCode = 400;
-				respSweeper.ErrorCode = 1;
-				respSweeper.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respSweeper);
 		}
 
 		[HttpGet]
@@ -613,21 +413,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respDrainage.Message = "data found";
-					respDrainage.MessageCode = 200;
-					respDrainage.ErrorCode = 0;
-					respDrainage.Data = manager.Query.Value.TransformResumePerformDrainage(employeeId);
+					var data = manager.Query.Value.TransformResumePerformDrainage(employeeId);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respDrainage.Message = ex.Message;
-				respDrainage.MessageCode = 400;
-				respDrainage.ErrorCode = 1;
-				respDrainage.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respDrainage);
 		}
 
 		[HttpGet]
@@ -638,21 +432,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respGarbage.Message = "data found";
-					respGarbage.MessageCode = 200;
-					respGarbage.ErrorCode = 0;
-					respGarbage.Data = manager.Query.Value.TransformResumePerformGarbage(employeeId);
+					var data = manager.Query.Value.TransformResumePerformGarbage(employeeId);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respGarbage.Message = ex.Message;
-				respGarbage.MessageCode = 400;
-				respGarbage.ErrorCode = 1;
-				respGarbage.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respGarbage);
 		}
 
 		[HttpGet]
@@ -663,21 +451,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respHeadZone.Message = "data found";
-					respHeadZone.MessageCode = 200;
-					respHeadZone.ErrorCode = 0;
-					respHeadZone.Data = manager.Query.Value.TransformResumePerformHeadZone(employeeId);
+					var data = manager.Query.Value.TransformResumePerformHeadZone(employeeId);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respHeadZone.Message = ex.Message;
-				respHeadZone.MessageCode = 400;
-				respHeadZone.ErrorCode = 1;
-				respHeadZone.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respHeadZone);
 		}
 
 		[HttpGet]
@@ -688,21 +470,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZonePerform.Message = "data found";
-					respZonePerform.MessageCode = 200;
-					respZonePerform.ErrorCode = 0;
-					respZonePerform.Data = manager.Query.Value.TransformPerformZone();
+					var data = manager.Query.Value.TransformPerformZone();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZonePerform.Message = ex.Message;
-				respZonePerform.MessageCode = 400;
-				respZonePerform.ErrorCode = 1;
-				respZonePerform.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZonePerform);
 		}
 
 		[HttpGet]
@@ -713,21 +489,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respZonePerform.Message = "data found";
-					respZonePerform.MessageCode = 200;
-					respZonePerform.ErrorCode = 0;
-					respZonePerform.Data = manager.Query.Value.TransformPerformZone(regionName);
+					var data = manager.Query.Value.TransformPerformZone(regionName);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respZonePerform.Message = ex.Message;
-				respZonePerform.MessageCode = 400;
-				respZonePerform.ErrorCode = 1;
-				respZonePerform.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respZonePerform);
 		}
 
 		[HttpGet]
@@ -738,21 +508,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respRegionPerform.Message = "data found";
-					respRegionPerform.MessageCode = 200;
-					respRegionPerform.ErrorCode = 0;
-					respRegionPerform.Data = manager.Query.Value.TransformPerformRegion();
+					var data = manager.Query.Value.TransformPerformRegion();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respRegionPerform.Message = ex.Message;
-				respRegionPerform.MessageCode = 400;
-				respRegionPerform.ErrorCode = 1;
-				respRegionPerform.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respRegionPerform);
 		}
 
 		[HttpGet]
@@ -763,21 +527,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respEmployee.Message = "data found";
-					respEmployee.MessageCode = 200;
-					respEmployee.ErrorCode = 0;
-					respEmployee.Data = manager.Query.Value.TransformPerform();
+					var data = manager.Query.Value.TransformPerform();
+
+					return Json(Response.Success(data));
 				} 
 			}
 			catch (Exception ex)
 			{
-				respEmployee.Message = ex.Message;
-				respEmployee.MessageCode = 400;
-				respEmployee.ErrorCode = 1;
-				respEmployee.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respEmployee);
 		}
 
 		[HttpGet]
@@ -788,21 +546,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respEmployee.Message = "data found";
-					respEmployee.MessageCode = 200;
-					respEmployee.ErrorCode = 0;
-					respEmployee.Data = manager.Query.Value.TransformPerformFilter(start, end);
+					var data = manager.Query.Value.TransformPerformFilter(start, end);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respEmployee.Message = ex.Message;
-				respEmployee.MessageCode = 400;
-				respEmployee.ErrorCode = 1;
-				respEmployee.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respEmployee);
 		}
 
 		[HttpGet]
@@ -813,62 +565,34 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respEmployee.Message = "data found";
-					respEmployee.MessageCode = 200;
-					respEmployee.ErrorCode = 0;
-					respEmployee.Data = manager.Query.Value.TransformPerform(zoneName);
+					var data = manager.Query.Value.TransformPerform(zoneName);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respEmployee.Message = ex.Message;
-				respEmployee.MessageCode = 400;
-				respEmployee.ErrorCode = 1;
-				respEmployee.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respEmployee);
-		}
-
-		private struct RespBoolean
-		{
-			[JsonProperty("message")]
-			public string Message { get; set; }
-
-			[JsonProperty("messageCode")]
-			public int MessageCode { get; set; }
-
-			[JsonProperty("errorCode")]
-			public int ErrorCode { get; set; }
-
-			[JsonProperty("data")]
-			public bool? Data { get; set; }
 		}
 
 		[HttpGet]
 		[Route("api/presence/check/{id}")]
 		public IHttpActionResult GetExistHeadZone([FromUri] long id)
 		{
-			var respBool = new RespBoolean();
 			try
 			{
 				using (var manager = new PresenceAdapter())
 				{
-					respBool.Message = "data found";
-					respBool.MessageCode = 200;
-					respBool.ErrorCode = 0;
-					respBool.Data = manager.Query.Value.TransformExistPresence(id);
+					var data = manager.Query.Value.TransformExistPresence(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respBool.Message = ex.Message;
-				respBool.MessageCode = 400;
-				respBool.ErrorCode = 1;
-				respBool.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respBool);
 		}
 
 		[HttpPost]
@@ -891,22 +615,15 @@ namespace DLHK_API.Controllers
 					};
 
 					var result = manager.Creator.Value.Save(dto);
+					var data = manager.Query.Value.TransformId(result.PresenceId);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.PresenceId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -918,22 +635,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new PresenceAdapter())
 				{
 					var result = manager.Updater.Value.Update(dto);
+					var data = manager.Query.Value.TransformId(result.PresenceId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.PresenceId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -946,21 +656,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -973,21 +675,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.DeleteAll();
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -1000,21 +694,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.DeleteAllScore();
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 	}
 }

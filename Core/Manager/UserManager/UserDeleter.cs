@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System;
-using System.Linq;
 using System.Transactions;
 
 namespace Core.Manager.UserManager
@@ -16,7 +15,7 @@ namespace Core.Manager.UserManager
 		{
 			using (var transac = new TransactionScope())
 			{
-				var exist = Manager.Query.Value.Get().FirstOrDefault(x => x.UserId == id);
+				var exist = Manager.Database.Users.Find(id);
 
 				if (exist == null)
 					throw new Exception("data doesn't exist");

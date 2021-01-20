@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System;
-using System.Linq;
 using System.Transactions;
 
 namespace Core.Manager.CategoryManager
@@ -16,7 +15,7 @@ namespace Core.Manager.CategoryManager
 		{
 			using (var transac = new TransactionScope())
 			{
-				var exist = Manager.Query.Value.Get().FirstOrDefault(x => x.CategoryId == dto.CategoryId);
+				var exist = Manager.Database.Categories.Find(dto.CategoryId);
 
 				if (exist == null)
 					throw new Exception("data not found");

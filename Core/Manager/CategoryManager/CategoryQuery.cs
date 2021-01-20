@@ -11,33 +11,25 @@ namespace Core.Manager.CategoryManager
 			// do nothing
 		}
 
-		public IQueryable<Category> Get()
+		public IQueryable<CategoryDTO> GetQuery()
 		{
-			return Manager.Database.Categories;
+			return Manager.Database.Categories.Select(val => new CategoryDTO()
+			{
+				CategoryId = val.CategoryId,
+				CategoryName = val.CategoryName,
+				CategoryCode = val.CategoryCode
+			});
 		}
 
 		public List<CategoryDTO> Transform()
 		{
-			return (from val in Get()
-					select new CategoryDTO()
-					{
-						CategoryId = val.CategoryId,
-						CategoryName = val.CategoryName,
-						CategoryCode = val.CategoryCode
-					}).ToList();
+			return GetQuery().ToList();
 
 		}
 
 		public CategoryDTO TransformId(long id)
 		{
-			return (from val in Get()
-					where val.CategoryId == id
-					select new CategoryDTO()
-					{
-						CategoryId = val.CategoryId,
-						CategoryName = val.CategoryName,
-						CategoryCode = val.CategoryCode
-					}).FirstOrDefault();
+			return GetQuery().FirstOrDefault(x => x.CategoryId == id);
 		}
 	}
 }

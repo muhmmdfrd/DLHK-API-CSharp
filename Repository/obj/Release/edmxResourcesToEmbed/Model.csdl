@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DLHKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="ApplicantId" />
+    </Key>
+    <Property Name="ApplicantId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AssessmentZone">
+    <Key>
+      <PropertyRef Name="AssessmentZoneId" />
+    </Key>
+    <Property Name="AssessmentZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiciplinePresence" Type="Int32" />
+    <Property Name="FirstSession" Type="Int32" />
+    <Property Name="SecondSession" Type="Int32" />
+    <Property Name="ThirdSession" Type="Int32" />
+    <Property Name="CleanlinessOfZone" Type="Int32" />
+    <Property Name="CompletenessOfTeam" Type="Int32" />
+    <Property Name="DataOfGarbage" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <Property Name="TypeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Assessmen__Emplo__5EBF139D" FromRole="AssessmentZone" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Coordinator">
+    <Key>
+      <PropertyRef Name="CoordinatorId" />
+    </Key>
+    <Property Name="CoordinatorId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PercentOfPresence" Type="Int32" />
+    <Property Name="PercentOfReport" Type="Int32" />
+    <Property Name="PercentOfCompletion" Type="Int32" />
+    <Property Name="PercentOfSatisfaction" Type="Int32" />
+    <Property Name="Cleanliness" Type="Int32" />
+    <Property Name="DataOfGarbage" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <Property Name="DateOfAssessment" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Drainage">
+    <Key>
+      <PropertyRef Name="DrainageId" />
+    </Key>
+    <Property Name="DrainageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dicipline" Type="Int32" />
+    <Property Name="Completeness" Type="Int32" />
+    <Property Name="Cleanliness" Type="Int32" />
+    <Property Name="Sediment" Type="Int32" />
+    <Property Name="Weed" Type="Int32" />
+    <Property Name="PresenceId" Type="Int64" />
+    <NavigationProperty Name="Presence" Relationship="Self.FK__Drainage__Presen__5FB337D6" FromRole="Drainage" ToRole="Presence" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstContract" Type="DateTime" Precision="3" />
+    <Property Name="LastContract" Type="DateTime" Precision="3" />
+    <Property Name="LocationContract" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PersonId" Type="Int64" />
+    <Property Name="RoleId" Type="Int64" />
+    <Property Name="RegionId" Type="Int64" />
+    <Property Name="ZoneId" Type="Int64" />
+    <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Shift" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AssessmentZones" Relationship="Self.FK__Assessmen__Emplo__5EBF139D" FromRole="Employee" ToRole="AssessmentZone" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__Employee__Person__60A75C0F" FromRole="Employee" ToRole="Person" />
+    <NavigationProperty Name="Region" Relationship="Self.FK__Employee__Region__619B8048" FromRole="Employee" ToRole="Region" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__Employee__RoleId__628FA481" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="Zone" Relationship="Self.FK__Employee__ZoneId__6383C8BA" FromRole="Employee" ToRole="Zone" />
+    <NavigationProperty Name="Leaves" Relationship="Self.FK__Leave__EmployeeI__66603565" FromRole="Employee" ToRole="Leave" />
+    <NavigationProperty Name="Presences" Relationship="Self.FK__Presence__Employ__6754599E" FromRole="Employee" ToRole="Presence" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__EmployeeId__693CA210" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Garbage">
+    <Key>
+      <PropertyRef Name="GerbageId" />
+    </Key>
+    <Property Name="GerbageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dicipline" Type="Int32" />
+    <Property Name="TPS" Type="Int32" />
+    <Property Name="Separation" Type="Int32" />
+    <Property Name="Calculation" Type="Int32" />
+    <Property Name="VolumeOfOrganic" Type="Int32" />
+    <Property Name="VolumeOfAnorganic" Type="Int32" />
+    <Property Name="PresenceId" Type="Int64" />
+    <NavigationProperty Name="Presence" Relationship="Self.FK__Garbage__Presenc__6477ECF3" FromRole="Garbage" ToRole="Presence" />
+  </EntityType>
+  <EntityType Name="HeadOfZone">
+    <Key>
+      <PropertyRef Name="HeadOfZoneId" />
+    </Key>
+    <Property Name="HeadOfZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiciplinePresence" Type="Int32" />
+    <Property Name="FirstSession" Type="Int32" />
+    <Property Name="SecondSession" Type="Int32" />
+    <Property Name="ThirdSession" Type="Int32" />
+    <Property Name="CleanlinessOfZone" Type="Int32" />
+    <Property Name="CompletenessOfTeam" Type="Int32" />
+    <Property Name="DataOfGarbage" Type="Int32" />
+    <Property Name="PresenceId" Type="Int64" />
+    <Property Name="TypeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Presence" Relationship="Self.FK__HeadOfZon__Prese__656C112C" FromRole="HeadOfZone" ToRole="Presence" />
+  </EntityType>
+  <EntityType Name="IMEI">
+    <Key>
+      <PropertyRef Name="ImeiId" />
+    </Key>
+    <Property Name="ImeiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imei1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Device" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Interview">
+    <Key>
+      <PropertyRef Name="InterviewId" />
+    </Key>
+    <Property Name="InterviewId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interviewer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfInterview" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ItemPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ItemQty" Type="Int32" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int64" />
+    <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Leave">
+    <Key>
+      <PropertyRef Name="LeaveId" />
+    </Key>
+    <Property Name="LeaveId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOfLeave" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LeaveStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Leave__EmployeeI__66603565" FromRole="Leave" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlaceOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="LastDegree" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PreviousJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NameOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JobOfCouple" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="KTP" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Sertificate" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AppLetter" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Jobdesk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TotalChild" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NIK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Person__60A75C0F" FromRole="Person" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Presence">
+    <Key>
+      <PropertyRef Name="PresenceId" />
+    </Key>
+    <Property Name="PresenceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LivePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Coordinate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfPresence" Type="DateTime" Precision="3" />
+    <Property Name="PresenceStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Counter" Type="Int32" />
+    <NavigationProperty Name="Drainages" Relationship="Self.FK__Drainage__Presen__5FB337D6" FromRole="Presence" ToRole="Drainage" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Presence__Employ__6754599E" FromRole="Presence" ToRole="Employee" />
+    <NavigationProperty Name="Garbages" Relationship="Self.FK__Garbage__Presenc__6477ECF3" FromRole="Presence" ToRole="Garbage" />
+    <NavigationProperty Name="HeadOfZones" Relationship="Self.FK__HeadOfZon__Prese__656C112C" FromRole="Presence" ToRole="HeadOfZone" />
+    <NavigationProperty Name="Sweepers" Relationship="Self.FK__Sweeper__Presenc__68487DD7" FromRole="Presence" ToRole="Sweeper" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="RegionId" />
+    </Key>
+    <Property Name="RegionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Region__619B8048" FromRole="Region" ToRole="Employee" />
+    <NavigationProperty Name="Zones" Relationship="Self.FK__Zone__RegionId__6A30C649" FromRole="Region" ToRole="Zone" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__RoleId__628FA481" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Submission">
+    <Key>
+      <PropertyRef Name="SubmissionId" />
+    </Key>
+    <Property Name="SubmissionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int64" />
+    <Property Name="DateOfSubmission" Type="DateTime" Precision="3" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubmissionUser" Type="Int64" />
+    <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Suplier">
+    <Key>
+      <PropertyRef Name="SuplierId" />
+    </Key>
+    <Property Name="SuplierId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sweeper">
+    <Key>
+      <PropertyRef Name="SweeperId" />
+    </Key>
+    <Property Name="SweeperId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dicipline" Type="Int32" />
+    <Property Name="Completeness" Type="Int32" />
+    <Property Name="Road" Type="Int32" />
+    <Property Name="Sidewalk" Type="Int32" />
+    <Property Name="WaterRope" Type="Int32" />
+    <Property Name="RoadMedian" Type="Int32" />
+    <Property Name="PresenceId" Type="Int64" />
+    <NavigationProperty Name="Presence" Relationship="Self.FK__Sweeper__Presenc__68487DD7" FromRole="Sweeper" ToRole="Presence" />
+  </EntityType>
+  <EntityType Name="Transac">
+    <Key>
+      <PropertyRef Name="TransacId" />
+    </Key>
+    <Property Name="TransacId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Note" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DateTransac" Type="DateTime" Precision="3" />
+    <Property Name="TypeOfTransac" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserRecorder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SuplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZoneName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__User__EmployeeId__693CA210" FromRole="User" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Zone">
+    <Key>
+      <PropertyRef Name="ZoneId" />
+    </Key>
+    <Property Name="ZoneId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZoneName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RegionId" Type="Int64" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__ZoneId__6383C8BA" FromRole="Zone" ToRole="Employee" />
+    <NavigationProperty Name="Region" Relationship="Self.FK__Zone__RegionId__6A30C649" FromRole="Zone" ToRole="Region" />
+  </EntityType>
+  <Association Name="FK__Assessmen__Emplo__5EBF139D">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="AssessmentZone" Type="Self.AssessmentZone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="AssessmentZone">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Drainage__Presen__5FB337D6">
+    <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+    <End Role="Drainage" Type="Self.Drainage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Presence">
+        <PropertyRef Name="PresenceId" />
+      </Principal>
+      <Dependent Role="Drainage">
+        <PropertyRef Name="PresenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Person__60A75C0F">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Region__619B8048">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__RoleId__628FA481">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__ZoneId__6383C8BA">
+    <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zone">
+        <PropertyRef Name="ZoneId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ZoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Leave__EmployeeI__66603565">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Leave">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Presence__Employ__6754599E">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Presence" Type="Self.Presence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Presence">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__EmployeeId__693CA210">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Garbage__Presenc__6477ECF3">
+    <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+    <End Role="Garbage" Type="Self.Garbage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Presence">
+        <PropertyRef Name="PresenceId" />
+      </Principal>
+      <Dependent Role="Garbage">
+        <PropertyRef Name="PresenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HeadOfZon__Prese__656C112C">
+    <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+    <End Role="HeadOfZone" Type="Self.HeadOfZone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Presence">
+        <PropertyRef Name="PresenceId" />
+      </Principal>
+      <Dependent Role="HeadOfZone">
+        <PropertyRef Name="PresenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sweeper__Presenc__68487DD7">
+    <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+    <End Role="Sweeper" Type="Self.Sweeper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Presence">
+        <PropertyRef Name="PresenceId" />
+      </Principal>
+      <Dependent Role="Sweeper">
+        <PropertyRef Name="PresenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zone__RegionId__6A30C649">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="Zone" Type="Self.Zone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionId" />
+      </Principal>
+      <Dependent Role="Zone">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DLHKEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applicants" EntityType="Self.Applicant" />
+    <EntitySet Name="AssessmentZones" EntityType="Self.AssessmentZone" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Coordinators" EntityType="Self.Coordinator" />
+    <EntitySet Name="Drainages" EntityType="Self.Drainage" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Garbages" EntityType="Self.Garbage" />
+    <EntitySet Name="HeadOfZones" EntityType="Self.HeadOfZone" />
+    <EntitySet Name="IMEIs" EntityType="Self.IMEI" />
+    <EntitySet Name="Interviews" EntityType="Self.Interview" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="Leaves" EntityType="Self.Leave" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <EntitySet Name="Presences" EntityType="Self.Presence" />
+    <EntitySet Name="Regions" EntityType="Self.Region" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Submissions" EntityType="Self.Submission" />
+    <EntitySet Name="Supliers" EntityType="Self.Suplier" />
+    <EntitySet Name="Sweepers" EntityType="Self.Sweeper" />
+    <EntitySet Name="Transacs" EntityType="Self.Transac" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Zones" EntityType="Self.Zone" />
+    <AssociationSet Name="FK__Assessmen__Emplo__5EBF139D" Association="Self.FK__Assessmen__Emplo__5EBF139D">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AssessmentZone" EntitySet="AssessmentZones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Drainage__Presen__5FB337D6" Association="Self.FK__Drainage__Presen__5FB337D6">
+      <End Role="Presence" EntitySet="Presences" />
+      <End Role="Drainage" EntitySet="Drainages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Person__60A75C0F" Association="Self.FK__Employee__Person__60A75C0F">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Region__619B8048" Association="Self.FK__Employee__Region__619B8048">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__RoleId__628FA481" Association="Self.FK__Employee__RoleId__628FA481">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__ZoneId__6383C8BA" Association="Self.FK__Employee__ZoneId__6383C8BA">
+      <End Role="Zone" EntitySet="Zones" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Leave__EmployeeI__66603565" Association="Self.FK__Leave__EmployeeI__66603565">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Leave" EntitySet="Leaves" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Presence__Employ__6754599E" Association="Self.FK__Presence__Employ__6754599E">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Presence" EntitySet="Presences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__EmployeeId__693CA210" Association="Self.FK__User__EmployeeId__693CA210">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Garbage__Presenc__6477ECF3" Association="Self.FK__Garbage__Presenc__6477ECF3">
+      <End Role="Presence" EntitySet="Presences" />
+      <End Role="Garbage" EntitySet="Garbages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HeadOfZon__Prese__656C112C" Association="Self.FK__HeadOfZon__Prese__656C112C">
+      <End Role="Presence" EntitySet="Presences" />
+      <End Role="HeadOfZone" EntitySet="HeadOfZones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sweeper__Presenc__68487DD7" Association="Self.FK__Sweeper__Presenc__68487DD7">
+      <End Role="Presence" EntitySet="Presences" />
+      <End Role="Sweeper" EntitySet="Sweepers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zone__RegionId__6A30C649" Association="Self.FK__Zone__RegionId__6A30C649">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="Zone" EntitySet="Zones" />
+    </AssociationSet>
+    <EntitySet Name="vPresenceResumes" EntityType="DLHKModel.vPresenceResume" />
+  </EntityContainer>
+  <EntityType Name="vPresenceResume">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="LocationContract" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int64" />
+    <Property Name="PersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Absence" Type="Int32" />
+    <Property Name="Leave" Type="Int32" />
+    <Property Name="PresenceTotal" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="Presence" Type="Int32" />
+    <Property Name="ZoneName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RegionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Shift" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -129,6 +129,9 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="vPresenceResume.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Zone.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

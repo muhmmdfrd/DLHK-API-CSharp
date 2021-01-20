@@ -1,16 +1,12 @@
 ﻿using Core.Manager.SuplierManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class SuplierController : ApiController
     {
-		private readonly ApiResponse<List<SuplierDTO>> respList = new ApiResponse<List<SuplierDTO>>();
-		private readonly ApiResponse<SuplierDTO> resp = new ApiResponse<SuplierDTO>();
-
 		[HttpGet]
 		[Route("api/suplier")]
 		public IHttpActionResult Get()
@@ -19,21 +15,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new SuplierAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(respList);
 		}
 
 		[HttpGet]
@@ -44,21 +34,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new SuplierAdapter())
 				{
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(id);
+					var data = manager.Query.Value.TransformId(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 
 		[HttpPost]
@@ -70,22 +54,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new SuplierAdapter())
 				{
 					var result = manager.Creator.Value.Save(dto);
+					var data = manager.Query.Value.TransformId(result.SuplierId);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.SuplierId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 
 		[HttpPut]
@@ -97,22 +74,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new SuplierAdapter())
 				{
 					var result = manager.Updater.Value.Update(dto);
+					var data = manager.Query.Value.TransformId(result.SuplierId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.SuplierId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 
 		[HttpDelete]
@@ -125,21 +95,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 	}
 }

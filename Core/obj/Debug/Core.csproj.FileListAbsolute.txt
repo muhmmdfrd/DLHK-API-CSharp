@@ -32,3 +32,10 @@ D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\EntityFramework.xml
 D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\EntityFramework.SqlServer.xml
 D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\Newtonsoft.Json.xml
 D:\DLHK\DLHK-API-CSharp\Core\obj\Debug\Core.csproj.CopyComplete
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\ClosedXML.dll
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\DocumentFormat.OpenXml.dll
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\ExcelNumberFormat.dll
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\ClosedXML.pdb
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\ClosedXML.xml
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\DocumentFormat.OpenXml.xml
+D:\DLHK\DLHK-API-CSharp\Core\bin\Debug\ExcelNumberFormat.xml

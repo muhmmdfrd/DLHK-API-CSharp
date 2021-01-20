@@ -111,6 +111,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="IMEIs">
+      <EntityTypeMapping TypeName="DLHKModel.IMEI">
+        <MappingFragment StoreEntitySet="IMEI">
+          <ScalarProperty Name="ImeiId" ColumnName="ImeiId" />
+          <ScalarProperty Name="Imei1" ColumnName="Imei" />
+          <ScalarProperty Name="Device" ColumnName="Device" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Interviews">
       <EntityTypeMapping TypeName="DLHKModel.Interview">
         <MappingFragment StoreEntitySet="Interview">
@@ -139,19 +148,18 @@
     <EntitySetMapping Name="Leaves">
       <EntityTypeMapping TypeName="DLHKModel.Leave">
         <MappingFragment StoreEntitySet="Leave">
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
           <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="LeaveStatus" ColumnName="LeaveStatus" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="DLHKModel.Person">
         <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="NIK" ColumnName="NIK" />
           <ScalarProperty Name="PersonId" ColumnName="PersonId" />
           <ScalarProperty Name="PersonName" ColumnName="PersonName" />
           <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
@@ -169,20 +177,21 @@
           <ScalarProperty Name="Jobdesk" ColumnName="Jobdesk" />
           <ScalarProperty Name="TotalChild" ColumnName="TotalChild" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NIK" ColumnName="NIK" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Presences">
       <EntityTypeMapping TypeName="DLHKModel.Presence">
         <MappingFragment StoreEntitySet="Presence">
-          <ScalarProperty Name="Counter" ColumnName="Counter" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="PresenceId" ColumnName="PresenceId" />
           <ScalarProperty Name="LivePhoto" ColumnName="LivePhoto" />
           <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
           <ScalarProperty Name="DateOfPresence" ColumnName="DateOfPresence" />
           <ScalarProperty Name="PresenceStatus" ColumnName="PresenceStatus" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -197,9 +206,9 @@
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="DLHKModel.Role">
         <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -246,8 +255,6 @@
     <EntitySetMapping Name="Transacs">
       <EntityTypeMapping TypeName="DLHKModel.Transac">
         <MappingFragment StoreEntitySet="Transac">
-          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
-          <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
           <ScalarProperty Name="TransacId" ColumnName="TransacId" />
           <ScalarProperty Name="Qty" ColumnName="Qty" />
           <ScalarProperty Name="Note" ColumnName="Note" />
@@ -258,6 +265,8 @@
           <ScalarProperty Name="UserRecorder" ColumnName="UserRecorder" />
           <ScalarProperty Name="UserRequest" ColumnName="UserRequest" />
           <ScalarProperty Name="SuplierName" ColumnName="SuplierName" />
+          <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -280,12 +289,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="IMEIs">
-      <EntityTypeMapping TypeName="DLHKModel.IMEI">
-        <MappingFragment StoreEntitySet="IMEI">
-          <ScalarProperty Name="Device" ColumnName="Device" />
-          <ScalarProperty Name="Imei1" ColumnName="Imei" />
-          <ScalarProperty Name="ImeiId" ColumnName="ImeiId" />
+    <EntitySetMapping Name="vPresenceResumes">
+      <EntityTypeMapping TypeName="DLHKModel.vPresenceResume">
+        <MappingFragment StoreEntitySet="vPresenceResume">
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+          <ScalarProperty Name="Presence" ColumnName="Presence" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="PresenceTotal" ColumnName="PresenceTotal" />
+          <ScalarProperty Name="Leave" ColumnName="Leave" />
+          <ScalarProperty Name="Absence" ColumnName="Absence" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="LocationContract" ColumnName="LocationContract" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

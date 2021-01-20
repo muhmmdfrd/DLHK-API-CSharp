@@ -1,16 +1,12 @@
 ﻿using Core.Manager.ImeiManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class ImeiController : ApiController
     {
-		private readonly ApiResponse<List<ImeiDTO>> respList = new ApiResponse<List<ImeiDTO>>();
-		private readonly ApiResponse<ImeiDTO> resp = new ApiResponse<ImeiDTO>();
-
 		[HttpGet]
 		[Route("api/Imei")]
 		public IHttpActionResult Get()
@@ -19,21 +15,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new ImeiAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -44,23 +34,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new ImeiAdapter())
 				{
+					var data = manager.Query.Value.TransformIMEICheck(deviceParams);
 					
-
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformIMEICheck(deviceParams);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPost]
@@ -71,23 +53,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new ImeiAdapter())
 				{
-					var result = manager.Creator.Value.Save(dto);
+					var data = manager.Creator.Value.Save(dto);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPut]
@@ -100,21 +74,13 @@ namespace DLHK_API.Controllers
 				{
 					var result = manager.Updater.Value.Update(dto);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Updated(""));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpDelete]
@@ -127,21 +93,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 	}
 }

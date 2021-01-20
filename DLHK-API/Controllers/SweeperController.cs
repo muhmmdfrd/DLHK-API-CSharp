@@ -1,16 +1,12 @@
 ﻿using Core.Manager.SweeperManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class SweeperController : ApiController
     {
-		private readonly ApiResponse<List<SweeperDTO>> respList = new ApiResponse<List<SweeperDTO>>();
-		private readonly ApiResponse<SweeperDTO> resp = new ApiResponse<SweeperDTO>();
-
 		[HttpGet]
 		public IHttpActionResult Get()
 		{
@@ -18,21 +14,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new SweeperAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.Transform();
+					var data = manager.Query.Value.Transform();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(respList);
 		}
 
 		[HttpPost]
@@ -44,21 +34,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Creator.Value.Save(dto);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Success(""));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 
 		[HttpPut]
@@ -69,22 +51,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new SweeperAdapter())
 				{
 					var result = manager.Updater.Value.Update(dto);
+					var data = manager.Query.Value.TransformId(result.SweeperId);
 
-					resp.Message = "data updated";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.SweeperId);
+					return Json(Response.Updated(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 
 		[HttpDelete]
@@ -96,21 +71,13 @@ namespace DLHK_API.Controllers
 				{
 					manager.Deleter.Value.Delete(id);
 
-					resp.Message = "data deleted";
-					resp.MessageCode = 202;
-					resp.ErrorCode = 0;
-					resp.Data = null;
+					return Json(Response.Deleted());
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 1;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Ok(resp);
 		}
 	}
 }

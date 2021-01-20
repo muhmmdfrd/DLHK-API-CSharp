@@ -41,6 +41,9 @@ namespace Core.Manager.PresenceManager
 		[JsonProperty("regionName")]
 		public string RegionName { get; set; }
 
+		[JsonProperty("roleId")]
+		public long? RoleId { get; set; }
+
 		[JsonProperty("roleName")]
 		public string RoleName { get; set; }
 

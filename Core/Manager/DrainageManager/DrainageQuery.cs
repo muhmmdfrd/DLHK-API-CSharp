@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Core.Manager.DrainageManager
@@ -12,43 +11,28 @@ namespace Core.Manager.DrainageManager
 			// do nothing
 		}
 
-		public IQueryable<Drainage> Get(bool withDetail = false)
+		public IQueryable<DrainageDTO> Get()
 		{
-			var dataContext = Manager.Database.Drainages;
-			var fullData = withDetail ?
-				dataContext.AsQueryable().Include(x => x.Presence) : dataContext;
-
-			return fullData;
+			return Manager.Database.Drainages.Select(val => new DrainageDTO()
+			{
+				Cleanliness = val.Cleanliness,
+				Completeness = val.Completeness,
+				Dicipline = val.Dicipline,
+				DrainageId = val.DrainageId,
+				PresenceId = val.PresenceId,
+				Sediment = val.Sediment,
+				Weed = val.Weed
+			});
 		}
 
 		public List<DrainageDTO> Transform()
 		{
-			return (from val in Get(true)
-					select new DrainageDTO() {
-						Cleanliness = val.Cleanliness,
-						Completeness = val.Completeness,
-						Dicipline = val.Dicipline,
-						DrainageId = val.DrainageId,
-						PresenceId = val.PresenceId,
-						Sediment = val.Sediment,
-						Weed = val.Weed
-					}).ToList();
+			return Get().ToList();
 		}
 
 		public DrainageDTO TransformId(long id)
 		{
-			return (from val in Get(true)
-					where val.DrainageId == id
-					select new DrainageDTO()
-					{
-						Cleanliness = val.Cleanliness,
-						Completeness = val.Completeness,
-						Dicipline = val.Dicipline,
-						DrainageId = val.DrainageId,
-						PresenceId = val.PresenceId,
-						Sediment = val.Sediment,
-						Weed = val.Weed
-					}).FirstOrDefault();
+			return Get().FirstOrDefault(x => x.DrainageId == id);
 		}
 	}
 }

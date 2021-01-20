@@ -33,6 +33,7 @@ namespace Repository
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Garbage> Garbages { get; set; }
         public virtual DbSet<HeadOfZone> HeadOfZones { get; set; }
+        public virtual DbSet<IMEI> IMEIs { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
@@ -46,6 +47,6 @@ namespace Repository
         public virtual DbSet<Transac> Transacs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Zone> Zones { get; set; }
-        public virtual DbSet<IMEI> IMEIs { get; set; }
+        public virtual DbSet<vPresenceResume> vPresenceResumes { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System;
-using System.Linq;
 using System.Transactions;
 
 namespace Core.Manager.ZoneManager
@@ -16,7 +15,7 @@ namespace Core.Manager.ZoneManager
 		{
 			using (var transac = new TransactionScope())
 			{
-				var exist = Manager.Query.Value.Get().FirstOrDefault(x => x.ZoneId == id);
+				var exist = Manager.Database.Zones.Find(id);
 
 				if (exist == null)
 					throw new Exception("data not found");

@@ -4,42 +4,43 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c927b754aab4cc4b2d1d647c77d87e5" Name="Diagram1" ZoomLevel="54">
+      <Diagram DiagramId="99704b6828e84950ab6609b3f087b493" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="DLHKModel.Applicant" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.AssessmentZone" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.AssessmentZone" Width="1.5" PointX="7.5" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Coordinator" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Drainage" Width="1.5" PointX="9.75" PointY="22.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Employee" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Garbage" Width="1.5" PointX="9.75" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.HeadOfZone" Width="1.5" PointX="9.75" PointY="29" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Interview" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Item" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Leave" Width="1.5" PointX="7.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Drainage" Width="1.5" PointX="9.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Employee" Width="1.5" PointX="5.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Garbage" Width="1.5" PointX="9.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.HeadOfZone" Width="1.5" PointX="9.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.IMEI" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Interview" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Item" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Leave" Width="1.5" PointX="7.5" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Person" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Presence" Width="1.5" PointX="7.5" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Presence" Width="1.5" PointX="7.5" PointY="27.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DLHKModel.Region" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Role" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Submission" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Suplier" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Sweeper" Width="1.5" PointX="9.75" PointY="32.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Transac" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.User" Width="1.5" PointX="7.5" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DLHKModel.Zone" Width="1.5" PointX="3" PointY="37.75" IsExpanded="true" />
-        <AssociationConnector Association="DLHKModel.FK__Assessmen__Emplo__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Drainage__Presen__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Employee__Person__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Employee__Region__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Employee__RoleId__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Employee__ZoneId__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Leave__EmployeeI__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Presence__Employ__656C112C" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__User__EmployeeId__6754599E" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Garbage__Presenc__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__HeadOfZon__Prese__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Sweeper__Presenc__66603565" ManuallyRouted="false" />
-        <AssociationConnector Association="DLHKModel.FK__Zone__RegionId__68487DD7" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DLHKModel.IMEI" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DLHKModel.Role" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Submission" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Suplier" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Sweeper" Width="1.5" PointX="9.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Transac" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.User" Width="1.5" PointX="7.5" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DLHKModel.Zone" Width="1.5" PointX="3" PointY="38" IsExpanded="true" />
+        <AssociationConnector Association="DLHKModel.FK__Assessmen__Emplo__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Drainage__Presen__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__Person__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__Region__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__RoleId__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Employee__ZoneId__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Leave__EmployeeI__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Presence__Employ__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__User__EmployeeId__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Garbage__Presenc__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__HeadOfZon__Prese__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Sweeper__Presenc__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="DLHKModel.FK__Zone__RegionId__6A30C649" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DLHKModel.vPresenceResume" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

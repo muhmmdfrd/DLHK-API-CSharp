@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Core.Manager.ZoneManager
@@ -12,37 +11,27 @@ namespace Core.Manager.ZoneManager
 			// do nothing
 		}
 
-		public IQueryable<Zone> Get(bool withDetail = false)
+		public IQueryable<ZoneDTO> GetQuery()
 		{
-			var dataContext = Manager.Database.Zones;
-			var fullData = withDetail ? dataContext.AsQueryable().Include(x => x.Region) : dataContext;
-
-			return fullData;
+			return Manager.Database.Zones
+				.Join(Manager.Database.Regions, z => z.RegionId, r => r.RegionId, (z, r) => new { z, r })
+				.Select(x => new ZoneDTO()
+				{
+					ZoneId = x.z.ZoneId,
+					ZoneName = x.z.ZoneName,
+					RegionId = x.r.RegionId,
+					RegionName = x.r.RegionName
+				});
 		}
 
 		public List<ZoneDTO> Transform()
 		{
-			return (from val in Get()
-					select new ZoneDTO()
-					{
-						ZoneId = val.ZoneId,
-						ZoneName = val.ZoneName,
-						RegionId = val.Region.RegionId,
-						RegionName = val.Region.RegionName
-					}).ToList();
+			return GetQuery().ToList();
 		}
 
 		public ZoneDTO TransformId(long id)
 		{
-			return (from val in Get()
-					where val.ZoneId == id
-					select new ZoneDTO()
-					{
-						ZoneId = val.ZoneId,
-						ZoneName = val.ZoneName,
-						RegionId = val.Region.RegionId,
-						RegionName = val.Region.RegionName
-					}).FirstOrDefault();
+			return GetQuery().FirstOrDefault(x => x.ZoneId == id);
 		}
 	}
 }

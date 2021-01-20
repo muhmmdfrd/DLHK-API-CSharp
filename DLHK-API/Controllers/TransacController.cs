@@ -1,17 +1,12 @@
 ﻿using Core.Manager.TransacManager;
 using DLHK_API.Models;
 using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Http;
 
 namespace DLHK_API.Controllers
 {
 	public class TransacController : ApiController
     {
-		private readonly ApiResponse<List<TransacDTO>> respList = new ApiResponse<List<TransacDTO>>();
-		private readonly ApiResponse<TransacDTO> resp = new ApiResponse<TransacDTO>();
-
 		[HttpGet]
 		[Route("api/transac")]
 		public IHttpActionResult GetAll()
@@ -20,21 +15,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformAll();
+					var data = manager.Query.Value.TransformAll();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 1;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -45,21 +34,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformIn();
+					var data = manager.Query.Value.TransformIn();
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 0;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -70,21 +53,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformInId(id);
+					var data = manager.Query.Value.TransformInId(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 0;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpGet]
@@ -95,21 +72,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformInDate(start, end);
+					var data = manager.Query.Value.TransformInDate(start, end);
+					
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 0;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -120,21 +91,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformOut();
+					var data = manager.Query.Value.TransformOut();
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 0;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpGet]
@@ -145,21 +110,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					resp.Message = "data found";
-					resp.MessageCode = 200;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(id);
+					var data = manager.Query.Value.TransformId(id);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 0;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpGet]
@@ -170,21 +129,15 @@ namespace DLHK_API.Controllers
 			{
 				using (var manager = new TransacAdapter())
 				{
-					respList.Message = "data found";
-					respList.MessageCode = 200;
-					respList.ErrorCode = 0;
-					respList.Data = manager.Query.Value.TransformOutDate(start, end);
+					var data = manager.Query.Value.TransformOutDate(start, end);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				respList.Message = ex.Message;
-				respList.MessageCode = 400;
-				respList.ErrorCode = 0;
-				respList.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(respList);
 		}
 
 		[HttpPost]
@@ -196,22 +149,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new TransacAdapter())
 				{
 					var result = manager.Creator.Value.DataIn(dto);
+					var data = manager.Query.Value.TransformInId(result.TransacId);
 
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformInId(result.TransacId);
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 0;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 
 		[HttpPost]
@@ -223,22 +169,15 @@ namespace DLHK_API.Controllers
 				using (var manager = new TransacAdapter())
 				{
 					var result = manager.Creator.Value.DataOut(dto);
-		
-					resp.Message = "data inserted";
-					resp.MessageCode = 201;
-					resp.ErrorCode = 0;
-					resp.Data = manager.Query.Value.TransformId(result.TransacId);
+					var data = manager.Query.Value.TransformId(result.TransacId);
+
+					return Json(Response.Success(data));
 				}
 			}
 			catch (Exception ex)
 			{
-				resp.Message = ex.Message;
-				resp.MessageCode = 400;
-				resp.ErrorCode = 0;
-				resp.Data = null;
+				return Json(Response.Fail(ex.Message));
 			}
-
-			return Json(resp);
 		}
 	}
 }

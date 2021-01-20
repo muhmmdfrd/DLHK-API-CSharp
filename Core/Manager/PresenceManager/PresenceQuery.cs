@@ -8,12 +8,12 @@ namespace Core.Manager.PresenceManager
 {
 	public class PresenceQuery : AsistanceBase<PresenceAdapter, Presence>
 	{
+		private readonly DateTime Today = DateTime.Now;
+
 		public PresenceQuery(PresenceAdapter manager) : base(manager)
 		{
 			// do nothing
 		}
-
-		private readonly DateTime Today = DateTime.Now;
 
 		public IQueryable<Presence> Get(bool withDetail = false)
 		{
@@ -27,163 +27,138 @@ namespace Core.Manager.PresenceManager
 				.Include(x => x.Sweepers) : dataContext;
 		}
 
+		public IQueryable<PresenceDTO> GetQuery(bool withPhoto = false)
+		{
+			return Manager.Database.Presences
+				.AsEnumerable()
+				.Join(Manager.Database.Employees, p => p.EmployeeId, e => e.EmployeeId, (p, e) => new { Employee = e, Presence = p })
+				.Select(val => new PresenceDTO()
+				{
+					Coordinate = val.Presence.Coordinate,
+					DateOfPresence = val.Presence.DateOfPresence,
+					EmployeeId = val.Presence.EmployeeId,
+					EmployeeName = val.Employee.Person.PersonName,
+					EmployeeNumber = val.Employee.EmployeeNumber,
+					LivePhoto = withPhoto ? val.Presence.LivePhoto : null,
+					PresenceId = val.Presence.PresenceId,
+					PresenceStatus = val.Presence.PresenceStatus,
+					RegionName = val.Employee.Region.RegionName,
+					RoleId = val.Employee.RoleId,
+					RoleName = val.Employee.Role.RoleName,
+					ZoneName = val.Employee.Zone.ZoneName,
+					Shift = val.Employee.Shift,
+					Counter = val.Presence.Counter,
+					Location = val.Presence.Location,
+					TimeOfPresence = val.Presence.DateOfPresence.Value.ToShortTimeString()
+				}).AsQueryable();
+		}
+
+		public IQueryable<PresenceResumeDTO> GetQueryPresenceResume()
+		{
+			return Manager.Database.vPresenceResumes.Select(val => new PresenceResumeDTO()
+			{
+				LocationContract = val.LocationContract,
+				EmployeeId = val.EmployeeId,
+				EmployeeName = val.PersonName,
+				EmployeeNumber = val.EmployeeNumber,
+				Absence = (int)val.Absence,
+				Leave = (int)val.Leave,
+				PresenceTotal = (int)val.PresenceTotal,
+				RegionName = val.RegionName,
+				RoleName = val.RoleName,
+				ZoneName = val.ZoneName,
+				Shift = val.Shift,
+				Percentage = (int)val.Presence
+			});
+		}
+
 		public List<PresenceDTO> Transform()
 		{
-			return (from val in Get(true)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location
-					}).ToList();
+			return GetQuery().ToList();
 		}
 
 		public List<PresenceDTO> TransformWithPhoto()
 		{
-			return (from val in Get(true)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = val.LivePhoto,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location
-					}).ToList();
+			return GetQuery(true).ToList();
 		}
 
 		public List<PresenceDTO> TransformWithPhotoAndParam(string status, string zoneParams)
 		{
-			return (from val in Get(true).AsEnumerable()
-					where val.PresenceStatus.Equals(status) &&
-					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = val.LivePhoto,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location,
-						TimeOfPresence = val.DateOfPresence.Value.ToShortTimeString()
-					}).ToList();
+			return GetQuery(true)
+				.Where(
+					x => x.PresenceStatus.Equals(status) &&
+					x.ZoneName.Equals(zoneParams) &&
+					x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()))
+				.ToList();
 		}
 
 		public List<PresenceDTO> TransformHeadRegion()
 		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 3 &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location,
-					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
+			return GetQuery()
+				.Where(
+					x => x.RoleId == 3 &&
+					x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()))
+				.GroupBy(x => x.EmployeeName)
+				.Select(x => x.FirstOrDefault())
+				.ToList();
 		}
 
 		public List<PresenceDTO> TransformSweeper(string zoneParams, string regionParams, string shiftParams)
 		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 4 &&
-					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
-					val.Employee.Region.RegionName.Equals(regionParams) &&
-					val.Employee.Shift.Equals(shiftParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
-					val.Counter < 3
-					// &&
-					//!(from sw in Manager.Database.Sweepers.AsEnumerable()
-					//  where sw.Presence.DateOfPresence.Value.ToShortDateString().Equals(DateTime.Now.ToShortDateString())
-					//  select sw.Presence.PresenceId).Contains(val.PresenceId)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location,
-					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
+			return GetQuery()
+				.Where(
+					x => x.RoleId == 4 &&
+					x.RegionName.Equals(regionParams) &&
+					x.ZoneName.Equals(zoneParams) &&
+					x.Shift.Equals(shiftParams) &&
+					x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
+					x.Counter < 3)
+				.GroupBy(x => x.EmployeeName)
+				.Select(x => x.FirstOrDefault())
+				.ToList();
 		}
 
+		public List<PresenceDTO> TransformGarbage(string zoneParams, string regionParams, string shiftParams)
+		{
+			return GetQuery()
+				.Where(
+					x => x.RoleId == 5 &&
+					x.RegionName.Equals(regionParams) &&
+					x.ZoneName.Equals(zoneParams) &&
+					x.Shift.Equals(shiftParams) &&
+					x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
+					x.Counter < 3)
+				.GroupBy(x => x.EmployeeName)
+				.Select(x => x.FirstOrDefault())
+				.ToList();
+		}
 
 		public List<PresenceDTO> TransformDrainage(string zoneParams, string regionParams, string shiftParams)
 		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 10 &&
-					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
-					val.Employee.Region.RegionName.Equals(regionParams) &&
-					val.Employee.Shift.Equals(shiftParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())  &&
-					val.Counter < 3
-					// &&
-					//!(from d in Manager.Database.Drainages.AsEnumerable()
-					//  where d.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					//  select d.Presence.PresenceId).Contains(val.PresenceId)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location
-					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
+			return GetQuery()
+				.Where(
+					x => x.RoleId == 10 &&
+					x.RegionName.Equals(regionParams) &&
+					x.ZoneName.Equals(zoneParams) &&
+					x.Shift.Equals(shiftParams) &&
+					x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
+					x.Counter < 3)
+				.GroupBy(x => x.EmployeeName)
+				.Select(x => x.FirstOrDefault())
+				.ToList();
+		}
+
+		public List<PresenceDTO> TransformHeadZone()
+		{
+			return GetQuery()
+				.Where(
+					s => s.RoleId == 1 &&
+					s.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
+					!(Manager.Database.HeadOfZones
+						.AsEnumerable()
+						.Where(x => x.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()))
+						.Select(x => x.PresenceId)).Contains(s.PresenceId))
+				.ToList();
 		}
 
 		public DashboardDTO TransformDashboard()
@@ -272,99 +247,9 @@ namespace Core.Manager.PresenceManager
 			};
 		}
 
-		public List<PresenceDTO> TransformGarbage(string zoneParams, string regionParams, string shiftParams)
-		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 5 &&
-					val.Employee.Zone.ZoneName.Equals(zoneParams) &&
-					val.Employee.Region.RegionName.Equals(regionParams) &&
-					val.Employee.Shift.Equals(shiftParams) &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())  &&
-					val.Counter < 3
-					// &&
-					//!(from g in Manager.Database.Garbages.AsEnumerable()
-					//  where g.Presence.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					// select g.Presence.PresenceId).Contains(val.PresenceId)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location
-					}).GroupBy(x => x.EmployeeName).Select(x => x.FirstOrDefault()).ToList();
-		}
-
-		public List<PresenceDTO> TransformHeadZone()
-		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 1 &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()) &&
-					!(from hz in Manager.Database.HeadOfZones.AsEnumerable()
-					  where hz.Presence.DateOfPresence.Value.ToShortDateString().Equals(DateTime.Now.ToShortDateString())
-					  select hz.Presence.PresenceId).Contains(val.PresenceId)
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Counter = val.Counter,
-						Location = val.Location
-					}).ToList();
-		}
-
 		public List<PresenceResumeDTO> TransformResume()
 		{
-			var absence = from val in Get()
-						  where val.PresenceStatus.Equals("0")
-						  select val;
-
-			var leave = from val in Get()
-						where val.PresenceStatus.Equals("2")
-						select val;
-
-			var presence = from val in Get()
-						   where val.PresenceStatus.Equals("1")
-						   select val;
-
-			var allPresence = from val in Get() 
-							  select val;
-
-			return (from val in Get(true)
-					select new PresenceResumeDTO()
-					{
-						LocationContract = val.Employee.LocationContract,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						Absence = absence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						Leave = leave.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						PresenceTotal = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift,
-						Percentage = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100 /
-						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-					}).OrderBy(x => x.ZoneName).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
+			return GetQueryPresenceResume().ToList();
 		}
 
 		public List<PresenceResumeDTO> TransformResume(string start, string end)
@@ -418,40 +303,11 @@ namespace Core.Manager.PresenceManager
 
 		public List<PresenceResumeDTO> TransformResumeZoneRegion(string zoneParams, string regionParams)
 		{
-			var absence = from val in Get()
-						  where val.PresenceStatus.Equals("0")
-						  select val;
-
-			var leave = from val in Get()
-						where val.PresenceStatus.Equals("2")
-						select val;
-
-			var presence =	from val in Get()
-							where val.PresenceStatus.Equals("1")
-							select val;
-
-			var allPresence = from val in Get() select val; 
-
-			return (from val in Get(true)
-					where val.Employee.Region.RegionName.Equals(regionParams) &&
-					val.Employee.Zone.ZoneName.Equals(zoneParams)
-					select new PresenceResumeDTO()
-					{
-						LocationContract = val.Employee.LocationContract,
-						EmployeeId = val.EmployeeId,
-						Photo = val.Employee.Person.Photo,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						Absence = absence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						Leave = leave.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						PresenceTotal = presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count(),
-						Percentage = ((presence.Where(x => x.EmployeeId == val.EmployeeId).Select(x => x.PresenceStatus).Count() * 100) /
-						allPresence.Where(x => x.EmployeeId == val.EmployeeId).Select(X => X.PresenceStatus).Count()),
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
-					}).OrderBy(x => x.ZoneName).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).ToList();
+			return GetQueryPresenceResume()
+				.Where(x =>
+					x.RegionName.Equals(regionParams) &&
+					x.ZoneName.Equals(zoneParams))
+				.ToList();
 		}
 
 		public List<EmployeePerformDTO> TransformPerform()
@@ -728,50 +584,6 @@ namespace Core.Manager.PresenceManager
 					}).ToList();
 		}
 
-		public List<PresenceDTO> TransformLiveSweeper(string zoneParams)
-		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 4 && 
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						Shift = val.Employee.Shift,
-						PresenceStatus = val.PresenceStatus.Equals("0") ? "Alfa" : val.PresenceStatus.Equals("1") ? "Hadir" : "Izin",
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName
-					}).ToList();
-		}
-
-		public List<PresenceDTO> TransformLiveDrainage(string zoneParams)
-		{
-			return (from val in Get(true).AsEnumerable()
-					where val.Employee.RoleId == 10 &&
-					val.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString())
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						Shift = val.Employee.Shift,
-						PresenceStatus = val.PresenceStatus.Equals("0") ? "Alfa" : val.PresenceStatus.Equals("1") ? "Hadir" : "Izin",
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName
-					}).ToList();
-		}
-
 		public List<ZoneResumeDTO> TransformZoneTestResume()
 		{
 			var db = Manager.Database;
@@ -1009,24 +821,7 @@ namespace Core.Manager.PresenceManager
 
 		public PresenceDTO TransformId(long id)
 		{
-			return (from val in Get(true).AsEnumerable()
-					where val.PresenceId == id
-					select new PresenceDTO()
-					{
-						Coordinate = val.Coordinate,
-						DateOfPresence = val.DateOfPresence,
-						TimeOfPresence = val.DateOfPresence.Value.ToShortTimeString(),
-						EmployeeId = val.EmployeeId,
-						EmployeeName = val.Employee.Person.PersonName,
-						EmployeeNumber = val.Employee.EmployeeNumber,
-						LivePhoto = null,
-						PresenceId = val.PresenceId,
-						PresenceStatus = val.PresenceStatus,
-						RegionName = val.Employee.Region.RegionName,
-						RoleName = val.Employee.Role.RoleName,
-						ZoneName = val.Employee.Zone.ZoneName,
-						Shift = val.Employee.Shift
-					}).FirstOrDefault();
+			return GetQuery().FirstOrDefault(x => x.PresenceId == id);
 		}
 
 		public PerformSweeperDTO TransformResumePerformSweeper(long idParams)
@@ -1132,13 +927,13 @@ namespace Core.Manager.PresenceManager
 					}).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).FirstOrDefault();
 		}
 
-		public PerformHeadZoneDTO TransformResumePerformHeadZone(long idParams)
+		public PerformHeadZoneDTO TransformResumePerformHeadZone(long employeeId)
 		{
 			var db = Manager.Database;
 			var employee = db.Employees;
 			var totalSelf = from val in db.HeadOfZones
 							where val.Presence.Employee.RoleId == 1 &&
-							val.Presence.Employee.EmployeeId == idParams
+							val.Presence.Employee.EmployeeId == employeeId
 							select val;
 
 			return (from e in employee
@@ -1148,7 +943,7 @@ namespace Core.Manager.PresenceManager
 					on pr.PresenceId equals g.PresenceId
 					into value
 					from val in value
-					where e.EmployeeId == idParams
+					where e.EmployeeId == employeeId
 					select new PerformHeadZoneDTO()
 					{
 						EmployeeId = e.EmployeeId,
@@ -1167,12 +962,11 @@ namespace Core.Manager.PresenceManager
 					}).GroupBy(x => x.EmployeeId).Select(x => x.FirstOrDefault()).FirstOrDefault();
 		}
 
-		public bool TransformExistPresence(long idParams)
+		public bool TransformExistPresence(long employeeId)
 		{
-			var exist = Manager.Query.Value.Get()
-							.AsEnumerable()
-							.FirstOrDefault(x => x.EmployeeId == idParams && 
-								x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()));
+			var exist = GetQuery().FirstOrDefault(
+				x => x.EmployeeId == employeeId &&
+				x.DateOfPresence.Value.ToShortDateString().Equals(Today.ToShortDateString()));
 
 			return exist != null;
 		}
