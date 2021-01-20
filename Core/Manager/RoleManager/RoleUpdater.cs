@@ -1,6 +1,5 @@
 ﻿using Repository;
 using System;
-using System.Linq;
 using System.Transactions;
 
 namespace Core.Manager.RoleManager
