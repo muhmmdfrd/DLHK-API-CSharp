@@ -129,7 +129,7 @@ namespace Core.Manager.PersonManager
 						worksheet.Cell($"B{no}").SetDataType(XLDataType.Text).Value = NullableValue(data[i].NIK);
 						worksheet.Cell($"C{no}").Value = NullableValue(data[i].PersonName);
 						worksheet.Cell($"D{no}").Value = NullableValue(data[i].PlaceOfBirth);
-						worksheet.Cell($"E{no}").Value = NullableValue(data[i].DateOfBirth.Value.ToShortDateString());
+						worksheet.Cell($"E{no}").Value = NullableValue(data[i].DateOfBirth.GetValueOrDefault().ToShortDateString());
 						worksheet.Cell($"F{no}").Value = NullableValue(data[i].Address);
 						worksheet.Cell($"G{no}").Value = NullableValue(data[i].Email);
 						worksheet.Cell($"H{no}").SetDataType(XLDataType.Text).Value = NullableValue(data[i].Phone);
