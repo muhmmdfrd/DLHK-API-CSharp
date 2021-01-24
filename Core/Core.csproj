@@ -189,6 +189,8 @@
     <Compile Include="Manager\ZoneManager\ZoneDTO.cs" />
     <Compile Include="Manager\ZoneManager\ZoneQuery.cs" />
     <Compile Include="Manager\ZoneManager\ZoneUpdater.cs" />
+    <Compile Include="Model\Pagination.cs" />
+    <Compile Include="Model\TableFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

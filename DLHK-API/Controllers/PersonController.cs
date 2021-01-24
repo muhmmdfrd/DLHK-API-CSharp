@@ -48,6 +48,31 @@ namespace DLHK_API.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/person/applicant")]
+		public IHttpActionResult GetPagedApplicant([FromUri] int page, string keyword)
+		{
+			try
+			{
+				using (var manager = new PersonAdapter())
+				{
+					var filter = new PersonFilter
+					{
+						PageIndex = page,
+						Keyword = keyword
+					};
+
+					var data = manager.Query.Value.GetApplicantPagination(filter);
+
+					return Json(Response.Success(data));
+				}
+			}
+			catch (Exception ex)
+			{
+				return Json(Response.Fail(ex.Message));
+			}
+		}
+
+		[HttpGet]
 		[Route("api/person/interview")]
 		public IHttpActionResult GetInterview()
 		{

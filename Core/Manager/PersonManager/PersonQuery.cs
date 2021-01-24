@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Core.Model;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,11 @@ using System.Linq;
 
 namespace Core.Manager.PersonManager
 {
+	public class PersonFilter : TableFilter
+	{
+		// filter
+	}
+
 	public class PersonQuery : AsistanceBase<PersonAdapter, Person>
 	{
 		public PersonQuery(PersonAdapter manager) : base(manager)
@@ -57,6 +63,40 @@ namespace Core.Manager.PersonManager
 		public PersonDTO TransformName(string name)
 		{
 			return GetQuery().FirstOrDefault(x => x.PersonName.Equals(name));
+		}
+
+		public Pagination<PersonDTO> GetApplicantPagination(PersonFilter filter)
+		{
+			var query = GetQuery()
+				.Where(x =>
+					!x.Jobdesk.Equals("Employee") &&
+					!x.Jobdesk.Equals("Interview"));
+
+			int total = query.Count();
+			int filtered = total;
+
+			if (!string.IsNullOrEmpty(filter.Keyword))
+			{
+				query = query.Where(x => x.PersonName.Contains(filter.Keyword));
+				filtered = query.Count();
+
+				if (filtered == 0)
+					throw new Exception("data not found");
+			}
+
+			query = query
+				.OrderBy(x => x.PersonId)
+				.Skip(filter.Skip)
+				.Take(filter.PageSize);
+
+			return new Pagination<PersonDTO>()
+			{
+				ActivePage = filter.ActivePage,
+				PageSize = filter.PageSize,
+				Data = query.ToList(),
+				RecordsTotal = total,
+				RecordsFiltered = filtered
+			};
 		}
 
 		public List<PersonDTO> TransformApplicant()
