@@ -1,0 +1,12 @@
+/.vs
+/packages
+/script.sql
+/Repository/obj
+/Repository/bin
+/DLHK-API/bin
+/DLHK-API/obj
+/DLHK-API/Properties
+/DLHK-API/DLHK-API.csproj
+/DLHK-API/DLHK-API.csproj.user
+/Core/bin
+/Core/obj
