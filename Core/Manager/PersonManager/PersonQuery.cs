@@ -25,7 +25,7 @@ namespace Core.Manager.PersonManager
 			return Manager.Database.People;
 		}
 
-		public IQueryable<PersonDTO> GetQuery()
+		public IQueryable<PersonDTO> GetQuery(bool withAttachment = false)
 		{
 			return Manager.Database.People.Select(val => new PersonDTO()
 			{
@@ -42,11 +42,11 @@ namespace Core.Manager.PersonManager
 				NameOfCouple = val.NameOfCouple,
 				JobOfCouple = val.JobOfCouple,
 				TotalChild = val.TotalChild,
-				AppLetter = val.AppLetter,
 				Jobdesk = val.Jobdesk,
-				KTP = val.KTP,
-				Photo = val.Photo,
-				Sertificate = val.Sertificate,
+				AppLetter = withAttachment ? val.AppLetter : null,
+				KTP = withAttachment ? val.KTP : null,
+				Photo = withAttachment ? val.Photo : null,
+				Sertificate = withAttachment ? val.Sertificate : null,
 			});
 		}
 
@@ -115,7 +115,7 @@ namespace Core.Manager.PersonManager
 
 		public PersonDTO TransformApplicantId(long id)
 		{
-			return GetQuery()
+			return GetQuery(true)
 				.FirstOrDefault(x =>
 					!x.Jobdesk.Equals("Employee") &&
 					!x.Jobdesk.Equals("Interview") &&
