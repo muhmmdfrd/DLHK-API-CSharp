@@ -1,4 +1,5 @@
 ﻿using Core.Manager.ItemManager;
+using DLHK_API.Extensions;
 using DLHK_API.Models;
 using System;
 using System.Web;
@@ -60,13 +61,12 @@ namespace DLHK_API.Controllers
 					var dto = new ItemDTO
 					{
 						ItemName = formData["itemName"],
-						ItemQty = Convert.ToInt32(formData["itemQty"]),
+						ItemQty = formData["itemQty"].ToInt(),
 						Note = formData["note"],
 						ItemPhoto = upload,
-						SuplierName = formData["suplierName"]
+						SuplierName = formData["suplierName"],
+						CategoryId = formData["categoryId"].ToLong()
 					};
-
-					dto.CategoryId = dto.CategoryId == null ? 0 : Convert.ToInt32(formData["categoryId"]);
 
 					manager.Creator.Value.Save(dto);
 

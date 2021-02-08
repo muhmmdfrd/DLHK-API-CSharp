@@ -29,10 +29,11 @@ namespace Core.Manager.ItemManager
 				}
 				else
 				{
-					code = Manager.Database.Categories
-					   .AsQueryable()
-					   .FirstOrDefault(x => x.CategoryId == dto.CategoryId)
-					   .CategoryCode;
+					var res = Manager.Database.Categories
+					   .AsNoTracking()
+					   .FirstOrDefault(x => x.CategoryId == dto.CategoryId);
+
+					code = res.CategoryCode;
 
 					itemCode = $"{code}-{(Guid.NewGuid().ToString().ToUpper()).Substring(0, 4)}";
 

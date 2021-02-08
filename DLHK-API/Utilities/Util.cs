@@ -1,4 +1,5 @@
 ﻿using Core.Manager.InterviewManager;
+using DLHK_API.Extensions;
 using ExcelDataReader;
 using Repository;
 using System;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
@@ -194,53 +196,55 @@ namespace DLHK_API.Utilities
 					switch (status)
 					{
 						case "person":
+						case "employee":
 							for (int i = 1; i < finalRecords.Rows.Count; i++)
 							{
 								var val = finalRecords.Rows;
 
 								var data = new Person
 								{
-									PersonName = ObjToString(val[i][0]),
-									PlaceOfBirth = ObjToString(val[i][1]),
-									DateOfBirth = ObjToDate(val[i][2]),
-									Address = ObjToString(val[i][3]),
-									Phone = ObjToString(val[i][4]),
-									LastDegree = ObjToString(val[i][5]),
-									PreviousJob = ObjToString(val[i][6]),
-									NameOfCouple = ObjToString(val[i][7]),
-									JobOfCouple = ObjToString(val[i][8]),
+									PersonName = val[i][0].ToString(),
+									PlaceOfBirth = val[i][1].ToString(),
+									DateOfBirth = val[i][2].ToDate(),
+									Address = val[i][3].ToString(),
+									Phone = val[i][4].ToString(),
+									LastDegree = val[i][5].ToString(),
+									PreviousJob = val[i][6].ToString(),
+									NameOfCouple = val[i][7].ToString(),
+									JobOfCouple = val[i][8].ToString(),
 									Jobdesk = "Employee",
-									TotalChild = ObjToInt(val[i][14]),
-									Email = ObjToString(val[i][15]),
-									NIK = ObjToString(val[i][16])
-
+									TotalChild = val[i][9].ToInt(),
+									Email = val[i][10].ToString(),
+									NIK = val[i][11].ToString()
 								};
 
-								objEntity.People.Add(data);
-							}
-							break;
-						case "employee":
-							for (int i = 1; i < finalRecords.Rows.Count; i++)
-							{
-								var val = finalRecords.Rows;
+								var resPerson = objEntity.People.Add(data);
+								objEntity.SaveChanges();
 
-								var data = new Employee
+								var roleName = val[i][16].ToString();
+								var regionName = val[i][17].ToString();
+								var zoneName = val[i][18].ToString();
+								
+								var roleId = objEntity.Roles.Select(x => new { x.RoleId, x.RoleName }).FirstOrDefault(s => s.RoleName.Contains(roleName)).RoleId;
+								var zoneId = objEntity.Zones.Select(x => new { x.ZoneId, x.ZoneName }).FirstOrDefault(s => s.ZoneName.Contains(zoneName)).ZoneId;
+								var regionId = objEntity.Regions.Select(x => new { x.RegionId, x.RegionName }).FirstOrDefault(s => s.RegionName.Contains(regionName)).RegionId;
+
+								var emp = new Employee
 								{
-									EmployeeNumber = ObjToString(val[i][0]),
-									FirstContract = ObjToDate(val[i][1]),
-									LastContract = ObjToDate(val[i][2]),
-									LocationContract = ObjToString(val[1][3]),
-									PersonId = ObjToLong(val[i][4]),
-									RoleId = ObjToLong(val[i][5]),
-									RegionId = ObjToLong(val[i][6]),
-									ZoneId = ObjToLong(val[i][7]),
-									Bank = ObjToString(val[i][8]),
-									Shift = ObjToString(val[i][9])
+									EmployeeNumber = val[i][12].ToString(),
+									FirstContract = val[i][13].ToDate(),
+									LastContract = val[i][14].ToDate(),
+									LocationContract = val[i][15].ToString(),
+									PersonId = resPerson.PersonId,
+									RoleId = roleId,
+									RegionId = regionId,
+									ZoneId = zoneId,
+									Bank = val[i][19].ToString(),
+									Shift = val[i][20].ToString()
 								};
-
-
-								objEntity.Employees.Add(data);
+								objEntity.Employees.Add(emp);
 							}
+							
 							break;
 						case "item":
 							for (int i = 1; i < finalRecords.Rows.Count; i++)
@@ -249,11 +253,11 @@ namespace DLHK_API.Utilities
 
 								var data = new Item
 								{
-									ItemName = ObjToString(val[i][0]),
-									ItemQty = ObjToInt(val[i][1]),
-									Note = ObjToString(val[i][2]),
-									CategoryId = ObjToLong(val[i][3]),
-									ItemCode = ObjToString(val[i][4])
+									ItemName = val[i][0].ToString(),
+									ItemQty = val[i][1].ToInt(),
+									Note = val[i][2].ToString(),
+									CategoryId = val[i][3].ToLong(),
+									ItemCode = val[i][4].ToString(),
 								};
 
 								objEntity.Items.Add(data);
@@ -261,13 +265,13 @@ namespace DLHK_API.Utilities
 								var itemIn = new Transac
 								{
 									DateTransac = DateTime.Now,
-									ItemCode = ObjToString(val[i][4]),
-									ItemName = ObjToString(val[i][0]),
-									Note = ObjToString(val[i][2]),
-									Qty = ObjToInt(val[i][1]),
+									ItemCode = val[i][4].ToString(),
+									ItemName = val[i][0].ToString(),
+									Note = val[i][2].ToString(),
+									Qty = val[i][1].ToInt(),
 									TypeOfTransac = "IN",
 									UserRecorder = "Admin",
-									SuplierName = ObjToString(val[i][5])
+									SuplierName = val[i][5].ToString()
 								};
 
 								objEntity.Transacs.Add(itemIn);
@@ -276,7 +280,6 @@ namespace DLHK_API.Utilities
 						default:
 							throw new Exception("can't identified status");
 					}
-
 
 					int output = objEntity.SaveChanges();
 					if (output < 0)
@@ -290,26 +293,6 @@ namespace DLHK_API.Utilities
 					throw new Exception("be sure to including file!");
 				}
 			}
-		}
-
-		private string ObjToString(object value)
-		{
-			return Convert.ToString(value);
-		}
-
-		private DateTime ObjToDate(object value)
-		{
-			return Convert.ToDateTime(value);
-		}
-
-		private long? ObjToLong(object value)
-		{
-			return Convert.ToInt32(value);
-		}
-
-		private int ObjToInt(object value)
-		{
-			return Convert.ToInt16(value);
 		}
 	}
 }
